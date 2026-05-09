@@ -1,0 +1,22 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}
+  SkillBridge | Online Freelance Platform
+{% endblock %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/core/home.css' %}" />
+{% endblock %}
+
+{% block content %}
+  <h1>Login</h1>
+  <form method="POST">
+    {% csrf_token %}
+    <input type="text" name="email" placeholder="Email" />
+    <br /><br />
+    <input type="password" name="password" placeholder="Password" />
+    <br /><br />
+    <button type="submit">Login</button>
+  </form>
+{% endblock %}
