@@ -1,0 +1,325 @@
+.top {
+    position: relative;
+    text-align: center;
+    padding: 100px 20px;
+    background-color: #0f172a;
+}
+
+.light {
+    position: absolute;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 400px;
+    background: rgba(99, 102, 241, 0.12);
+    filter: blur(100px);
+    z-index: 0;
+}
+
+.content {
+    position: relative;
+    z-index: 1;
+}
+
+.tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 30px;
+    margin-bottom: 25px;
+}
+
+.dot {
+    width: 6px;
+    height: 6px;
+    background: #6366f1;
+    border-radius: 50%;
+}
+
+.tag-text {
+    font-size: 10px;
+    font-weight: 800;
+    color: #94a3b8;
+    text-transform: uppercase;
+}
+
+.title {
+    font-size: 5rem;
+    font-weight: 900;
+    line-height: 1;
+    color: #fff;
+    margin-bottom: 25px;
+}
+
+.color-text {
+    background: linear-gradient(to right, #818cf8, #f472b6);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.sub-text {
+    font-size: 1.15rem;
+    color: #94a3b8;
+    max-width: 600px;
+    margin: 0 auto 40px;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.primary-btn {
+    background: #4f46e5;
+    color: #fff;
+    padding: 16px 35px;
+    border-radius: 12px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.secondary-btn {
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+    padding: 16px 35px;
+    border-radius: 12px;
+    font-weight: 700;
+    text-decoration: none;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+
+
+.skill {
+    min-height: 100vh;
+    width: 100%;
+    padding: 80px 0 40px;
+    background: linear-gradient(180deg, #161e31 0%, #0f172a 100%);
+    border-top: 1px solid rgba(255, 255, 255, 0.02);
+    box-sizing: border-box;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.centerhead {
+    text-align: center;
+    margin-bottom: 40px;
+    width: 100%;
+    padding: 0 20px;
+}
+
+.title2 {
+    font-size: 3rem;
+    font-weight: 900;
+    color: #fff;
+}
+
+.blue-text {
+    color: #6366f1;
+}
+
+.subtext {
+    color: #94a3b8;
+    font-size: 1rem;
+    margin-top: 10px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    width: 100%;
+    max-width: 1200px;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.card {
+    background: #1e293b;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 40px 30px;
+    border-radius: 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.card i {
+    font-size: 2rem;
+    color: #6366f1;
+    margin-bottom: 15px;
+}
+
+.card h4 {
+    color: #fff;
+    margin-bottom: 5px;
+}
+
+.card p {
+    color: #64748b;
+    font-size: 0.85rem;
+}
+
+.card:hover {
+    border-color: #6366f1;
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* --- Section 3: How it Works (Main Dark) --- */
+.work-info {
+    padding: 120px 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: #0f172a;
+}
+
+.point-list {
+    list-style: none;
+    margin: 25px 0;
+}
+
+.point-list li {
+    color: #fff;
+    margin-bottom: 12px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.point-list i {
+    color: #6366f1;
+    font-size: 0.9rem;
+}
+
+.simple-link {
+    color: #6366f1;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 11px;
+    text-transform: uppercase;
+}
+
+.visual-side {
+    position: relative;
+}
+
+.gray-box {
+    height: 320px;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.gray-box i {
+    font-size: 60px;
+    color: rgba(255, 255, 255, 0.05);
+}
+
+.info-popup {
+    position: absolute;
+    bottom: 20px;
+    right: -10px;
+    background: #1e293b;
+    padding: 18px;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.popup-tag {
+    color: #6366f1;
+    font-size: 9px;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.info-popup p {
+    font-size: 11px;
+    color: #fff;
+    font-weight: 700;
+    margin: 8px 0;
+}
+
+.line-bg {
+    width: 100px;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+}
+
+.line-fill {
+    width: 65%;
+    height: 100%;
+    background: #6366f1;
+}
+
+
+/* --- Section 4: Join Area (Glassmorphism Effect) --- */
+.join-box {
+    margin: 80px 20px 150px;
+    background: rgba(255, 255, 255, 0.03);
+    /* Glass look */
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    padding: 80px 40px;
+    border-radius: 40px;
+    text-align: center;
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.bottom-line {
+    position: absolute;
+    bottom: 0;
+    left: 20%;
+    width: 60%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #6366f1, transparent);
+}
+
+.btn-wrap {
+    margin-top: 30px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .work-info {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .numbers-row {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+    }
+
+    .main-title {
+        font-size: 3.5rem;
+    }
+}

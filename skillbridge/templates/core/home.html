@@ -1,0 +1,102 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}
+  SkillBridge | Online Freelance Platform
+{% endblock %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/core/home.css' %}" />
+{% endblock %}
+
+{% block content %}
+  <section class="top">
+    <div class="light"></div>
+    <div class="content">
+      <div class="tag">
+        <span class="dot"></span>
+        <span class="tag-text">Students Friendly Freelance Platform</span>
+      </div>
+
+      <h1 class="title">Find and Hire Skilled <br/><span class="color-text">Professionals Easily</span></h1>
+
+      <p class="sub-text">Connect directly with skilled freelancers for your projects. Simple, transparent, and efficient collaboration without unnecessary complexity.</p>
+
+      <div class="action-buttons">
+        <a href="#" class="primary-btn">Get Started Now</a>
+        <a href="#" class="secondary-btn">Browse Projects</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="skill">
+    <div class="centerhead">
+      <h2 class="title2">Student <span class="blue-text">Opportunities</span></h2>
+      <p class="subtext">Find assignments, projects, and learning tasks based on your level.</p>
+    </div>
+    <div class="grid">
+      <div class="card">
+        <i class="fas fa-laptop-code"></i>
+        <h4>Programming Tasks</h4>
+        <p>Assignments, coding problems & practice</p>
+      </div>
+      <div class="card">
+        <i class="fas fa-school"></i>
+        <h4>School Level</h4>
+        <p>Homework, essays & basic projects</p>
+      </div>
+      <div class="card">
+        <i class="fas fa-university"></i>
+        <h4>College Level</h4>
+        <p>Reports, presentations & case studies</p>
+      </div>
+      <div class="card">
+        <i class="fas fa-graduation-cap"></i>
+        <h4>University Level</h4>
+        <p>Research, thesis & advanced projects</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section class="work-info">
+    <div class="text-side">
+      <h2 class="title-text">Built for the <br /> <span class="blue-text">Ownership Economy</span></h2>
+      <p class="desc-text">Traditional talent platforms take 20%+, but on SkillBridge, talent keeps 100% of their earnings.</p>
+      <ul class="point-list">
+        <li>
+          <i class="fas fa-check"></i> No Markups for Clients
+        </li>
+        <li>
+          <i class="fas fa-check"></i> Verified Professional Network
+        </li>
+        <li>
+          <i class="fas fa-check"></i> Escrow-Protected Contracts
+        </li>
+      </ul>
+      <a href="#" class="simple-link">Learn how it works &rarr;</a>
+    </div>
+    <div class="visual-side">
+      <div class="gray-box">
+        <i class="fas fa-network-wired"></i>
+      </div>
+      <div class="info-popup">
+        <span class="popup-tag">New Match</span>
+        <p>Sarah D. joined as UX Expert</p>
+        <div class="line-bg">
+          <div class="line-fill"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Join Section -->
+  <section class="join-box">
+    <div class="bottom-line"></div>
+    <h2 class="title-text">Ready to build the future?</h2>
+    <p class="desc-text">Join thousands of teams using SkillBridge to accelerate growth.</p>
+    <div class="btn-wrap">
+      <a href="#" class="primary-btn">Create Free Account</a>
+    </div>
+  </section>
+{% endblock %}
