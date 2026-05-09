@@ -175,101 +175,98 @@
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
-/* --- Section 3: How it Works (Main Dark) --- */
-.work-info {
-    padding: 120px 20px;
+
+
+
+
+.work {
+    width: 100%;
+    padding: 120px 5%;
+    position: relative;
+    overflow: hidden;
+    background:
+        linear-gradient(180deg, #161e31 0%, #0f172a 100%);
+}
+
+.work::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+
+    background-size: 40px 40px;
+    pointer-events: none;
+}
+
+.work-container {
+    position: relative;
+    z-index: 2;
+
+    max-width: 1200px;
+    margin: 0 auto;
+
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 60px;
     align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-    background-color: #0f172a;
 }
 
-.point-list {
-    list-style: none;
-    margin: 25px 0;
-}
-
-.point-list li {
+.titletext {
+    font-size: 2.5rem;
+    font-weight: 900;
     color: #fff;
-    margin-bottom: 12px;
-    font-weight: 600;
+}
+
+.blue-text {
+    color: #6366f1;
+}
+
+.desctext {
+    color: #94a3b8;
+    margin-top: 15px;
+    line-height: 1.6;
+    font-size: 1rem;
+}
+
+.pointlist {
+    margin-top: 25px;
+    list-style: none;
+}
+
+.pointlist li {
     display: flex;
     align-items: center;
     gap: 10px;
+    color: #fff;
+    margin-bottom: 12px;
+    font-weight: 600;
 }
 
-.point-list i {
+.pointlist i {
     color: #6366f1;
-    font-size: 0.9rem;
 }
 
-.simple-link {
-    color: #6366f1;
-    text-decoration: none;
-    font-weight: 800;
-    font-size: 11px;
-    text-transform: uppercase;
-}
-
-.visual-side {
-    position: relative;
-}
-
-.gray-box {
-    height: 320px;
-    background: rgba(255, 255, 255, 0.02);
-    border-radius: 30px;
+.visualside {
     display: flex;
     justify-content: center;
+}
+
+.box {
+    width: 280px;
+    height: 280px;
+    border-radius: 30px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
     align-items: center;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    justify-content: center;
+    font-size: 70px;
+    color: rgba(255, 255, 255, 0.1);
 }
 
-.gray-box i {
-    font-size: 60px;
-    color: rgba(255, 255, 255, 0.05);
-}
-
-.info-popup {
-    position: absolute;
-    bottom: 20px;
-    right: -10px;
-    background: #1e293b;
-    padding: 18px;
-    border-radius: 15px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-}
-
-.popup-tag {
-    color: #6366f1;
-    font-size: 9px;
-    font-weight: 900;
-    text-transform: uppercase;
-}
-
-.info-popup p {
-    font-size: 11px;
-    color: #fff;
-    font-weight: 700;
-    margin: 8px 0;
-}
-
-.line-bg {
-    width: 100px;
-    height: 3px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 5px;
-}
-
-.line-fill {
-    width: 65%;
-    height: 100%;
-    background: #6366f1;
-}
 
 
 /* --- Section 4: Join Area (Glassmorphism Effect) --- */
