@@ -20,6 +20,7 @@ class FreelancerProfile(models.Model):
     resume = models.FileField(upload_to='resumes/', blank=True, null=True)
     nidnumber = models.CharField(max_length=50)
     createdat = models.DateTimeField(auto_now_add=True)
+    # n = models.CharField(max_length=50, blank=True)
 
     def __str__(self):
         return self.name
