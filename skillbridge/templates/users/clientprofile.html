@@ -1,0 +1,15 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}
+  SkillBridge | Online Freelance Platform
+{% endblock %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/core/home.css' %}" />
+{% endblock %}
+
+{% block content %}
+  <h1>Clint Dashboard</h1>
+  <a href="{% url 'logout' %}">Logout</a>
+{% endblock %}
