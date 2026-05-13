@@ -4,7 +4,6 @@ from django.contrib.auth.models import User
 
 class FreelancerProfile(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
-    
     name = models.CharField(max_length=200)
     email = models.EmailField(unique=True)
     phone = models.CharField(max_length=20)
@@ -20,7 +19,6 @@ class FreelancerProfile(models.Model):
     profileimage = models.ImageField(upload_to='media/', blank=True, null=True)
     resume = models.FileField(upload_to='resumes/', blank=True, null=True)
     nidnumber = models.CharField(max_length=50)
-    
     createdat = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
