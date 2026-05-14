@@ -71,12 +71,9 @@ def freelancerdashboard(request):
     recent_saved = saved_qs.select_related('job').order_by('-saved_at')[:5]
 
     context = {
-<<<<<<< HEAD
         'profile': profile,
         'role': 'freelancer',
 
-=======
->>>>>>> 5096d07f173ec6fcb7f4659b8182827a25bfeec8
         'total_applications': app_qs.count(),
         'pending_applications': app_qs.filter(status='pending').count(),
         'accepted_jobs': app_qs.filter(status='accepted').count(),
