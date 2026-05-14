@@ -74,6 +74,7 @@
 
     <!-- GRID -->
     <section class="dashboard-grid">
+      <!-- RECENT APPLICATIONS -->
       <div class="dashboard-card">
         <div class="card-header">
           <h3>Recent Applications</h3>
@@ -81,32 +82,22 @@
         </div>
 
         <div class="application-list">
-          <div class="application-item">
-            <div>
-              <h4>Frontend Developer</h4>
-              <p>TechNova Solutions</p>
-            </div>
-            <span class="status pending">Pending</span>
-          </div>
+          {% for app in recent_applications %}
+            <div class="application-item">
+              <div>
+                <h4>{{ app.job.title }}</h4>
+                <p>{{ app.job.client.username }}</p>
+              </div>
 
-          <div class="application-item">
-            <div>
-              <h4>UI/UX Designer</h4>
-              <p>Creative Studio</p>
+              <span class="status {{ app.status }}">{{ app.status|title }}</span>
             </div>
-            <span class="status accepted">Accepted</span>
-          </div>
-
-          <div class="application-item">
-            <div>
-              <h4>Content Writer</h4>
-              <p>SkillUp Agency</p>
-            </div>
-            <span class="status rejected">Rejected</span>
-          </div>
+          {% empty %}
+            <p>No applications yet.</p>
+          {% endfor %}
         </div>
       </div>
 
+      <!-- SAVED JOBS -->
       <div class="dashboard-card">
         <div class="card-header">
           <h3>Saved Jobs</h3>
@@ -114,25 +105,19 @@
         </div>
 
         <div class="saved-job">
-          <div class="saved-item">
-            <h4>Python Backend Developer</h4>
-            <p>Remote • Intermediate Level</p>
-          </div>
-
-          <div class="saved-item">
-            <h4>Graphic Designer</h4>
-            <p>Part Time • Creative Team</p>
-          </div>
-
-          <div class="saved-item">
-            <h4>Video Editor</h4>
-            <p>YouTube Content Project</p>
-          </div>
+          {% for saved in recent_saved_jobs %}
+            <div class="saved-item">
+              <h4>{{ saved.job.title }}</h4>
+              <p>Saved Job</p>
+            </div>
+          {% empty %}
+            <p>No saved jobs yet.</p>
+          {% endfor %}
         </div>
       </div>
     </section>
 
-    <!-- ACTION -->
+    <!-- QUICK ACTION -->
     <section class="quick-action">
       <div class="action-card">
         <i class="fas fa-briefcase"></i>

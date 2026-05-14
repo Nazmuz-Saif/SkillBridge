@@ -67,8 +67,8 @@ def freelancerdashboard(request):
     app_qs = Application.objects.filter(freelancer=request.user)
     saved_qs = SavedJob.objects.filter(freelancer=request.user)
 
-    recent_apps = app_qs.select_related('job').order_by('-id')[:5]
-    recent_saved = saved_qs.select_related('job').order_by('-id')[:5]
+    recent_apps = app_qs.select_related('job').order_by('-applied_at')[:5]
+    recent_saved = saved_qs.select_related('job').order_by('-saved_at')[:5]
 
     context = {
         'user_name': request.user.username,
