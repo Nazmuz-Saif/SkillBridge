@@ -66,8 +66,13 @@
               <a href="{% url 'clientdashboard' %}" class="sidebar-item {% if request.resolver_match.url_name == 'clientdashboard' %}active{% endif %}"><i class="fas fa-chart-line"></i>Dashboard</a>
               <a href="{% url 'clientprofile' %}" class="sidebar-item {% if request.resolver_match.url_name == 'clientprofile' %}active{% endif %}"><i class="fas fa-user"></i>My Profile</a>
               <a href="{% url 'job_list' %}" class="sidebar-item"><i class="fas fa-briefcase"></i>Browse Jobs</a>
+<<<<<<< HEAD
+              <a href="{% url 'post_job' %}" class="sidebar-item {% if request.resolver_match.url_name == 'post_job' %}active{% endif %}"><i class="fas fa-plus"></i>Post a Job</a>
+              <a href="#" class="sidebar-item"><i class="fas fa-users"></i>Find Talent</a>
+=======
               <a href="#" class="sidebar-item"><i class="fas fa-plus"></i>Post a Job</a>
               <a href="{% url 'findtalents' %}" class="sidebar-item"><i class="fas fa-users"></i>Find Talent</a>
+>>>>>>> ec727627db414c0cc1e7b51eda2adff54b371ff1
               <a href="#" class="sidebar-item"><i class="fas fa-message"></i>Messages</a>
               <a href="#" class="sidebar-item"><i class="fas fa-gear"></i>Settings</a>
             {% endif %}
