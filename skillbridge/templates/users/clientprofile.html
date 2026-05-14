@@ -2,13 +2,147 @@
 {% load static %}
 
 {% block title %}
-  SkillBridge | Online Freelance Platform
+  Client Profile
 {% endblock %}
 
 {% block extra_css %}
-  <link rel="stylesheet" href="{% static 'css/core/home.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/user/clientprofile.css' %}" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 {% endblock %}
 
 {% block content %}
-  <h1>Clint Dashboard</h1>
+  <div class="profile-page">
+    <div class="profile-left">
+      <div class="profile-card">
+        <div class="profile-image">
+          {% if profile.profileimage %}
+            <img src="{{ profile.profileimage.url }}" alt="" />
+          {% else %}
+            <div class="default-avatar">{{ profile.name|slice:':1' }}</div>
+          {% endif %}
+        </div>
+
+        <h2>{{ profile.name }}</h2>
+
+        <p class="profile-role">Client</p>
+
+        <div class="short-info">
+          <div class="info-item">
+            <i class="fas fa-envelope"></i>
+            <span>{{ profile.email }}</span>
+          </div>
+
+          <div class="info-item">
+            <i class="fas fa-phone"></i>
+            <span>{{ profile.phone }}</span>
+          </div>
+
+          <div class="info-item">
+            <i class="fas fa-location-dot"></i>
+            <span>{{ profile.address }}</span>
+          </div>
+        </div>
+
+        <button class="update-btn" onclick="openModal()">Update Profile</button>
+      </div>
+    </div>
+
+    <div class="profile-right">
+      <div class="details-card">
+        <div class="card-title">
+          <h3>Company Details</h3>
+        </div>
+
+        <div class="details-grid">
+          <div class="detail-box">
+            <span class="detail-label">Company Name</span>
+
+            <div class="detail-value">{{ profile.companyname }}</div>
+          </div>
+
+          <div class="detail-box">
+            <span class="detail-label">Website</span>
+
+            <div class="detail-value">
+              <a href="{{ profile.website }}" target="_blank">{{ profile.website }}</a>
+            </div>
+          </div>
+
+          <div class="detail-box">
+            <span class="detail-label">NID Number</span>
+
+            <div class="detail-value">{{ profile.nidnumber }}</div>
+          </div>
+
+          <div class="detail-box">
+            <span class="detail-label">Email</span>
+
+            <div class="detail-value">{{ profile.email }}</div>
+          </div>
+
+          <div class="detail-box full">
+            <span class="detail-label">Company Description</span>
+
+            <div class="detail-value">{{ profile.companydescription }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="profileModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Update Profile</h2>
+
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+      </div>
+
+      <form method="POST" enctype="multipart/form-data" class="update-form">
+        {% csrf_token %}
+
+        <div class="form-grid">
+          <input type="text" name="name" value="{{ profile.name }}" placeholder="Name" />
+
+          <input type="email" name="email" value="{{ profile.email }}" placeholder="Email" />
+
+          <input type="text" name="phone" value="{{ profile.phone }}" placeholder="Phone" />
+
+          <input type="text" name="address" value="{{ profile.address }}" placeholder="Address" />
+
+          <input type="text" name="companyname" value="{{ profile.companyname }}" placeholder="Company Name" />
+
+          <input type="text" name="nidnumber" value="{{ profile.nidnumber }}" placeholder="NID Number" />
+        </div>
+
+        <textarea name="companydescription" placeholder="Company Description">{{ profile.companydescription }}</textarea>
+
+        <div class="form-grid">
+          <input type="url" name="website" value="{{ profile.website }}" placeholder="Website" />
+
+          <input type="file" name="profileimage" />
+        </div>
+
+        <button type="submit" class="save-btn">Save Changes</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function openModal() {
+      document.getElementById('profileModal').style.display = 'flex'
+    }
+    
+    function closeModal() {
+      document.getElementById('profileModal').style.display = 'none'
+    }
+    
+    window.onclick = function (event) {
+      const modal = document.getElementById('profileModal')
+    
+      if (event.target == modal) {
+        modal.style.display = 'none'
+      }
+    }
+  </script>
 {% endblock %}

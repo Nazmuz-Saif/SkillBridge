@@ -56,7 +56,7 @@
               <div class="role-badge freelancer">Freelancer</div>
               <a href="{% url 'freelencerdashboard' %}" class="sidebar-item {% if request.resolver_match.url_name == 'freelencerdashboard' %}active{% endif %}"><i class="fas fa-chart-line"></i>Dashboard</a>
               <a href="{% url 'freelancerprofile' %}" class="sidebar-item {% if request.resolver_match.url_name == 'freelancerprofile' %}active{% endif %}"><i class="fas fa-user"></i>My Profile</a>
-              <a href="#" class="sidebar-item"><i class="fas fa-briefcase"></i>Browse Jobs</a>
+              <a href="{% url 'job_list' %}" class="sidebar-item"><i class="fas fa-briefcase"></i>Browse Jobs</a>
               <a href="#" class="sidebar-item"><i class="fas fa-file"></i>My Applications</a>
               <a href="#" class="sidebar-item"><i class="fas fa-bookmark"></i>Saved Jobs</a>
               <a href="#" class="sidebar-item"><i class="fas fa-message"></i>Messages</a>
@@ -64,8 +64,8 @@
             {% else %}
               <div class="role-badge client">Client</div>
               <a href="{% url 'clientdashboard' %}" class="sidebar-item {% if request.resolver_match.url_name == 'clientdashboard' %}active{% endif %}"><i class="fas fa-chart-line"></i>Dashboard</a>
-              <a href="#" class="sidebar-item"><i class="fas fa-user"></i>My Profile</a>
-              <a href="#" class="sidebar-item"><i class="fas fa-briefcase"></i>Browse Jobs</a>
+              <a href="{% url 'clientprofile' %}" class="sidebar-item {% if request.resolver_match.url_name == 'clientprofile' %}active{% endif %}"><i class="fas fa-user"></i>My Profile</a>
+              <a href="{% url 'job_list' %}" class="sidebar-item"><i class="fas fa-briefcase"></i>Browse Jobs</a>
               <a href="#" class="sidebar-item"><i class="fas fa-plus"></i>Post a Job</a>
               <a href="#" class="sidebar-item"><i class="fas fa-users"></i>Find Talent</a>
               <a href="#" class="sidebar-item"><i class="fas fa-message"></i>Messages</a>

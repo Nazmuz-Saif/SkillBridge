@@ -22,8 +22,14 @@ def post_job(request):
     return render(request, 'jobs/post_job.html')
 
 def job_list(request):
-    jobs = Job.objects.filter(is_active=True)
-    return render(request, 'jobs/job_list.html', {'jobs': jobs})
+
+    jobs = Job.objects.filter(is_active=True).order_by('-created_at')
+
+    context = {
+        'jobs': jobs
+    }
+
+    return render(request, 'jobs/job_list.html', context)
 
 @login_required
 def apply_job(request, job_id):
