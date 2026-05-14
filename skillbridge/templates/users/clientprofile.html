@@ -54,31 +54,36 @@
         </div>
 
         <div class="details-grid">
-          <div class="detail-box full">
+          <div class="detail-box">
             <span class="detail-label">Company Name</span>
+
             <div class="detail-value">{{ profile.companyname }}</div>
           </div>
 
-          <div class="detail-box full">
-            <span class="detail-label">Company Description</span>
-            <div class="detail-value">{{ profile.companydescription }}</div>
-          </div>
-
-          <div class="detail-box full">
+          <div class="detail-box">
             <span class="detail-label">Website</span>
+
             <div class="detail-value">
               <a href="{{ profile.website }}" target="_blank">{{ profile.website }}</a>
             </div>
           </div>
 
-          <div class="detail-box full">
+          <div class="detail-box">
             <span class="detail-label">NID Number</span>
+
             <div class="detail-value">{{ profile.nidnumber }}</div>
           </div>
 
-          <div class="detail-box full">
+          <div class="detail-box">
             <span class="detail-label">Email</span>
+
             <div class="detail-value">{{ profile.email }}</div>
+          </div>
+
+          <div class="detail-box full">
+            <span class="detail-label">Company Description</span>
+
+            <div class="detail-value">{{ profile.companydescription }}</div>
           </div>
         </div>
       </div>
@@ -89,6 +94,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h2>Update Profile</h2>
+
         <span class="close-btn" onclick="closeModal()">&times;</span>
       </div>
 
@@ -96,23 +102,28 @@
         {% csrf_token %}
 
         <div class="form-grid">
-          <input type="text" name="name" value="{{ profile.name }}" />
-          <input type="email" name="email" value="{{ profile.email }}" />
-          <input type="text" name="phone" value="{{ profile.phone }}" />
-          <input type="text" name="address" value="{{ profile.address }}" />
+          <input type="text" name="name" value="{{ profile.name }}" placeholder="Name" />
 
-          <input type="text" name="companyname" value="{{ profile.companyname }}" />
-          <input type="text" name="nidnumber" value="{{ profile.nidnumber }}" />
+          <input type="email" name="email" value="{{ profile.email }}" placeholder="Email" />
+
+          <input type="text" name="phone" value="{{ profile.phone }}" placeholder="Phone" />
+
+          <input type="text" name="address" value="{{ profile.address }}" placeholder="Address" />
+
+          <input type="text" name="companyname" value="{{ profile.companyname }}" placeholder="Company Name" />
+
+          <input type="text" name="nidnumber" value="{{ profile.nidnumber }}" placeholder="NID Number" />
         </div>
 
-        <textarea name="companydescription">{{ profile.companydescription }}</textarea>
+        <textarea name="companydescription" placeholder="Company Description">{{ profile.companydescription }}</textarea>
 
         <div class="form-grid">
-          <input type="url" name="website" value="{{ profile.website }}" />
+          <input type="url" name="website" value="{{ profile.website }}" placeholder="Website" />
+
           <input type="file" name="profileimage" />
         </div>
 
-        <button type="submit" class="save-btn">Save</button>
+        <button type="submit" class="save-btn">Save Changes</button>
       </form>
     </div>
   </div>
@@ -124,6 +135,14 @@
     
     function closeModal() {
       document.getElementById('profileModal').style.display = 'none'
+    }
+    
+    window.onclick = function (event) {
+      const modal = document.getElementById('profileModal')
+    
+      if (event.target == modal) {
+        modal.style.display = 'none'
+      }
     }
   </script>
 {% endblock %}
