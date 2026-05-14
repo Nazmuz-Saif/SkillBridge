@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
     <link rel="stylesheet" href="{% static 'css/core/base.css' %}" />
     {% block extra_css %}
+
     {% endblock %}
   </head>
   <body>
@@ -49,17 +50,17 @@
     {% if user.is_authenticated %}
       <div class="dashboard-layout">
         <aside class="sidebar">
-          {% if user.role == 'freelancer' %}
-            <h3 class="sidebar-title">Freelancer</h3>
+          {% if role == 'freelancer' %}
+            <div class="role-badge freelancer">Freelancer</div>
             <a href="#" class="sidebar-item active"><i class="fas fa-chart-line"></i>Dashboard</a>
             <a href="#" class="sidebar-item"><i class="fas fa-user"></i>My Profile</a>
-            <a href="#" class="sidebar-item"><i class="fas fa-briefcase"></i>Browse Jobs </a>
+            <a href="#" class="sidebar-item"><i class="fas fa-briefcase"></i>Browse Jobs</a>
             <a href="#" class="sidebar-item"><i class="fas fa-file"></i>My Applications</a>
             <a href="#" class="sidebar-item"><i class="fas fa-bookmark"></i>Saved Jobs</a>
             <a href="#" class="sidebar-item"><i class="fas fa-message"></i>Messages</a>
             <a href="#" class="sidebar-item"><i class="fas fa-gear"></i>Settings</a>
           {% else %}
-            <h3 class="sidebar-title">Client</h3>
+            <div class="role-badge client">Client</div>
             <a href="#" class="sidebar-item active"><i class="fas fa-chart-line"></i>Dashboard</a>
             <a href="#" class="sidebar-item"><i class="fas fa-user"></i>My Profile</a>
             <a href="#" class="sidebar-item"><i class="fas fa-briefcase"></i>Browse Jobs</a>
@@ -72,12 +73,14 @@
         </aside>
         <main class="dashboard-content">
           {% block content %}
+
           {% endblock %}
         </main>
       </div>
     {% else %}
       <main class="main-wrapper">
         {% block guest_content %}
+
         {% endblock %}
       </main>
     {% endif %}
@@ -85,6 +88,7 @@
       <div class="footer-content">&copy; 2026 SkillBridge | Built By UAP_RedHawks.</div>
     </footer>
     {% block extra_js %}
+
     {% endblock %}
   </body>
 </html>
