@@ -9,4 +9,6 @@ urlpatterns = [
     path('client-dashboard/', views.clientdashboard, name='clientdashboard'),
     path('freelancer-profile/',views.freelancer_profile,name='freelancerprofile'),
     path('client-profile/', views.client_profile, name='clientprofile'),
+    path('find-talents/',views.find_talents,name='findtalents'),
+    path('search/', views.search, name='search')
 ]

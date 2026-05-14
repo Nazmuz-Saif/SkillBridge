@@ -19,22 +19,21 @@ class JobCategory(models.Model):
 
 class Job(models.Model):
     client = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posted_jobs')
-    
+
     title = models.CharField(max_length=255)
     description = models.TextField()
-    
+
     category = models.ForeignKey(JobCategory, on_delete=models.SET_NULL, null=True)
     skills_required = models.ManyToManyField(Skill)
 
     budget_min = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
     budget_max = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
 
-    is_active = models.BooleanField(default=True)
+    deadline = models.DateField(null=True, blank=True)   # ✅ NEW
 
+    is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
-    def __str__(self):
-        return self.title
 
 
 
@@ -63,13 +62,15 @@ class Application(models.Model):
 
 
 class SavedJob(models.Model):
-    job = models.ForeignKey(Job, on_delete=models.CASCADE)
     freelancer = models.ForeignKey(User, on_delete=models.CASCADE)
-
+    job = models.ForeignKey(Job, on_delete=models.CASCADE)
     saved_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        unique_together = ('job', 'freelancer')
+        unique_together = ('freelancer', 'job')
+
+    def __str__(self):
+        return f"{self.freelancer.username} - {self.job.title}"
 
 
 

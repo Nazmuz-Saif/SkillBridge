@@ -1,11 +1,12 @@
+from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .forms import FreelancerProfileForm, SignupForm
 from .models import FreelancerProfile, ClientProfile
-from jobs.models import Job, Application, SavedJob
-
+from jobs.models import Job, Application, SavedJob ,JobCategory
+from django.db.models import Q
 def signup(request):
     form=SignupForm()
     if request.method == "POST":
@@ -62,7 +63,7 @@ def clientdashboard(request):
 
 @login_required
 def freelancerdashboard(request):
-
+    profile = FreelancerProfile.objects.get(user=request.user)
     app_qs = Application.objects.filter(freelancer=request.user)
     saved_qs = SavedJob.objects.filter(freelancer=request.user)
 
@@ -70,7 +71,8 @@ def freelancerdashboard(request):
     recent_saved = saved_qs.select_related('job').order_by('-saved_at')[:5]
 
     context = {
-        'user_name': request.user.username,
+        'profile': profile,
+        'role': 'freelancer',
 
         'total_applications': app_qs.count(),
         'pending_applications': app_qs.filter(status='pending').count(),
@@ -87,7 +89,7 @@ def freelancerdashboard(request):
 
 @login_required
 def clientdashboard(request):
-
+    profile = ClientProfile.objects.get(user=request.user)
     job_qs = Job.objects.filter(client=request.user)
 
     app_qs = Application.objects.filter(job__client=request.user)
@@ -97,8 +99,8 @@ def clientdashboard(request):
     recent_apps = app_qs.select_related('job', 'freelancer').order_by('-applied_at')[:5]
 
     context = {
-        'user_name': request.user.username,
-
+        'profile': profile,
+        'role': 'client',
 
         'total_jobs': job_qs.count(),
         'active_jobs': job_qs.filter(is_active=True).count(),
@@ -172,5 +174,39 @@ def client_profile(request):
         'role': 'client'
     })
 
+@login_required
+def find_talents(request):
+
+    freelancers = FreelancerProfile.objects.all().order_by('-createdat')
+
+    context = {
+        'freelancers': freelancers,
+        'role': 'client'
+    }
+
+    return render(request, 'users/find_talents.html', context)
 
 
+@login_required
+def search(request):
+    query = request.GET.get('q', '')
+
+    jobs = Job.objects.filter(title__icontains=query)
+
+    categories = JobCategory.objects.filter(name__icontains=query)
+
+    clients = ClientProfile.objects.filter(
+        Q(name__icontains=query) | Q(companyname__icontains=query)
+    )
+
+    freelancers = FreelancerProfile.objects.filter(
+        Q(name__icontains=query) | Q(skills__icontains=query)
+    )
+
+    return render(request, 'users/search.html', {
+        'query': query,
+        'jobs': jobs,
+        'categories': categories,
+        'clients': clients,
+        'freelancers': freelancers,
+    })

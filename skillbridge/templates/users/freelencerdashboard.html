@@ -11,14 +11,13 @@
 
 {% block content %}
   <div class="dashboard-page">
-    <!-- HERO -->
     <section class="welcome-section">
       <div class="welcome-left">
         <span class="small-tag">Freelancer Dashboard</span>
 
         <h1>
           Welcome Back,
-          <span>{{ request.user.username }}</span>
+          <span>{{ profile.name }}</span>
         </h1>
 
         <p>Track your applications, manage saved jobs and grow your freelancing journey with SkillBridge.</p>
