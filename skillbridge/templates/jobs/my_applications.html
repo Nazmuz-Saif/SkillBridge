@@ -1,0 +1,61 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}
+My Applications
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/jobs/my_applications.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+{% endblock %}
+
+{% block content %}
+
+<div class="app-page">
+
+    <div class="app-header">
+        <h1>My Applications</h1>
+        <p>Track all your job applications and their status</p>
+    </div>
+
+    <div class="app-list">
+
+        {% for app in applications %}
+
+        <div class="app-card">
+
+            <div class="app-left">
+
+                <h3>{{ app.job.title }}</h3>
+                <p><i class="fa-solid fa-user"></i> {{ app.job.client.username }}</p>
+                <p><i class="fa-solid fa-money-bill"></i> {{ app.job.budget }} BDT</p>
+                <p><i class="fa-solid fa-calendar"></i> {{ app.applied_at }}</p>
+
+            </div>
+
+            <div class="app-right">
+
+                {% if app.status == "pending" %}
+                    <span class="status pending">Pending</span>
+                {% elif app.status == "accepted" %}
+                    <span class="status accepted">Accepted</span>
+                {% elif app.status == "rejected" %}
+                    <span class="status rejected">Rejected</span>
+                {% else %}
+                    <span class="status">Unknown</span>
+                {% endif %}
+
+            </div>
+
+        </div>
+
+        {% empty %}
+        <p class="empty">No applications found.</p>
+        {% endfor %}
+
+    </div>
+
+</div>
+
+{% endblock %}

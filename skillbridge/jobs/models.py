@@ -61,13 +61,15 @@ class Application(models.Model):
 
 
 class SavedJob(models.Model):
-    job = models.ForeignKey(Job, on_delete=models.CASCADE)
     freelancer = models.ForeignKey(User, on_delete=models.CASCADE)
-
+    job = models.ForeignKey(Job, on_delete=models.CASCADE)
     saved_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        unique_together = ('job', 'freelancer')
+        unique_together = ('freelancer', 'job')
+
+    def __str__(self):
+        return f"{self.freelancer.username} - {self.job.title}"
 
 
 
