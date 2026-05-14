@@ -172,5 +172,15 @@ def client_profile(request):
         'role': 'client'
     })
 
+@login_required
+def find_talents(request):
 
+    freelancers = FreelancerProfile.objects.all().order_by('-createdat')
+
+    context = {
+        'freelancers': freelancers,
+        'role': 'client'
+    }
+
+    return render(request, 'users/find_talents.html', context)
 
