@@ -56,7 +56,6 @@
               <div class="role-badge freelancer">Freelancer</div>
               <a href="{% url 'freelencerdashboard' %}" class="sidebar-item {% if request.resolver_match.url_name == 'freelencerdashboard' %}active{% endif %}"><i class="fas fa-chart-line"></i>Dashboard</a>
               <a href="{% url 'freelancerprofile' %}" class="sidebar-item {% if request.resolver_match.url_name == 'freelancerprofile' %}active{% endif %}"><i class="fas fa-user"></i>My Profile</a>
-              
               <a href="{% url 'job_list' %}" class="sidebar-item {% if request.resolver_match.url_name == 'job_list' %}active{% endif %}"><i class="fas fa-briefcase"></i>Browse Jobs</a>
               <a href="{% url 'my_applications' %}" class="sidebar-item {% if request.resolver_match.url_name == 'my_applications' %}active{% endif %}"><i class="fas fa-file"></i>My Applications</a>
               <a href="{% url 'saved_jobs' %}" class="sidebar-item {% if request.resolver_match.url_name == 'saved_jobs' %}active{% endif %}"><i class="fas fa-bookmark"></i>Saved Jobs</a>
@@ -66,9 +65,9 @@
               <div class="role-badge client">Client</div>
               <a href="{% url 'clientdashboard' %}" class="sidebar-item {% if request.resolver_match.url_name == 'clientdashboard' %}active{% endif %}"><i class="fas fa-chart-line"></i>Dashboard</a>
               <a href="{% url 'clientprofile' %}" class="sidebar-item {% if request.resolver_match.url_name == 'clientprofile' %}active{% endif %}"><i class="fas fa-user"></i>My Profile</a>
-              <a href="{% url 'job_list' %}" class="sidebar-item"><i class="fas fa-briefcase"></i>Browse Jobs</a>
+              <a href="{% url 'job_list' %}" class="sidebar-item {% if request.resolver_match.url_name == 'job_list' %}active{% endif %}"><i class="fas fa-briefcase"></i>Browse Jobs</a>
               <a href="{% url 'post_job' %}" class="sidebar-item {% if request.resolver_match.url_name == 'post_job' %}active{% endif %}"><i class="fas fa-plus"></i>Post a Job</a>
-              <a href="{% url 'findtalents' %}" class="sidebar-item"><i class="fas fa-users"></i>Find Talent</a>
+              <a href="{% url 'findtalents' %}" class="sidebar-item {% if request.resolver_match.url_name == 'findtalents' %}active{% endif %}"><i class="fas fa-users"></i>Find Talent</a>
               <a href="#" class="sidebar-item"><i class="fas fa-message"></i>Messages</a>
               <a href="#" class="sidebar-item"><i class="fas fa-gear"></i>Settings</a>
             {% endif %}

@@ -18,14 +18,14 @@
 
         <h1>
           Welcome Back,
-          <span>{{ request.user.username }}</span>
+          <span>{{ profile.name }}</span>
         </h1>
 
         <p>Post jobs, manage applications and hire the best freelancers for your projects.</p>
       </div>
 
       <div class="welcome-right">
-        <a href="#" class="post-btn">Post a Job</a>
+        <a href="{% url 'post_job' %}" class="post-btn">Post a Job</a>
       </div>
     </section>
 
@@ -82,7 +82,7 @@
       <div class="dashboard-card">
         <div class="card-header">
           <h3>Your Jobs</h3>
-          <a href="#">View All</a>
+          <a href={% url 'client_jobs' %}>View All</a>
         </div>
 
         <div class="application-list">
@@ -109,7 +109,7 @@
       <div class="dashboard-card">
         <div class="card-header">
           <h3>Recent Applications</h3>
-          <a href="#">View All</a>
+          <a href={% url 'job_applications' %}>View All</a>
         </div>
 
         <div class="saved-job">
@@ -133,14 +133,14 @@
         <i class="fas fa-plus"></i>
         <h3>Post New Job</h3>
         <p>Create a new job listing for freelancers.</p>
-        <a href="#">Post Job</a>
+        <a href={% url 'post_job' %}>Post Job</a>
       </div>
 
       <div class="action-card">
         <i class="fas fa-users"></i>
         <h3>Find Talent</h3>
         <p>Search and hire skilled freelancers.</p>
-        <a href="#">Browse Freelancers</a>
+        <a href={% url 'findtalents' %}>Browse Freelancers</a>
       </div>
 
       <div class="action-card">

@@ -36,6 +36,7 @@ class Job(models.Model):
 
 
 
+
 class Application(models.Model):
 
     STATUS_CHOICES = (

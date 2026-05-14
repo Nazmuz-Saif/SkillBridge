@@ -62,7 +62,7 @@ def clientdashboard(request):
 
 @login_required
 def freelancerdashboard(request):
-
+    profile = FreelancerProfile.objects.get(user=request.user)
     app_qs = Application.objects.filter(freelancer=request.user)
     saved_qs = SavedJob.objects.filter(freelancer=request.user)
 
@@ -70,7 +70,8 @@ def freelancerdashboard(request):
     recent_saved = saved_qs.select_related('job').order_by('-saved_at')[:5]
 
     context = {
-        'user_name': request.user.username,
+        'profile': profile,
+        'role': 'freelancer',
 
         'total_applications': app_qs.count(),
         'pending_applications': app_qs.filter(status='pending').count(),
@@ -87,7 +88,7 @@ def freelancerdashboard(request):
 
 @login_required
 def clientdashboard(request):
-
+    profile = ClientProfile.objects.get(user=request.user)
     job_qs = Job.objects.filter(client=request.user)
 
     app_qs = Application.objects.filter(job__client=request.user)
@@ -97,8 +98,8 @@ def clientdashboard(request):
     recent_apps = app_qs.select_related('job', 'freelancer').order_by('-applied_at')[:5]
 
     context = {
-        'user_name': request.user.username,
-
+        'profile': profile,
+        'role': 'client',
 
         'total_jobs': job_qs.count(),
         'active_jobs': job_qs.filter(is_active=True).count(),
