@@ -89,8 +89,16 @@
 }
 
 .card-title h3 {
-    color: white;
-    font-size: 1.4rem;
+    font-size: 1.5rem;
+    font-weight: 800;
+
+    background: linear-gradient(135deg, #60a5fa, #a855f7);
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    background-clip: text;
+    color: transparent;
 }
 
 .detail-label{
@@ -120,14 +128,38 @@
 .details-grid {
     display: grid;
     grid-template-columns: repeat(2,1fr);
-    gap: 20px;
+    gap: 16px;
 }
 
-.detail-box {
+.detail-box{
+    background: transparent;
+    border: none;
+    padding: 0;
+}
+
+.detail-label{
+    display: block;
+    color: white;
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.detail-value{
+    width: 100%;
     background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(255,255,255,0.05);
-    padding: 20px;
-    border-radius: 18px;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+    padding: 13px 16px;
+    color: #cbd5e1;
+    line-height: 1.6;
+    min-height: auto;
+    font-size: 0.94rem;
+}
+
+.detail-value a{
+    color: #a5b4fc;
+    text-decoration: none;
 }
 
 .detail-box.full {
