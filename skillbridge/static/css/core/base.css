@@ -17,13 +17,15 @@ body {
     color: #e2e8f0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     overflow-x: hidden;
+    padding-right: 0 !important;
 }
 
 .navbar {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
+    right: 0;
+    width: auto;
     z-index: 9999;
     background: rgba(15, 23, 42, 0.75);
     backdrop-filter: blur(15px);
@@ -376,7 +378,6 @@ body {
 }
 
 @media (max-width: 992px) {
-
     .sidebar {
         width: 220px;
     }
@@ -391,7 +392,6 @@ body {
 }
 
 @media (max-width: 768px) {
-
     .sidebar {
         display: none;
     }
