@@ -1,0 +1,71 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/user/search.css' %}" />
+{% endblock %}
+
+{% block content %}
+  <div class="search-page">
+    <div class="search-header">
+      <h1>Search Results</h1>
+      <p>
+        <span>{{ q }}</span>
+      </p>
+    </div>
+
+    <div class="grid">
+      <div class="card jobs">
+        <div class="title-box">
+          <i class="fas fa-briefcase"></i>
+          <span>Jobs</span>
+        </div>
+        {% for j in jobs %}
+          <div class="item">{{ j.title }}</div>
+        {% empty %}
+          <p>No jobs found</p>
+        {% endfor %}
+      </div>
+
+      <div class="card clients">
+        <div class="title-box">
+          <i class="fas fa-user-tie"></i>
+          <span>Clients</span>
+        </div>
+        {% for c in clients %}
+          <div class="item">{{ c.name }}</div>
+        {% empty %}
+          <p>No clients found</p>
+        {% endfor %}
+      </div>
+
+      <div class="card freelancers">
+        <div class="title-box">
+          <i class="fas fa-user"></i>
+          <span>Freelancers</span>
+        </div>
+        {% for f in freelancers %}
+          <div class="item">{{ f.name }}</div>
+        {% empty %}
+          <p>No freelancers found</p>
+        {% endfor %}
+      </div>
+
+      <div class="card categories">
+        <div class="title-box">
+          <i class="fas fa-layer-group"></i>
+          <span>Categories</span>
+        </div>
+        {% for cat in categories %}
+          <div class="item">{{ cat.name }}</div>
+        {% empty %}
+          <p>No categories found</p>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="back-wrapper">
+      <a href="javascript:history.back()" class="back-btn">← Back</a>
+    </div>
+  </div>
+{% endblock %}

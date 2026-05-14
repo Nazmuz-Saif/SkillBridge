@@ -21,9 +21,11 @@
         <div class="nav-left">
           <a href="/" class="brand-logo"><div class="logo-box">S</div>SKILLBRIDGE</a>
           {% if user.is_authenticated %}
-            <div class="search-box">
-              <i class="fas fa-search"></i>
-              <input type="text" placeholder="Search..." />
+            <div class="nav-search">
+              <form method="GET" action="{% url 'search' %}" class="search-form">
+                <input type="text" name="q" placeholder="Search jobs, clients, freelancers..." />
+                <button type="submit"><i class="fas fa-search"></i></button>
+              </form>
             </div>
           {% else %}
             <div class="nav-links">
@@ -56,6 +58,10 @@
               <div class="role-badge freelancer">Freelancer</div>
               <a href="{% url 'freelencerdashboard' %}" class="sidebar-item {% if request.resolver_match.url_name == 'freelencerdashboard' %}active{% endif %}"><i class="fas fa-chart-line"></i>Dashboard</a>
               <a href="{% url 'freelancerprofile' %}" class="sidebar-item {% if request.resolver_match.url_name == 'freelancerprofile' %}active{% endif %}"><i class="fas fa-user"></i>My Profile</a>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 5096d07f173ec6fcb7f4659b8182827a25bfeec8
               <a href="{% url 'job_list' %}" class="sidebar-item {% if request.resolver_match.url_name == 'job_list' %}active{% endif %}"><i class="fas fa-briefcase"></i>Browse Jobs</a>
               <a href="{% url 'my_applications' %}" class="sidebar-item {% if request.resolver_match.url_name == 'my_applications' %}active{% endif %}"><i class="fas fa-file"></i>My Applications</a>
               <a href="{% url 'saved_jobs' %}" class="sidebar-item {% if request.resolver_match.url_name == 'saved_jobs' %}active{% endif %}"><i class="fas fa-bookmark"></i>Saved Jobs</a>

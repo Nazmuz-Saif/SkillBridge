@@ -1,11 +1,12 @@
+from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .forms import FreelancerProfileForm, SignupForm
 from .models import FreelancerProfile, ClientProfile
-from jobs.models import Job, Application, SavedJob
-
+from jobs.models import Job, Application, SavedJob ,JobCategory
+from django.db.models import Q
 def signup(request):
     form=SignupForm()
     if request.method == "POST":
@@ -70,9 +71,12 @@ def freelancerdashboard(request):
     recent_saved = saved_qs.select_related('job').order_by('-saved_at')[:5]
 
     context = {
+<<<<<<< HEAD
         'profile': profile,
         'role': 'freelancer',
 
+=======
+>>>>>>> 5096d07f173ec6fcb7f4659b8182827a25bfeec8
         'total_applications': app_qs.count(),
         'pending_applications': app_qs.filter(status='pending').count(),
         'accepted_jobs': app_qs.filter(status='accepted').count(),
@@ -185,3 +189,27 @@ def find_talents(request):
 
     return render(request, 'users/find_talents.html', context)
 
+
+@login_required
+def search(request):
+    query = request.GET.get('q', '')
+
+    jobs = Job.objects.filter(title__icontains=query)
+
+    categories = JobCategory.objects.filter(name__icontains=query)
+
+    clients = ClientProfile.objects.filter(
+        Q(name__icontains=query) | Q(companyname__icontains=query)
+    )
+
+    freelancers = FreelancerProfile.objects.filter(
+        Q(name__icontains=query) | Q(skills__icontains=query)
+    )
+
+    return render(request, 'users/search.html', {
+        'query': query,
+        'jobs': jobs,
+        'categories': categories,
+        'clients': clients,
+        'freelancers': freelancers,
+    })
