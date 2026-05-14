@@ -69,21 +69,27 @@ def clientdashboard(request):
 @login_required
 def freelancer_profile(request):
     profile = FreelancerProfile.objects.get(user=request.user)
+
     if request.method == 'POST':
-        form = FreelancerProfileForm(
-            request.POST,
-            request.FILES,
-            instance=profile
-        )
+        form = FreelancerProfileForm(request.POST, request.FILES, instance=profile)
+
         if form.is_valid():
-            form.save()
+            obj = form.save(commit=False)
+            obj.user = request.user
+            obj.save()
             return redirect('freelancerprofile')
+
     else:
         form = FreelancerProfileForm(instance=profile)
-    return render(request,'users/freelancerprofile.html',{
+
+    skills = profile.skills.split(',') if profile.skills else []
+    skills = [s.strip() for s in skills if s.strip()]
+
+    return render(request, 'users/freelancerprofile.html', {
         'profile': profile,
+        'skills': skills,
         'form': form,
-        'role':'freelancer'
+        'role': 'freelancer'
     })
 
 
