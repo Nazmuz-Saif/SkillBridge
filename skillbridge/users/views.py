@@ -4,8 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .forms import FreelancerProfileForm, SignupForm
 from .models import FreelancerProfile, ClientProfile
-from jobs.models import Application, SavedJob
-
+from jobs.models import Job, Application, SavedJob
 
 def signup(request):
     form=SignupForm()
@@ -85,6 +84,33 @@ def freelancerdashboard(request):
     }
 
     return render(request, 'users/freelencerdashboard.html', context)
+
+@login_required
+def clientdashboard(request):
+
+    job_qs = Job.objects.filter(client=request.user)
+
+    app_qs = Application.objects.filter(job__client=request.user)
+
+    recent_jobs = job_qs.order_by('-created_at')[:5]
+
+    recent_apps = app_qs.select_related('job', 'freelancer').order_by('-applied_at')[:5]
+
+    context = {
+        'user_name': request.user.username,
+
+
+        'total_jobs': job_qs.count(),
+        'active_jobs': job_qs.filter(is_active=True).count(),
+        'closed_jobs': job_qs.filter(is_active=False).count(),
+
+        'total_applications': app_qs.count(),
+        'hired_freelancers': app_qs.filter(status='accepted').count(),
+        'recent_jobs': recent_jobs,
+        'recent_applications': recent_apps,
+    }
+
+    return render(request, 'users/clintdashboard.html', context)
 
 @login_required
 def freelancer_profile(request):
