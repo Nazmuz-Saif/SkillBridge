@@ -6,8 +6,9 @@
 
 html,
 body {
-    height: 100%;
     scroll-behavior: smooth;
+    margin: 0;
+    min-height: 100%;
 }
 
 body {
@@ -17,13 +18,16 @@ body {
     color: #e2e8f0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     overflow-x: hidden;
+    padding-right: 0 !important;
+    min-height: 100vh;
 }
 
 .navbar {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
+    right: 0;
+    width: auto;
     z-index: 9999;
     background: rgba(15, 23, 42, 0.75);
     backdrop-filter: blur(15px);
@@ -227,7 +231,7 @@ body {
 .dashboard-layout {
     display: flex;
     margin-top: 78px;
-    min-height: calc(100vh - 78px);
+    flex: 1;
 }
 
 .sidebar {
@@ -292,7 +296,7 @@ body {
 }
 
 .logout-sidebar {
-    margin-top: 40px;
+    margin-top: auto;
     color: #f87171;
 }
 
@@ -304,8 +308,10 @@ body {
 .dashboard-content {
     margin-left: 240px;
     width: 100%;
-    padding: 115px 40px 40px;
-    min-height: 100vh;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
 }
 
 .role-badge {
@@ -326,9 +332,8 @@ body {
 .main-wrapper {
     flex: 1;
     width: 100%;
-    margin: 0;
-    padding: 0;
-    max-width: none;
+    display: flex;
+    flex-direction: column;
 }
 
 .footer {
@@ -338,6 +343,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: auto;
 }
 
 .footer-content {
@@ -376,7 +382,6 @@ body {
 }
 
 @media (max-width: 992px) {
-
     .sidebar {
         width: 220px;
     }
@@ -391,7 +396,6 @@ body {
 }
 
 @media (max-width: 768px) {
-
     .sidebar {
         display: none;
     }
@@ -411,5 +415,12 @@ body {
 
     .nav-links {
         display: none;
+    }
+    body > .footer {
+    margin-top: auto;
+    }
+
+    .dashboard-page {
+        flex: 1;
     }
 }
