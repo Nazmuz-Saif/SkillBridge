@@ -1,53 +1,219 @@
 {% extends 'core/base.html' %}
 {% load static %}
 
-{% block title %}Profile{% endblock %}
+{% block title %}
+Profile
+{% endblock %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/user/freelancerprofile.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 {% endblock %}
 
 {% block content %}
 
-<div class="profile-container">
+<div class="profile-page">
 
+    <div class="profile-left">
 
+        <div class="profile-card">
 
-    
-    <div class="profile-header">
-        <div class="avatar">
-            {{ profile.name|slice:":1" }}
+            <div class="profile-image">
+
+                {% if profile.profileimage %}
+                    <img src="{{ profile.profileimage.url }}" alt="">
+                {% else %}
+                    <div class="default-avatar">
+                        {{ profile.name|slice:":1" }}
+                    </div>
+                {% endif %}
+
+            </div>
+
+            <h2>{{ profile.name }}</h2>
+
+            <p class="profile-role">
+                Freelancer
+            </p>
+
+            <div class="short-info">
+
+                <div class="info-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>{{ profile.email }}</span>
+                </div>
+
+                <div class="info-item">
+                    <i class="fas fa-phone"></i>
+                    <span>{{ profile.phone }}</span>
+                </div>
+
+                <div class="info-item">
+                    <i class="fas fa-location-dot"></i>
+                    <span>{{ profile.address }}</span>
+                </div>
+
+            </div>
+
+            <button class="update-btn" onclick="openModal()">
+                Update Profile
+            </button>
+
         </div>
 
-        <div class="profile-title">
-            <h2>{{ profile.name }}</h2>
-            <p>{{ profile.email }}</p>
+    </div>
+
+    <div class="profile-right">
+
+        <div class="details-card">
+
+            <div class="card-title">
+                <h3>Profile Details</h3>
+            </div>
+
+            <div class="details-grid">
+
+    <div class="detail-box">
+        <span class="detail-label">University</span>
+        <div class="detail-value">{{ profile.universityname }}</div>
+    </div>
+
+    <div class="detail-box">
+        <span class="detail-label">Degree</span>
+        <div class="detail-value">{{ profile.degree }}</div>
+    </div>
+
+    <div class="detail-box full">
+        <span class="detail-label">Skills</span>
+        <div class="detail-value">{{ profile.skills }}</div>
+    </div>
+
+    <div class="detail-box full">
+        <span class="detail-label">Experience</span>
+        <div class="detail-value">{{ profile.experience }}</div>
+    </div>
+
+    <div class="detail-box full">
+        <span class="detail-label">Bio</span>
+        <div class="detail-value">{{ profile.bio }}</div>
+    </div>
+
+    <div class="detail-box">
+        <span class="detail-label">Portfolio</span>
+
+        <div class="detail-value">
+            <a href="{{ profile.portfolio_link }}" target="_blank">
+                Open Portfolio
+            </a>
         </div>
     </div>
 
-    <form method="POST" enctype="multipart/form-data" class="profile-form">
-        {% csrf_token %}
+    <div class="detail-box">
+        <span class="detail-label">GitHub</span>
 
-        <div class="grid">
-            <input type="text" name="name" value="{{ profile.name }}" placeholder="Name">
-            <input type="email" name="email" value="{{ profile.email }}" placeholder="Email">
-            <input type="text" name="phone" value="{{ profile.phone }}" placeholder="Phone">
-            <input type="text" name="address" value="{{ profile.address }}" placeholder="Address">
+        <div class="detail-value">
+            <a href="{{ profile.githublink }}" target="_blank">
+                GitHub Profile
+            </a>
         </div>
+    </div>
 
-        <textarea name="skills" placeholder="Skills">{{ profile.skills }}</textarea>
-        <textarea name="experience" placeholder="Experience">{{ profile.experience }}</textarea>
-        <textarea name="bio" placeholder="Bio">{{ profile.bio }}</textarea>
+    <div class="detail-box">
+        <span class="detail-label">LinkedIn</span>
 
-        <div class="grid">
-            <input type="url" name="portfolio_link" value="{{ profile.portfolio_link }}" placeholder="Portfolio">
-            <input type="url" name="githublink" value="{{ profile.githublink }}" placeholder="GitHub">
-            <input type="url" name="linkedinlink" value="{{ profile.linkedinlink }}" placeholder="LinkedIn">
+        <div class="detail-value">
+            <a href="{{ profile.linkedinlink }}" target="_blank">
+                LinkedIn Profile
+            </a>
         </div>
-
-        <button type="submit">Update Profile</button>
-    </form>
+    </div>
 
 </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="modal" id="profileModal">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+            <h2>Update Profile</h2>
+
+            <span class="close-btn" onclick="closeModal()">
+                &times;
+            </span>
+        </div>
+
+        <form method="POST" enctype="multipart/form-data" class="update-form">
+
+            {% csrf_token %}
+
+            <div class="form-grid">
+
+                <input type="text" name="name" value="{{ profile.name }}" placeholder="Name">
+
+                <input type="email" name="email" value="{{ profile.email }}" placeholder="Email">
+
+                <input type="text" name="phone" value="{{ profile.phone }}" placeholder="Phone">
+
+                <input type="text" name="address" value="{{ profile.address }}" placeholder="Address">
+
+                <input type="text" name="universityname" value="{{ profile.universityname }}" placeholder="University">
+
+                <input type="text" name="degree" value="{{ profile.degree }}" placeholder="Degree">
+
+            </div>
+
+            <textarea name="skills" placeholder="Skills">{{ profile.skills }}</textarea>
+
+            <textarea name="experience" placeholder="Experience">{{ profile.experience }}</textarea>
+
+            <textarea name="bio" placeholder="Bio">{{ profile.bio }}</textarea>
+
+            <div class="form-grid">
+
+                <input type="url" name="portfolio_link" value="{{ profile.portfolio_link }}" placeholder="Portfolio Link">
+
+                <input type="url" name="githublink" value="{{ profile.githublink }}" placeholder="GitHub Link">
+
+                <input type="url" name="linkedinlink" value="{{ profile.linkedinlink }}" placeholder="LinkedIn Link">
+
+                <input type="file" name="profileimage">
+
+            </div>
+
+            <button type="submit" class="save-btn">
+                Save Changes
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+<script>
+
+function openModal() {
+    document.getElementById('profileModal').style.display = 'flex';
+}
+
+function closeModal() {
+    document.getElementById('profileModal').style.display = 'none';
+}
+
+window.onclick = function(event) {
+    const modal = document.getElementById('profileModal');
+
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
+</script>
 
 {% endblock %}

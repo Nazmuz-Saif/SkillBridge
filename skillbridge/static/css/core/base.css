@@ -308,7 +308,7 @@ body {
 .dashboard-content {
     margin-left: 240px;
     width: 100%;
-    padding: 40px;
+    padding: 100px 30px 30px;
     display: flex;
     flex-direction: column;
     flex: 1;

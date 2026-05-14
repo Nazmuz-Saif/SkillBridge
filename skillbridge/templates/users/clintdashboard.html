@@ -2,13 +2,153 @@
 {% load static %}
 
 {% block title %}
-  SkillBridge | Online Freelance Platform
+  SkillBridge | Client Dashboard
 {% endblock %}
 
 {% block extra_css %}
-  <link rel="stylesheet" href="{% static 'css/core/home.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/user/clientdashboard.css' %}" />
 {% endblock %}
 
 {% block content %}
-  <h1>Clint Dashboard</h1>
+  <div class="dashboard-page">
+    <!-- HERO -->
+    <section class="welcome-section">
+      <div class="welcome-left">
+        <span class="small-tag">Client Dashboard</span>
+
+        <h1>
+          Welcome Back,
+          <span>{{ request.user.username }}</span>
+        </h1>
+
+        <p>Post jobs, manage applications and hire the best freelancers for your projects.</p>
+      </div>
+
+      <div class="welcome-right">
+        <a href="#" class="post-btn">Post a Job</a>
+      </div>
+    </section>
+
+    <!-- STATS -->
+    <section class="stats-grid">
+      <!-- TOTAL JOBS -->
+      <div class="stat-card">
+        <div class="icon-box blue">
+          <i class="fas fa-briefcase"></i>
+        </div>
+        <div class="stat-info">
+          <h2>{{ total_jobs }}</h2>
+          <p>Total Jobs Posted</p>
+        </div>
+      </div>
+
+      <!-- ACTIVE JOBS -->
+      <div class="stat-card">
+        <div class="icon-box orange">
+          <i class="fas fa-spinner"></i>
+        </div>
+        <div class="stat-info">
+          <h2>{{ active_jobs }}</h2>
+          <p>Active Jobs</p>
+        </div>
+      </div>
+
+      <!-- APPLICATIONS -->
+      <div class="stat-card">
+        <div class="icon-box green">
+          <i class="fas fa-users"></i>
+        </div>
+        <div class="stat-info">
+          <h2>{{ total_applications }}</h2>
+          <p>Applications Received</p>
+        </div>
+      </div>
+
+      <!-- HIRED FREELANCERS -->
+      <div class="stat-card">
+        <div class="icon-box purple">
+          <i class="fas fa-user-check"></i>
+        </div>
+        <div class="stat-info">
+          <h2>{{ hired_freelancers }}</h2>
+          <p>Hired Freelancers</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- GRID -->
+    <section class="dashboard-grid">
+      <!-- RECENT JOBS -->
+      <div class="dashboard-card">
+        <div class="card-header">
+          <h3>Your Jobs</h3>
+          <a href="#">View All</a>
+        </div>
+
+        <div class="application-list">
+          {% for job in recent_jobs %}
+            <div class="application-item">
+              <div>
+                <h4>{{ job.title }}</h4>
+                <p>Budget: {{ job.budget }}</p>
+              </div>
+
+              {% if job.is_active %}
+                <span class="status accepted">Active</span>
+              {% else %}
+                <span class="status rejected">Closed</span>
+              {% endif %}
+            </div>
+          {% empty %}
+            <p>No jobs posted yet.</p>
+          {% endfor %}
+        </div>
+      </div>
+
+      <!-- RECENT APPLICATIONS -->
+      <div class="dashboard-card">
+        <div class="card-header">
+          <h3>Recent Applications</h3>
+          <a href="#">View All</a>
+        </div>
+
+        <div class="saved-job">
+          {% for app in recent_applications %}
+            <div class="saved-item">
+              <div>
+                <h4>{{ app.job.title }}</h4>
+                <p>{{ app.freelancer.username }}</p>
+              </div>
+            </div>
+          {% empty %}
+            <p>No applications yet.</p>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+
+    <!-- QUICK ACTION -->
+    <section class="quick-action">
+      <div class="action-card">
+        <i class="fas fa-plus"></i>
+        <h3>Post New Job</h3>
+        <p>Create a new job listing for freelancers.</p>
+        <a href="#">Post Job</a>
+      </div>
+
+      <div class="action-card">
+        <i class="fas fa-users"></i>
+        <h3>Find Talent</h3>
+        <p>Search and hire skilled freelancers.</p>
+        <a href="#">Browse Freelancers</a>
+      </div>
+
+      <div class="action-card">
+        <i class="fas fa-folder"></i>
+        <h3>Manage Jobs</h3>
+        <p>Edit or close your job postings.</p>
+        <a href="#">Manage</a>
+      </div>
+    </section>
+  </div>
 {% endblock %}

@@ -4,8 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .forms import FreelancerProfileForm, SignupForm
 from .models import FreelancerProfile, ClientProfile
-from jobs.models import Application, SavedJob
-
+from jobs.models import Job, Application, SavedJob
 
 def signup(request):
     form=SignupForm()
@@ -50,14 +49,6 @@ def logoutview(request):
     logout(request)
     return redirect('home')
 
-# @login_required
-# def freelancerdashboard(request):
-#     profile = FreelancerProfile.objects.get(user=request.user)
-
-#     return render(request, 'users/freelencerdashboard.html', {
-#         'profile': profile,
-#         'role': 'freelancer'
-#     })
 
 @login_required
 def clientdashboard(request):
@@ -75,8 +66,8 @@ def freelancerdashboard(request):
     app_qs = Application.objects.filter(freelancer=request.user)
     saved_qs = SavedJob.objects.filter(freelancer=request.user)
 
-    recent_apps = app_qs.select_related('job').order_by('-id')[:5]
-    recent_saved = saved_qs.select_related('job').order_by('-id')[:5]
+    recent_apps = app_qs.select_related('job').order_by('-applied_at')[:5]
+    recent_saved = saved_qs.select_related('job').order_by('-saved_at')[:5]
 
     context = {
         'user_name': request.user.username,
@@ -95,28 +86,61 @@ def freelancerdashboard(request):
     return render(request, 'users/freelencerdashboard.html', context)
 
 @login_required
+def clientdashboard(request):
+
+    job_qs = Job.objects.filter(client=request.user)
+
+    app_qs = Application.objects.filter(job__client=request.user)
+
+    recent_jobs = job_qs.order_by('-created_at')[:5]
+
+    recent_apps = app_qs.select_related('job', 'freelancer').order_by('-applied_at')[:5]
+
+    context = {
+        'user_name': request.user.username,
+
+
+        'total_jobs': job_qs.count(),
+        'active_jobs': job_qs.filter(is_active=True).count(),
+        'closed_jobs': job_qs.filter(is_active=False).count(),
+
+        'total_applications': app_qs.count(),
+        'hired_freelancers': app_qs.filter(status='accepted').count(),
+        'recent_jobs': recent_jobs,
+        'recent_applications': recent_apps,
+    }
+
+    return render(request, 'users/clintdashboard.html', context)
+
+@login_required
 def freelancer_profile(request):
+
     profile = FreelancerProfile.objects.get(user=request.user)
 
     if request.method == 'POST':
-        form = FreelancerProfileForm(request.POST, request.FILES, instance=profile)
 
-        if form.is_valid():
-            obj = form.save(commit=False)
-            obj.user = request.user
-            obj.save()
-            return redirect('freelancerprofile')
+        profile.name = request.POST.get('name')
+        profile.email = request.POST.get('email')
+        profile.phone = request.POST.get('phone')
+        profile.address = request.POST.get('address')
+        profile.universityname = request.POST.get('universityname')
+        profile.degree = request.POST.get('degree')
+        profile.skills = request.POST.get('skills')
+        profile.experience = request.POST.get('experience')
+        profile.bio = request.POST.get('bio')
+        profile.portfolio_link = request.POST.get('portfolio_link')
+        profile.githublink = request.POST.get('githublink')
+        profile.linkedinlink = request.POST.get('linkedinlink')
 
-    else:
-        form = FreelancerProfileForm(instance=profile)
+        if request.FILES.get('profileimage'):
+            profile.profileimage = request.FILES.get('profileimage')
 
-    skills = profile.skills.split(',') if profile.skills else []
-    skills = [s.strip() for s in skills if s.strip()]
+        profile.save()
+
+        return redirect('freelancerprofile')
 
     return render(request, 'users/freelancerprofile.html', {
         'profile': profile,
-        'skills': skills,
-        'form': form,
         'role': 'freelancer'
     })
 
