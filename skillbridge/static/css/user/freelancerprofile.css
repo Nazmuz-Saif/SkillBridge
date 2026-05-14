@@ -1,0 +1,120 @@
+.profile-wrapper {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+}
+
+.profile-card {
+    width: 420px;
+    background: #1e293b;
+    padding: 30px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, .08);
+}
+
+.profile-img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+}
+
+.avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: #4f46e5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 42px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.profile-card h2 {
+    margin-bottom: 20px;
+}
+
+.info p {
+    margin: 12px 0;
+    color: #cbd5e1;
+    line-height: 1.6;
+}
+
+.info span {
+    color: white;
+    font-weight: 700;
+}
+
+#editBtn {
+    width: 100%;
+    margin-top: 20px;
+    padding: 14px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    background: linear-gradient(135deg,
+            #4f46e5,
+            #7c3aed);
+    color: white;
+    font-weight: 700;
+}
+
+.edit-box {
+    display: none;
+    flex: 1;
+    background: #1e293b;
+    padding: 30px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, .08);
+}
+
+.show {
+    display: block;
+}
+
+.edit-box h2 {
+    margin-bottom: 25px;
+}
+
+.edit-box p {
+    margin-bottom: 15px;
+}
+
+.edit-box input,
+.edit-box textarea,
+.edit-box select {
+    width: 100%;
+    background: #0f172a;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    margin-top: 8px;
+}
+
+.edit-box button {
+    width: 100%;
+    margin-top: 15px;
+    padding: 14px;
+    border: none;
+    border-radius: 12px;
+    background: #22c55e;
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+@media(max-width:900px) {
+
+    .profile-wrapper {
+        flex-direction: column;
+    }
+
+    .profile-card {
+        width: 100%;
+    }
+
+}

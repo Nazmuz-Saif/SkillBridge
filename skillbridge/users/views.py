@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from .forms import SignupForm
+from .forms import FreelancerProfileForm, SignupForm
 from .models import FreelancerProfile, ClientProfile
 
 
@@ -62,4 +62,25 @@ def clientprofile(request):
     return render(request, 'users/clintdashboard.html', {
         'profile': profile,
         'role': 'client'
+    })
+
+
+@login_required
+def freelancer_profile(request):
+    profile = FreelancerProfile.objects.get(user=request.user)
+    if request.method == 'POST':
+        form = FreelancerProfileForm(
+            request.POST,
+            request.FILES,
+            instance=profile
+        )
+        if form.is_valid():
+            form.save()
+            return redirect('freelancerprofile')
+    else:
+        form = FreelancerProfileForm(instance=profile)
+    return render(request,'users/freelancerprofile.html',{
+        'profile': profile,
+        'form': form,
+        'role':'freelancer'
     })

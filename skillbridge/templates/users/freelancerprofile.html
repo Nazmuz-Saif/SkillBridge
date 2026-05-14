@@ -2,13 +2,92 @@
 {% load static %}
 
 {% block title %}
-  SkillBridge | Online Freelance Platform
+  Freelancer Profile
 {% endblock %}
 
 {% block extra_css %}
-  <link rel="stylesheet" href="{% static 'css/core/home.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/user/freelancerprofile.css' %}" />
 {% endblock %}
 
 {% block content %}
-  <h1>Freelancer Dashboard</h1>
+  <div class="profile-wrapper">
+    <!-- LEFT PROFILE CARD -->
+
+    <div class="profile-card">
+      {% if profile.profileimage %}
+        <img src="{{ profile.profileimage.url }}" class="profile-img" />
+      {% else %}
+        <div class="avatar">{{ request.user.username.0|upper }}</div>
+      {% endif %}
+
+      <h2>{{ profile.name|default:'Empty' }}</h2>
+
+      <div class="info">
+        <p>
+          <span>Email:</span>
+          {{ profile.email|default:'Empty' }}
+        </p>
+
+        <p>
+          <span>Phone:</span>
+          {{ profile.phone|default:'Empty' }}
+        </p>
+
+        <p>
+          <span>Address:</span>
+          {{ profile.address|default:'Empty' }}
+        </p>
+
+        <p>
+          <span>University:</span>
+          {{ profile.universityname|default:'Empty' }}
+        </p>
+
+        <p>
+          <span>Degree:</span>
+          {{ profile.degree|default:'Empty' }}
+        </p>
+
+        <p>
+          <span>Skills:</span>
+          {{ profile.skills|default:'Empty' }}
+        </p>
+
+        <p>
+          <span>Experience:</span>
+          {{ profile.experience|default:'Empty' }}
+        </p>
+
+        <p>
+          <span>Bio:</span>
+          {{ profile.bio|default:'Empty' }}
+        </p>
+      </div>
+
+      <button id="editBtn">Update Profile</button>
+    </div>
+
+    <!-- RIGHT UPDATE PANEL -->
+
+    <div class="edit-box" id="editBox">
+      <h2>Edit Profile</h2>
+
+      <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <button type="submit">Save Changes</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const btn = document.getElementById('editBtn')
+    const box = document.getElementById('editBox')
+    
+    btn.onclick = () => {
+      box.classList.toggle('show')
+    }
+  </script>
 {% endblock %}
