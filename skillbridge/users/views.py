@@ -40,6 +40,9 @@ def loginview(request):
             elif ClientProfile.objects.filter(user=user).exists():
                 request.session['role'] = 'client'
                 return redirect('clientdashboard')
+        return render(request, 'users/login.html', {
+            'error': 'Invalid credentials'
+        })
     return render(request, 'users/login.html')
 
 
@@ -47,14 +50,14 @@ def logoutview(request):
     logout(request)
     return redirect('home')
 
-@login_required
-def freelancerdashboard(request):
-    profile = FreelancerProfile.objects.get(user=request.user)
+# @login_required
+# def freelancerdashboard(request):
+#     profile = FreelancerProfile.objects.get(user=request.user)
 
-    return render(request, 'users/freelencerdashboard.html', {
-        'profile': profile,
-        'role': 'freelancer'
-    })
+#     return render(request, 'users/freelencerdashboard.html', {
+#         'profile': profile,
+#         'role': 'freelancer'
+#     })
 
 @login_required
 def clientdashboard(request):

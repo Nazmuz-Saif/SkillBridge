@@ -52,7 +52,7 @@
       <div class="dashboard-layout">
         {% with current=request.path %}
           <aside class="sidebar">
-            {% if role == 'freelancer' %}
+            {% if request.session.role == 'freelancer' %}
               <div class="role-badge freelancer">Freelancer</div>
               <a href="{% url 'freelencerdashboard' %}" class="sidebar-item {% if request.resolver_match.url_name == 'freelencerdashboard' %}active{% endif %}"><i class="fas fa-chart-line"></i>Dashboard</a>
               <a href="{% url 'freelancerprofile' %}" class="sidebar-item {% if request.resolver_match.url_name == 'freelancerprofile' %}active{% endif %}"><i class="fas fa-user"></i>My Profile</a>
