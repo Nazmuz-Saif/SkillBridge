@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .forms import FreelancerProfileForm, SignupForm
 from .models import FreelancerProfile, ClientProfile
+from jobs.models import Application
 
 
 def signup(request):
@@ -84,3 +85,6 @@ def freelancer_profile(request):
         'form': form,
         'role':'freelancer'
     })
+
+
+
