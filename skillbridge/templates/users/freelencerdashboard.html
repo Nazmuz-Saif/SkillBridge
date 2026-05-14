@@ -2,13 +2,199 @@
 {% load static %}
 
 {% block title %}
-  SkillBridge | Online Freelance Platform
+  SkillBridge | Freelancer Dashboard
 {% endblock %}
 
 {% block extra_css %}
-  <link rel="stylesheet" href="{% static 'css/core/home.css' %}" />
+<link rel="stylesheet" href="{% static 'css/user/freelancerdashboard.css' %}">
 {% endblock %}
 
 {% block content %}
-  <h1>Freelancer Dashboard</h1>
+
+<div class="dashboard-page">
+
+    <!-- TOP GREETING -->
+    <section class="welcome-section">
+
+        <div class="welcome-left">
+            <span class="small-tag">
+                Freelancer Dashboard
+            </span>
+
+            <h1>
+                Welcome Back,
+                <span>{{ request.user.name }}</span>
+            </h1>
+
+            <p>
+                Track your applications, manage saved jobs and grow your freelancing journey with SkillBridge.
+            </p>
+        </div>
+
+        <div class="welcome-right">
+            <a href="#" class="post-btn">
+                Browse Jobs
+            </a>
+        </div>
+
+    </section>
+
+    <!-- STATS -->
+    <section class="stats-grid">
+
+        <div class="stat-card">
+            <div class="icon-box blue">
+                <i class="fas fa-paper-plane"></i>
+            </div>
+
+            <div class="stat-info">
+                <h2>24</h2>
+                <p>Total Applications</p>
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <div class="icon-box orange">
+                <i class="fas fa-clock"></i>
+            </div>
+
+            <div class="stat-info">
+                <h2>10</h2>
+                <p>Pending Applications</p>
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <div class="icon-box green">
+                <i class="fas fa-check"></i>
+            </div>
+
+            <div class="stat-info">
+                <h2>8</h2>
+                <p>Accepted Jobs</p>
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <div class="icon-box purple">
+                <i class="fas fa-bookmark"></i>
+            </div>
+
+            <div class="stat-info">
+                <h2>14</h2>
+                <p>Saved Jobs</p>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- MAIN GRID -->
+    <section class="dashboard-grid">
+
+        <!-- RECENT APPLICATION -->
+        <div class="dashboard-card">
+
+            <div class="card-header">
+                <h3>Recent Applications</h3>
+                <a href="#">View All</a>
+            </div>
+
+            <div class="application-list">
+
+                <div class="application-item">
+                    <div>
+                        <h4>Frontend Developer</h4>
+                        <p>TechNova Solutions</p>
+                    </div>
+
+                    <span class="status pending">
+                        Pending
+                    </span>
+                </div>
+
+                <div class="application-item">
+                    <div>
+                        <h4>UI/UX Designer</h4>
+                        <p>Creative Studio</p>
+                    </div>
+
+                    <span class="status accepted">
+                        Accepted
+                    </span>
+                </div>
+
+                <div class="application-item">
+                    <div>
+                        <h4>Content Writer</h4>
+                        <p>SkillUp Agency</p>
+                    </div>
+
+                    <span class="status rejected">
+                        Rejected
+                    </span>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- SAVED JOBS -->
+        <div class="dashboard-card">
+
+            <div class="card-header">
+                <h3>Saved Jobs</h3>
+                <a href="#">Explore</a>
+            </div>
+
+            <div class="saved-job">
+
+                <div class="saved-item">
+                    <h4>Python Backend Developer</h4>
+                    <p>Remote • Intermediate Level</p>
+                </div>
+
+                <div class="saved-item">
+                    <h4>Graphic Designer</h4>
+                    <p>Part Time • Creative Team</p>
+                </div>
+
+                <div class="saved-item">
+                    <h4>Video Editor</h4>
+                    <p>YouTube Content Project</p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- QUICK ACTION -->
+    <section class="quick-action">
+
+        <div class="action-card">
+            <i class="fas fa-briefcase"></i>
+            <h3>Find New Jobs</h3>
+            <p>Explore the latest freelance opportunities.</p>
+            <a href="#">Browse Jobs</a>
+        </div>
+
+        <div class="action-card">
+            <i class="fas fa-user-edit"></i>
+            <h3>Update Profile</h3>
+            <p>Complete your profile to attract more clients.</p>
+            <a href="#">Edit Profile</a>
+        </div>
+
+        <div class="action-card">
+            <i class="fas fa-chart-line"></i>
+            <h3>Track Progress</h3>
+            <p>Monitor your activity and application growth.</p>
+            <a href="#">View Analytics</a>
+        </div>
+
+    </section>
+
+</div>
+
 {% endblock %}
