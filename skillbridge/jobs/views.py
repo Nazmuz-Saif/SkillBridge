@@ -1,25 +1,44 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
-from .models import Job, Application, SavedJob
+from .models import Job, Application, SavedJob, Skill, JobCategory
 
 
 @login_required
 def post_job(request):
-    if request.method == "POST":
-        title = request.POST['title']
-        description = request.POST['description']
-        budget = request.POST['budget']
 
+    categories = JobCategory.objects.all()
+    skills = Skill.objects.all()
+
+    if request.method == "POST":
+
+        title = request.POST.get('title')
+        description = request.POST.get('description')
+        category_id = request.POST.get('category')
+        budget_min = request.POST.get('budget_min')
+        budget_max = request.POST.get('budget_max')
+        selected_skills = request.POST.getlist('skills')
+        category = JobCategory.objects.get(id=category_id)
+        deadline = request.POST.get('deadline')
         job = Job.objects.create(
             client=request.user,
             title=title,
             description=description,
-            budget=budget
+            category=category,
+            budget_min=budget_min,
+            budget_max=budget_max,
+            deadline=deadline
         )
 
+        job.skills_required.set(selected_skills)
+        skills = request.POST.getlist('skills')
         return redirect('clientdashboard')
 
-    return render(request, 'jobs/post_job.html')
+    context = {
+        'categories': categories,
+        'skills': skills,
+    }
+
+    return render(request, 'jobs/post_job.html', context)
 
 def job_list(request):
 

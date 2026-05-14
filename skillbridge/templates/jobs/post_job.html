@@ -1,0 +1,84 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}
+  Post Job
+{% endblock %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/jobs/post_job.css' %}" />
+{% endblock %}
+
+{% block content %}
+  <div class="post-job-page">
+    <div class="post-job-card">
+      <div class="page-title">
+        <h2>Post a New Job</h2>
+        <p>Create a professional job post and hire freelancers.</p>
+      </div>
+
+      <form method="POST" class="job-form">
+        {% csrf_token %}
+
+        <div class="box">
+          <label>Job Title</label>
+          <input type="text" name="title" required />
+        </div>
+
+        <div class="box">
+          <label>Job Description</label>
+          <textarea name="description" required></textarea>
+        </div>
+
+        <div class="grid">
+          <div class="col-left">
+            <div class="box fixed">
+              <label>Category</label>
+              <select name="category" required>
+                <option value="">Select Category</option>
+                {% for category in categories %}
+                  <option value="{{ category.id }}">{{ category.name }}</option>
+                {% endfor %}
+              </select>
+            </div>
+
+            <div class="box fixed">
+              <label>Deadline</label>
+              <input type="date" name="deadline" required />
+            </div>
+          </div>
+
+          <div class="col-right">
+            <div class="box big">
+              <label>Requirements</label>
+              <div class="skills-box">
+                {% for skill in skills %}
+                  <label class="skill-item">
+                    <input type="checkbox" name="skills" value="{{ skill.id }}" />
+                    <span>{{ skill.name }}</span>
+                  </label>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="budget">
+          <div class="box">
+            <label>Min Budget</label>
+            <input type="number" name="budget_min" required />
+          </div>
+
+          <div class="box">
+            <label>Max Budget</label>
+            <input type="number" name="budget_max" required />
+          </div>
+        </div>
+
+        <div class="btn-wrapper">
+          <button type="submit" class="submit-btn">Post Job</button>
+        </div>
+      </form>
+    </div>
+  </div>
+{% endblock %}
