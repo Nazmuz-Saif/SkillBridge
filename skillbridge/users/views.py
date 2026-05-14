@@ -35,10 +35,10 @@ def loginview(request):
             login(request, user)
             if FreelancerProfile.objects.filter(user=user).exists():
                 request.session['role'] = 'freelancer'
-                return redirect('freelancerprofile')
+                return redirect('freelencerdashboard')
             elif ClientProfile.objects.filter(user=user).exists():
                 request.session['role'] = 'client'
-                return redirect('clientprofile')
+                return redirect('clientdashboard')
     return render(request, 'users/login.html')
 
 
@@ -49,9 +49,17 @@ def logoutview(request):
 @login_required
 def freelancerprofile(request):
     profile = FreelancerProfile.objects.get(user=request.user)
-    return render(request, 'users/freelancerprofile.html', {'profile': profile,'is_freelancer': True})
+
+    return render(request, 'users/freelencerdashboard.html', {
+        'profile': profile,
+        'role': 'freelancer'
+    })
 
 @login_required
 def clientprofile(request):
     profile = ClientProfile.objects.get(user=request.user)
-    return render(request, 'users/clientprofile.html', {'profile': profile,'is_freelancer': False})
+
+    return render(request, 'users/clintdashboard.html', {
+        'profile': profile,
+        'role': 'client'
+    })
