@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="{% static 'css/core/home.css' %}" />
 {% endblock %}
 
-{% block content %}
+{% block guest_content %}
   <h1>Login</h1>
   <form method="POST">
     {% csrf_token %}
