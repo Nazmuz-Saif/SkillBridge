@@ -47,14 +47,14 @@
         </div>
       </div>
     </nav>
-    
+
     {% if user.is_authenticated %}
       <div class="dashboard-layout">
         {% with current=request.path %}
           <aside class="sidebar">
             {% if role == 'freelancer' %}
               <div class="role-badge freelancer">Freelancer</div>
-              <a href="#" class="sidebar-item active"><i class="fas fa-chart-line"></i>Dashboard</a>
+              <a href="{% url 'freelencerdashboard' %}" class="sidebar-item active"><i class="fas fa-chart-line"></i>Dashboard</a>
               <a href="{% url 'freelancerprofile' %}" class="sidebar-item"><i class="fas fa-user"></i>My Profile</a>
               <a href="#" class="sidebar-item"><i class="fas fa-briefcase"></i>Browse Jobs</a>
               <a href="#" class="sidebar-item"><i class="fas fa-file"></i>My Applications</a>

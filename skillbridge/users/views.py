@@ -47,7 +47,7 @@ def logoutview(request):
     return redirect('home')
 
 @login_required
-def freelancerprofile(request):
+def freelancerdashboard(request):
     profile = FreelancerProfile.objects.get(user=request.user)
 
     return render(request, 'users/freelencerdashboard.html', {
@@ -56,7 +56,7 @@ def freelancerprofile(request):
     })
 
 @login_required
-def clientprofile(request):
+def clientdashboard(request):
     profile = ClientProfile.objects.get(user=request.user)
 
     return render(request, 'users/clintdashboard.html', {
