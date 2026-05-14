@@ -1,15 +1,50 @@
 {% extends 'core/base.html' %}
 {% load static %}
 
-{% block title %}
-  Profile
-{% endblock %}
+{% block title %}Profile{% endblock %}
 
 {% block extra_css %}
-  <link rel="stylesheet" href="{% static 'css/user/freelancerprofile.css' %}" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+<link rel="stylesheet" href="{% static 'css/user/freelancerprofile.css' %}">
 {% endblock %}
 
 {% block content %}
+
+<div class="profile-container">
+
+    <div class="profile-header">
+        <div class="avatar">
+            {{ profile.name|slice:":1" }}
+        </div>
+
+        <div class="profile-title">
+            <h2>{{ profile.name }}</h2>
+            <p>{{ profile.email }}</p>
+        </div>
+    </div>
+
+    <form method="POST" enctype="multipart/form-data" class="profile-form">
+        {% csrf_token %}
+
+        <div class="grid">
+            <input type="text" name="name" value="{{ profile.name }}" placeholder="Name">
+            <input type="email" name="email" value="{{ profile.email }}" placeholder="Email">
+            <input type="text" name="phone" value="{{ profile.phone }}" placeholder="Phone">
+            <input type="text" name="address" value="{{ profile.address }}" placeholder="Address">
+        </div>
+
+        <textarea name="skills" placeholder="Skills">{{ profile.skills }}</textarea>
+        <textarea name="experience" placeholder="Experience">{{ profile.experience }}</textarea>
+        <textarea name="bio" placeholder="Bio">{{ profile.bio }}</textarea>
+
+        <div class="grid">
+            <input type="url" name="portfolio_link" value="{{ profile.portfolio_link }}" placeholder="Portfolio">
+            <input type="url" name="githublink" value="{{ profile.githublink }}" placeholder="GitHub">
+            <input type="url" name="linkedinlink" value="{{ profile.linkedinlink }}" placeholder="LinkedIn">
+        </div>
+
+        <button type="submit">Update Profile</button>
+    </form>
+
+</div>
 
 {% endblock %}
