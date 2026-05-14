@@ -1,6 +1,6 @@
 .dashboard-page {
     width: 100%;
-    padding: 30px;
+    flex: 1;
 }
 
 .welcome-section {
