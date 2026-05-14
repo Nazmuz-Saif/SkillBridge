@@ -5,11 +5,19 @@ from .models import ClientProfile
 
 
 class SignupForm(forms.Form):
-    rolechoices = (('freelancer', 'Freelancer'),('client', 'Client'),)
+    ROLE_CHOICES = (
+        ('freelancer', 'Freelancer'),
+        ('client', 'Client'),
+    )
+
+    role = forms.ChoiceField(
+        choices=ROLE_CHOICES,
+        widget=forms.RadioSelect(attrs={'class': 'role-radio'})
+    )
+
     name = forms.CharField()
     email = forms.EmailField()
     password = forms.CharField(widget=forms.PasswordInput)
-    role = forms.ChoiceField(choices=rolechoices)
 
 
 class FreelancerProfileForm(forms.ModelForm):

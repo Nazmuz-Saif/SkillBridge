@@ -2,87 +2,91 @@
 {% load static %}
 
 {% block title %}
-  SkillBridge | Create Account
+SkillBridge | Create Account
 {% endblock %}
 
 {% block extra_css %}
-  <link rel="stylesheet" href="{% static 'css/user/signup.css' %}" />
+<link rel="stylesheet" href="{% static 'css/user/signup.css' %}">
 {% endblock %}
 
 {% block guest_content %}
 
-<div class="signup-container">
+<div class="signup-wrapper">
 
-    <div class="signup-top">
-        <h1>Create Account</h1>
-        <p>Join SkillBridge as a freelancer or client</p>
-    </div>
+    <div class="signup-container">
 
-    <form method="POST">
-        {% csrf_token %}
+        <!-- BRAND -->
+        <div class="brand">
+            <h2>SkillBridge</h2>
+        </div>
 
-        <!-- ACCOUNT TYPE -->
-        <div class="role-section">
+        <!-- HEADER -->
+        <div class="signup-top">
+            <h1 class="gradient-title">Create Account</h1>
+            <p>Join SkillBridge and start your journey</p>
+        </div>
 
-            <label class="role-title">
-                Choose Account Type
-            </label>
+        <form method="POST">
+            {% csrf_token %}
 
-            <div class="role-options">
+            <!-- ACCOUNT TYPE (ONLY ONCE - FIXED) -->
+            <div class="role-section">
 
-                <!-- Freelancer -->
-                <label class="role-card">
-                    <input type="radio"
-                           name="role"
-                           value="freelancer"
-                           required>
+                <div class="role-options">
 
-                    <div class="role-content">
-                        <i class="fas fa-laptop-code"></i>
+                    {% for radio in form.role %}
 
-                        <h3>Freelancer</h3>
+                    <label class="role-card">
+                        {{ radio.tag }}
 
-                        <p>
-                            Find projects, build skills and earn money
-                        </p>
-                    </div>
-                </label>
+                        <div class="role-content">
+                            {% if radio.choice_label == "Freelancer" %}
+                                <h2>Freelancer</h2>
+                                <p>Find projects & earn money</p>
+                            {% else %}
+                                <h2>Client</h2>
+                                <p>Hire skilled freelancers</p>
+                            {% endif %}
+                        </div>
+                    </label>
 
-                <!-- Client -->
-                <label class="role-card">
-                    <input type="radio"
-                           name="role"
-                           value="client">
+                    {% endfor %}
 
-                    <div class="role-content">
-                        <i class="fas fa-briefcase"></i>
-
-                        <h3>Client</h3>
-
-                        <p>
-                            Post projects and hire skilled freelancers
-                        </p>
-                    </div>
-                </label>
+                </div>
 
             </div>
+
+            <!-- FORM FIELDS -->
+            <div class="form-fields">
+
+    <div class="input-group">
+        <label>Name</label>
+        {{ form.name }}
+    </div>
+
+    <div class="input-group">
+        <label>Email</label>
+        {{ form.email }}
+    </div>
+
+    <div class="input-group">
+        <label>Password</label>
+        {{ form.password }}
+    </div>
+
+</div>
+
+            <button type="submit">Create Account</button>
+
+        </form>
+
+        <div class="bottom-text">
+            <p>
+                Already have an account?
+                <a href="{% url 'login' %}">Login</a>
+            </p>
         </div>
 
-        <!-- DJANGO FORM -->
-        <div class="form-fields">
-            {{ form.as_p }}
-        </div>
-
-        <button type="submit">
-            Create Account
-        </button>
-
-    </form>
-
-    <div class="bottom-link">
-        <a href="{% url 'login' %}">
-            Already have an account? Login
-        </a>
     </div>
 
 </div>
