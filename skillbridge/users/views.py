@@ -49,9 +49,17 @@ def logoutview(request):
 @login_required
 def freelancerprofile(request):
     profile = FreelancerProfile.objects.get(user=request.user)
-    return render(request, 'users/freelancerprofile.html', {'profile': profile,'is_freelancer': True})
+
+    return render(request, 'users/freelancerprofile.html', {
+        'profile': profile,
+        'role': 'freelancer'
+    })
 
 @login_required
 def clientprofile(request):
     profile = ClientProfile.objects.get(user=request.user)
-    return render(request, 'users/clientprofile.html', {'profile': profile,'is_freelancer': False})
+
+    return render(request, 'users/clientprofile.html', {
+        'profile': profile,
+        'role': 'client'
+    })

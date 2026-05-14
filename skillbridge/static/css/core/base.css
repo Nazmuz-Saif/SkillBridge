@@ -99,7 +99,6 @@ body {
     color: #ffffff;
 }
 
-
 .btn-login {
     color: #cbd5e1;
     text-decoration: none;
@@ -164,7 +163,6 @@ body {
 .search-box input::placeholder {
     color: #64748b;
 }
-
 
 .message-btn {
     width: 45px;
@@ -233,7 +231,7 @@ body {
 }
 
 .sidebar {
-    width: 270px;
+    width: 240px;
     background: rgba(15, 23, 42, 0.98);
     border-right: 1px solid rgba(255, 255, 255, 0.08);
     position: fixed;
@@ -304,12 +302,11 @@ body {
 }
 
 .dashboard-content {
-    margin-left: 270px;
+    margin-left: 240px;
     width: 100%;
     padding: 115px 40px 40px;
     min-height: 100vh;
 }
-
 
 .role-badge {
     text-align: center;
@@ -325,8 +322,6 @@ body {
     width: 90%;
     box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
 }
-
-
 
 .main-wrapper {
     flex: 1;
