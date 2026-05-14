@@ -19,36 +19,71 @@
       <div class="nav-container">
         <div class="nav-left">
           <a href="/" class="brand-logo"><div class="logo-box">S</div>SKILLBRIDGE</a>
-          <div class="nav-links">
-            <a href="/" class="nav-item">Home</a>
-            <a href="#" class="nav-item">Browse Jobs</a>
-            <a href="#" class="nav-item">Categories</a>
-          </div>
+          {% if user.is_authenticated %}
+            <div class="search-box">
+              <i class="fas fa-search"></i>
+              <input type="text" placeholder="Search..." />
+            </div>
+          {% else %}
+            <div class="nav-links">
+              <a href="/" class="nav-item">Home</a>
+              <a href="#" class="nav-item">Browse Jobs</a>
+              <a href="#" class="nav-item">Find Talent</a>
+            </div>
+          {% endif %}
         </div>
-
         <div class="nav-right">
           {% if user.is_authenticated %}
-          <a href="#" class="nav-item">Messages</a>
-          <a href="{% url 'freelancerprofile' %}" class="nav-item">Dashboard</a>
-          <a href="{% url 'logout' %}" class="logout-box">Logout</a>
-          <div class="user-avatar">{{ user.username.0 | upper }}</div>
+            <a href="#" class="message-btn"><i class="fas fa-message"></i></a>
+            <div class="user-info">
+              <div class="user-avatar">{{ user.username.0|upper }}</div>
+              <span class="user-name">{{ user.username }}</span>
+            </div>
           {% else %}
-          <a href="{% url 'login' %}" class="btn-login">Login</a>
-          <a href="{% url 'signup' %}" class="btn-signup">Sign Up</a>
+            <a href="{% url 'login' %}" class="btn-login">Login</a>
+            <a href="{% url 'signup' %}" class="btn-signup">Sign Up</a>
           {% endif %}
         </div>
       </div>
     </nav>
-
-    <main class="main-wrapper">
-      {% block content %}
-      {% endblock %}
-    </main>
-
+    {% if user.is_authenticated %}
+      <div class="dashboard-layout">
+        <aside class="sidebar">
+          {% if user.role == 'freelancer' %}
+            <h3 class="sidebar-title">Freelancer</h3>
+            <a href="#" class="sidebar-item active"><i class="fas fa-chart-line"></i>Dashboard</a>
+            <a href="#" class="sidebar-item"><i class="fas fa-user"></i>My Profile</a>
+            <a href="#" class="sidebar-item"><i class="fas fa-briefcase"></i>Browse Jobs </a>
+            <a href="#" class="sidebar-item"><i class="fas fa-file"></i>My Applications</a>
+            <a href="#" class="sidebar-item"><i class="fas fa-bookmark"></i>Saved Jobs</a>
+            <a href="#" class="sidebar-item"><i class="fas fa-message"></i>Messages</a>
+            <a href="#" class="sidebar-item"><i class="fas fa-gear"></i>Settings</a>
+          {% else %}
+            <h3 class="sidebar-title">Client</h3>
+            <a href="#" class="sidebar-item active"><i class="fas fa-chart-line"></i>Dashboard</a>
+            <a href="#" class="sidebar-item"><i class="fas fa-user"></i>My Profile</a>
+            <a href="#" class="sidebar-item"><i class="fas fa-briefcase"></i>Browse Jobs</a>
+            <a href="#" class="sidebar-item"><i class="fas fa-plus"></i>Post a Job</a>
+            <a href="#" class="sidebar-item"><i class="fas fa-users"></i>Find Talent</a>
+            <a href="#" class="sidebar-item"><i class="fas fa-message"></i>Messages</a>
+            <a href="#" class="sidebar-item"><i class="fas fa-gear"></i>Settings</a>
+          {% endif %}
+          <a href="{% url 'logout' %}" class="sidebar-item logout-sidebar"><i class="fas fa-right-from-bracket"></i>Logout</a>
+        </aside>
+        <main class="dashboard-content">
+          {% block content %}
+          {% endblock %}
+        </main>
+      </div>
+    {% else %}
+      <main class="main-wrapper">
+        {% block guest_content %}
+        {% endblock %}
+      </main>
+    {% endif %}
     <footer class="footer">
-      <div class="footer-content">&copy; 2026 SkillBridge | All Rights Recived By UAP_RedHawks</div>
+      <div class="footer-content">&copy; 2026 SkillBridge | Built By UAP_RedHawks.</div>
     </footer>
-
     {% block extra_js %}
     {% endblock %}
   </body>
