@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .forms import FreelancerProfileForm, SignupForm
 from .models import FreelancerProfile, ClientProfile
-from jobs.models import Application
+from jobs.models import Application, SavedJob
 
 
 def signup(request):
@@ -65,6 +65,31 @@ def clientdashboard(request):
         'role': 'client'
     })
 
+
+@login_required
+def freelancerdashboard(request):
+
+    app_qs = Application.objects.filter(freelancer=request.user)
+    saved_qs = SavedJob.objects.filter(freelancer=request.user)
+
+    recent_apps = app_qs.select_related('job').order_by('-id')[:5]
+    recent_saved = saved_qs.select_related('job').order_by('-id')[:5]
+
+    context = {
+        'user_name': request.user.username,
+
+        'total_applications': app_qs.count(),
+        'pending_applications': app_qs.filter(status='pending').count(),
+        'accepted_jobs': app_qs.filter(status='accepted').count(),
+        'rejected_jobs': app_qs.filter(status='rejected').count(),
+
+        'saved_jobs': saved_qs.count(),
+
+        'recent_applications': recent_apps,
+        'recent_saved_jobs': recent_saved,
+    }
+
+    return render(request, 'users/freelencerdashboard.html', context)
 
 @login_required
 def freelancer_profile(request):
