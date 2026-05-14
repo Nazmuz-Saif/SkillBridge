@@ -31,6 +31,7 @@ def signup(request):
 
 
 def loginview(request):
+
     if request.method == "POST":
         email = request.POST['email']
         password = request.POST['password']
@@ -38,20 +39,25 @@ def loginview(request):
         if user is not None:
             login(request, user)
             if FreelancerProfile.objects.filter(user=user).exists():
+                request.session['is_freelancer'] = True
                 return redirect('freelancerprofile')
-            else:
+            elif ClientProfile.objects.filter(user=user).exists():
+                request.session['is_freelancer'] = False
                 return redirect('clientprofile')
-
     return render(request, 'users/login.html')
-
 
 
 def logoutview(request):
     logout(request)
     return redirect('home')
 
+from .models import FreelancerProfile, ClientProfile
+
 def freelancerprofile(request):
-    return render(request, 'users/freelancerprofile.html')
+    profile = FreelancerProfile.objects.get(user=request.user)
+    return render(request,'users/freelancerprofile.html',{'profile': profile,'is_freelancer': True})
+
 
 def clientprofile(request):
-    return render(request, 'users/clientprofile.html')
+    profile = ClientProfile.objects.get(user=request.user)
+    return render(request,'users/clientprofile.html',{'profile': profile,'is_freelancer': False})

@@ -49,7 +49,7 @@
     {% if user.is_authenticated %}
       <div class="dashboard-layout">
         <aside class="sidebar">
-          {% if user.role == 'freelancer' %}
+          {% if user.freelancerprofile %}
             <h3 class="sidebar-title">Freelancer</h3>
             <a href="#" class="sidebar-item active"><i class="fas fa-chart-line"></i>Dashboard</a>
             <a href="#" class="sidebar-item"><i class="fas fa-user"></i>My Profile</a>
