@@ -64,7 +64,7 @@
             {% else %}
               <div class="role-badge client">Client</div>
               <a href="{% url 'clientdashboard' %}" class="sidebar-item {% if request.resolver_match.url_name == 'clientdashboard' %}active{% endif %}"><i class="fas fa-chart-line"></i>Dashboard</a>
-              <a href="#" class="sidebar-item"><i class="fas fa-user"></i>My Profile</a>
+              <a href="{% url 'clientprofile' %}" class="sidebar-item {% if request.resolver_match.url_name == 'clientprofile' %}active{% endif %}"><i class="fas fa-user"></i>My Profile</a>
               <a href="#" class="sidebar-item"><i class="fas fa-briefcase"></i>Browse Jobs</a>
               <a href="#" class="sidebar-item"><i class="fas fa-plus"></i>Post a Job</a>
               <a href="#" class="sidebar-item"><i class="fas fa-users"></i>Find Talent</a>

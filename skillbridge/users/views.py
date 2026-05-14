@@ -144,5 +144,33 @@ def freelancer_profile(request):
         'role': 'freelancer'
     })
 
+@login_required
+def client_profile(request):
+
+    profile = ClientProfile.objects.get(user=request.user)
+
+    if request.method == 'POST':
+
+        profile.name = request.POST.get('name')
+        profile.email = request.POST.get('email')
+        profile.phone = request.POST.get('phone')
+        profile.address = request.POST.get('address')
+        profile.companyname = request.POST.get('companyname')
+        profile.companydescription = request.POST.get('companydescription')
+        profile.website = request.POST.get('website')
+        profile.nidnumber = request.POST.get('nidnumber')
+
+        if request.FILES.get('profileimage'):
+            profile.profileimage = request.FILES.get('profileimage')
+
+        profile.save()
+
+        return redirect('clientprofile')
+
+    return render(request, 'users/clientprofile.html', {
+        'profile': profile,
+        'role': 'client'
+    })
+
 
 
