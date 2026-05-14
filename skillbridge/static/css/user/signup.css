@@ -1,0 +1,230 @@
+/* =========================
+   Signup Page Styling
+========================= */
+
+body {
+    background: linear-gradient(180deg, #0f172a 0%, #111827 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+}
+
+/* =========================
+   ROLE SELECTION
+========================= */
+
+.role-section {
+    margin-bottom: 30px;
+}
+
+.role-title {
+    display: block;
+    color: #e2e8f0;
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-bottom: 14px;
+}
+
+.role-options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+.role-card {
+    position: relative;
+    cursor: pointer;
+}
+
+.role-card input {
+    display: none;
+}
+
+.role-content {
+    padding: 24px 18px;
+    border-radius: 18px;
+
+    background: rgba(255,255,255,0.04);
+
+    border: 1px solid rgba(255,255,255,0.08);
+
+    text-align: center;
+
+    transition: 0.25s ease;
+}
+
+.role-content i {
+    font-size: 2rem;
+    color: #818cf8;
+    margin-bottom: 14px;
+}
+
+.role-content h3 {
+    color: #fff;
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+}
+
+.role-content p {
+    color: #94a3b8;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* SELECTED CARD */
+
+.role-card input:checked + .role-content {
+    border-color: #6366f1;
+
+    background: rgba(99, 102, 241, 0.12);
+
+    box-shadow:
+        0 0 0 4px rgba(99,102,241,0.15);
+}
+
+/* HOVER */
+
+.role-content:hover {
+    transform: translateY(-4px);
+}
+
+/* Main Signup Container */
+.signup-container {
+    width: 100%;
+    max-width: 430px;
+    padding: 40px;
+    border-radius: 24px;
+
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.4);
+
+    text-align: center;
+}
+
+/* Heading */
+.signup-container h1 {
+    color: #fff;
+    font-size: 2.4rem;
+    font-weight: 800;
+    margin-bottom: 30px;
+}
+
+/* Form */
+.signup-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+/* Django form paragraph */
+.signup-container form p {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+/* Labels */
+.signup-container label {
+    color: #cbd5e1;
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+/* Inputs */
+.signup-container input {
+    width: 100%;
+    padding: 14px 16px;
+    border-radius: 12px;
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    background: rgba(255, 255, 255, 0.04);
+
+    color: #fff;
+    font-size: 0.95rem;
+
+    outline: none;
+
+    transition: 0.25s ease;
+}
+
+/* Input Focus */
+.signup-container input:focus {
+    border-color: #6366f1;
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
+}
+
+/* Placeholder */
+.signup-container input::placeholder {
+    color: #94a3b8;
+}
+
+/* Signup Button */
+.signup-container button {
+    width: 100%;
+    padding: 14px;
+
+    border: none;
+    border-radius: 12px;
+
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.3s ease;
+
+    margin-top: 10px;
+}
+
+/* Button Hover */
+.signup-container button:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 15px 35px rgba(99, 102, 241, 0.35);
+}
+
+/* Login Link */
+.signup-container a {
+    display: inline-block;
+    margin-top: 22px;
+
+    color: #818cf8;
+    text-decoration: none;
+    font-weight: 600;
+
+    transition: 0.2s ease;
+}
+
+.signup-container a:hover {
+    color: #a5b4fc;
+}
+
+/* Help Text */
+.helptext {
+    color: #94a3b8;
+    font-size: 0.8rem;
+    margin-top: 6px;
+}
+
+/* Error Messages */
+.errorlist {
+    color: #f87171;
+    list-style: none;
+    padding: 0;
+    margin: 6px 0;
+    font-size: 0.85rem;
+}

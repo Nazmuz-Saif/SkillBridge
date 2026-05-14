@@ -2,21 +2,59 @@
 {% load static %}
 
 {% block title %}
-  SkillBridge | Online Freelance Platform
+  SkillBridge | Login
 {% endblock %}
 
 {% block extra_css %}
-  <link rel="stylesheet" href="{% static 'css/core/home.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/user/login.css' %}" />
 {% endblock %}
 
 {% block content %}
-  <h1>Login</h1>
-  <form method="POST">
-    {% csrf_token %}
-    <input type="text" name="email" placeholder="Email" />
-    <br /><br />
-    <input type="password" name="password" placeholder="Password" />
-    <br /><br />
-    <button type="submit">Login</button>
-  </form>
+
+<div class="login-wrapper">
+
+    <div class="login-container">
+
+        <div class="login-top">
+            <h1>Welcome Back</h1>
+            <p>Login to continue using SkillBridge</p>
+        </div>
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            <div class="input-group">
+                <label>Email</label>
+                <input type="text"
+                       name="email"
+                       placeholder="Enter your email" />
+            </div>
+
+            <div class="input-group">
+                <label>Password</label>
+                <input type="password"
+                       name="password"
+                       placeholder="Enter your password" />
+            </div>
+
+            <button type="submit">
+                Login
+            </button>
+
+        </form>
+
+        <div class="bottom-text">
+            <p>
+                Don't have an account?
+                <a href="{% url 'signup' %}">
+                    Signup
+                </a>
+            </p>
+        </div>
+
+    </div>
+
+</div>
+
 {% endblock %}

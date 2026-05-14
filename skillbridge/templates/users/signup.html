@@ -2,19 +2,89 @@
 {% load static %}
 
 {% block title %}
-  SkillBridge | Online Freelance Platform
+  SkillBridge | Create Account
 {% endblock %}
 
 {% block extra_css %}
-  <link rel="stylesheet" href="{% static 'css/core/home.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/user/signup.css' %}" />
 {% endblock %}
 
 {% block content %}
-  <h1>Signup</h1>
-  <form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Signup</button>
-  </form>
-  <a href="{% url 'login' %}">Login</a>
+
+<div class="signup-container">
+
+    <div class="signup-top">
+        <h1>Create Account</h1>
+        <p>Join SkillBridge as a freelancer or client</p>
+    </div>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <!-- ACCOUNT TYPE -->
+        <div class="role-section">
+
+            <label class="role-title">
+                Choose Account Type
+            </label>
+
+            <div class="role-options">
+
+                <!-- Freelancer -->
+                <label class="role-card">
+                    <input type="radio"
+                           name="role"
+                           value="freelancer"
+                           required>
+
+                    <div class="role-content">
+                        <i class="fas fa-laptop-code"></i>
+
+                        <h3>Freelancer</h3>
+
+                        <p>
+                            Find projects, build skills and earn money
+                        </p>
+                    </div>
+                </label>
+
+                <!-- Client -->
+                <label class="role-card">
+                    <input type="radio"
+                           name="role"
+                           value="client">
+
+                    <div class="role-content">
+                        <i class="fas fa-briefcase"></i>
+
+                        <h3>Client</h3>
+
+                        <p>
+                            Post projects and hire skilled freelancers
+                        </p>
+                    </div>
+                </label>
+
+            </div>
+        </div>
+
+        <!-- DJANGO FORM -->
+        <div class="form-fields">
+            {{ form.as_p }}
+        </div>
+
+        <button type="submit">
+            Create Account
+        </button>
+
+    </form>
+
+    <div class="bottom-link">
+        <a href="{% url 'login' %}">
+            Already have an account? Login
+        </a>
+    </div>
+
+</div>
+
 {% endblock %}
