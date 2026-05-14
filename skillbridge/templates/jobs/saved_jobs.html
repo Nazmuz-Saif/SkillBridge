@@ -1,0 +1,60 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}
+Saved Jobs
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/jobs/saved_jobs.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+{% endblock %}
+
+{% block content %}
+
+<div class="saved-page">
+
+    <div class="saved-header">
+        <h1>Saved Jobs</h1>
+        <p>All jobs you saved for later</p>
+    </div>
+
+    <div class="saved-list">
+
+        {% for item in saved_jobs %}
+
+        <div class="saved-card">
+
+            <div class="saved-left">
+
+                <h3>{{ item.job.title }}</h3>
+
+                <p><i class="fa-solid fa-user"></i> {{ item.job.client.username }}</p>
+
+                <p><i class="fa-solid fa-money-bill"></i> {{ item.job.budget }} BDT</p>
+
+                <p><i class="fa-solid fa-calendar"></i> {{ item.saved_at }}</p>
+
+            </div>
+
+            <div class="saved-right">
+
+                <p class="desc">{{ item.job.description|truncatechars:120 }}</p>
+
+                <a href="#" class="apply-btn">
+                    View Job
+                </a>
+
+            </div>
+
+        </div>
+
+        {% empty %}
+        <p class="empty">No saved jobs found.</p>
+        {% endfor %}
+
+    </div>
+
+</div>
+
+{% endblock %}

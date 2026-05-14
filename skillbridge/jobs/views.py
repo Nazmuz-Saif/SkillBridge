@@ -58,3 +58,37 @@ def savejob(request, job_id):
     )
 
     return redirect('freelencerdashboard')
+
+@login_required
+def my_applications(request):
+
+    applications = Application.objects.filter(
+        freelancer=request.user
+    ).select_related('job').order_by('-applied_at')
+
+    return render(request, 'jobs/my_applications.html', {
+        'applications': applications
+    })
+
+@login_required
+def saved_jobs(request):
+
+    saved = SavedJob.objects.filter(
+        freelancer=request.user
+    ).select_related('job').order_by('-saved_at')
+
+    return render(request, 'jobs/saved_jobs.html', {
+        'saved_jobs': saved
+    })
+
+@login_required
+def save_job(request, job_id):
+
+    job = get_object_or_404(Job, id=job_id)
+
+    SavedJob.objects.get_or_create(
+        freelancer=request.user,
+        job=job
+    )
+
+    return redirect('saved_jobs')
