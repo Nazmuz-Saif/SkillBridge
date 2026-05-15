@@ -1,3 +1,5 @@
+from urllib import request
+
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from .models import Job, Application, SavedJob, Skill, JobCategory
@@ -10,16 +12,23 @@ def post_job(request):
     categories = JobCategory.objects.all()
     skills = Skill.objects.all()
 
-    if request.method == "POST":
+    if request.method == 'POST':
 
         title = request.POST.get('title')
         description = request.POST.get('description')
+
         category_id = request.POST.get('category')
+
         budget_min = request.POST.get('budget_min')
         budget_max = request.POST.get('budget_max')
-        selected_skills = request.POST.getlist('skills')
-        category = JobCategory.objects.get(id=category_id)
+
         deadline = request.POST.get('deadline')
+
+        experience_level=request.POST.get('experience_level'),
+        job_type=request.POST.get('job_type'),
+
+        category = JobCategory.objects.get(id=category_id)
+
         job = Job.objects.create(
             client=request.user,
             title=title,
@@ -27,11 +36,15 @@ def post_job(request):
             category=category,
             budget_min=budget_min,
             budget_max=budget_max,
-            deadline=deadline
+            deadline=deadline,
+            experience_level=experience_level,
+            job_type=job_type,
         )
 
+        selected_skills = request.POST.getlist('skills')
+
         job.skills_required.set(selected_skills)
-        skills = request.POST.getlist('skills')
+
         return redirect('clientdashboard')
 
     context = {

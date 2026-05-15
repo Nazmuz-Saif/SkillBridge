@@ -1,40 +1,88 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-class Skill(models.Model):
-    name = models.CharField(max_length=100, unique=True)
-
-    def __str__(self):
-        return self.name
-
-
 
 class JobCategory(models.Model):
-    name = models.CharField(max_length=100, unique=True)
+    name = models.CharField(max_length=100)
 
     def __str__(self):
         return self.name
 
+
+class Skill(models.Model):
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
 
 
 class Job(models.Model):
-    client = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posted_jobs')
+
+    EXPERIENCE_LEVEL_CHOICES = (
+        ('entry', 'Entry Level'),
+        ('intermediate', 'Intermediate'),
+        ('expert', 'Expert'),
+    )
+
+    JOB_TYPE_CHOICES = (
+        ('full_time', 'Full Time'),
+        ('part_time', 'Part Time'),
+        ('remote', 'Remote'),
+        ('contract', 'Contract'),
+    )
+
+    client = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name='posted_jobs'
+    )
 
     title = models.CharField(max_length=255)
     description = models.TextField()
 
-    category = models.ForeignKey(JobCategory, on_delete=models.SET_NULL, null=True)
-    skills_required = models.ManyToManyField(Skill)
+    category = models.ForeignKey(
+        JobCategory,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True
+    )
 
-    budget_min = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
-    budget_max = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+    skills_required = models.ManyToManyField(Skill, blank=True)
 
-    deadline = models.DateField(null=True, blank=True)   # ✅ NEW
+    experience_level = models.CharField(
+        max_length=20,
+        choices=EXPERIENCE_LEVEL_CHOICES,
+        default='entry'
+    )
+
+    job_type = models.CharField(
+        max_length=20,
+        choices=JOB_TYPE_CHOICES,
+        default='remote'
+    )
+
+    budget_min = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        null=True,
+        blank=True
+    )
+
+    budget_max = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        null=True,
+        blank=True
+    )
+
+    deadline = models.DateField(null=True, blank=True)
 
     is_active = models.BooleanField(default=True)
+
     created_at = models.DateTimeField(auto_now_add=True)
 
-
+    def __str__(self):
+        return self.title
 
 
 class Application(models.Model):
@@ -58,7 +106,6 @@ class Application(models.Model):
 
     def __str__(self):
         return f"{self.freelancer.username} - {self.job.title}"
-
 
 
 class SavedJob(models.Model):
