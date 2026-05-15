@@ -3,6 +3,7 @@ from urllib import request
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from .models import Job, Application, SavedJob, Skill, JobCategory
+from .forms import JobForm
 from users.models import FreelancerProfile
 
 
@@ -129,13 +130,28 @@ def save_job(request, job_id):
 
 @login_required
 def client_jobs(request):
-
-    jobs = Job.objects.filter(
-        client=request.user
-    ).order_by('-created_at')
+    jobs = Job.objects.filter(client=request.user).order_by('-created_at')
 
     return render(request, 'jobs/client_jobs.html', {
         'jobs': jobs
+    })
+
+
+@login_required
+def edit_job(request, job_id):
+    job = get_object_or_404(Job, id=job_id, client=request.user)
+
+    if request.method == "POST":
+        form = JobForm(request.POST, instance=job)
+        if form.is_valid():
+            form.save()
+            return redirect('client_jobs')
+    else:
+        form = JobForm(instance=job)
+
+    return render(request, 'jobs/edit_job.html', {
+        'form': form,
+        'job': job
     })
 
 @login_required
