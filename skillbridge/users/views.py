@@ -26,7 +26,6 @@ def signup(request):
             return redirect('login')
     return render(request, 'users/signup.html', {'form': form})
 
-
 def loginview(request):
     if request.method == "POST":
         email = request.POST['email']
@@ -45,20 +44,12 @@ def loginview(request):
         })
     return render(request, 'users/login.html')
 
-
+@login_required
 def logoutview(request):
     logout(request)
     return redirect('home')
 
 
-@login_required
-def clientdashboard(request):
-    profile = ClientProfile.objects.get(user=request.user)
-
-    return render(request, 'users/clintdashboard.html', {
-        'profile': profile,
-        'role': 'client'
-    })
 
 
 @login_required
@@ -174,7 +165,7 @@ def client_profile(request):
         'role': 'client'
     })
 
-
+@login_required
 def find_talents(request):
 
     freelancers = FreelancerProfile.objects.all().order_by('-createdat')
