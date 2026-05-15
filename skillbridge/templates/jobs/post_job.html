@@ -2,83 +2,121 @@
 {% load static %}
 
 {% block title %}
-  Post Job
+Post Job
 {% endblock %}
 
 {% block extra_css %}
-  <link rel="stylesheet" href="{% static 'css/jobs/post_job.css' %}" />
+<link rel="stylesheet" href="{% static 'css/jobs/post_job.css' %}">
 {% endblock %}
 
 {% block content %}
-  <div class="post-job-page">
+
+<div class="post-job-wrapper">
+
     <div class="post-job-card">
-      <div class="page-title">
-        <h2>Post a New Job</h2>
-        <p>Create a professional job post and hire freelancers.</p>
-      </div>
 
-      <form method="POST" class="job-form">
-        {% csrf_token %}
-
-        <div class="box">
-          <label>Job Title</label>
-          <input type="text" name="title" required />
+        <div class="header">
+            <h2>Post a New Job</h2>
+            <p>Create a job and hire skilled freelancers</p>
         </div>
 
-        <div class="box">
-          <label>Job Description</label>
-          <textarea name="description" required></textarea>
-        </div>
+        <form method="POST" class="job-form">
+            {% csrf_token %}
 
-        <div class="grid">
-          <div class="col-left">
-            <div class="box fixed">
-              <label>Category</label>
-              <select name="category" required>
-                <option value="">Select Category</option>
-                {% for category in categories %}
-                  <option value="{{ category.id }}">{{ category.name }}</option>
-                {% endfor %}
-              </select>
+            <!-- TITLE -->
+            <div class="box">
+                <label>Job Title</label>
+                <input type="text" name="title" required>
             </div>
 
-            <div class="box fixed">
-              <label>Deadline</label>
-              <input type="date" name="deadline" required />
+            <!-- DESCRIPTION -->
+            <div class="box">
+                <label>Job Description</label>
+                <textarea name="description" required></textarea>
             </div>
-          </div>
 
-          <div class="col-right">
-            <div class="box big">
-              <label>Requirements</label>
-              <div class="skills-box">
-                {% for skill in skills %}
-                  <label class="skill-item">
-                    <input type="checkbox" name="skills" value="{{ skill.id }}" />
-                    <span>{{ skill.name }}</span>
-                  </label>
-                {% endfor %}
-              </div>
+            <!-- GRID -->
+            <div class="grid">
+
+                <!-- LEFT -->
+                <div class="left">
+
+                    <div class="box">
+                        <label>Category</label>
+                        <select name="category" required>
+                            <option value="">Select Category</option>
+                            {% for category in categories %}
+                                <option value="{{ category.id }}">{{ category.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="box">
+                        <label>Job Type</label>
+                        <select name="job_type" required>
+                            <option value="full_time">Full Time</option>
+                            <option value="part_time">Part Time</option>
+                            <option value="remote">Remote</option>
+                            <option value="contract">Contract</option>
+                        </select>
+                    </div>
+
+                    <div class="box">
+                        <label>Deadline</label>
+                        <input type="date" name="deadline">
+                    </div>
+
+                </div>
+
+                <!-- RIGHT -->
+                <div class="right">
+
+                    <div class="box">
+                        <label>Experience Level</label>
+                        <select name="experience_level" required>
+                            <option value="entry">Entry Level</option>
+                            <option value="intermediate">Intermediate</option>
+                            <option value="expert">Expert</option>
+                        </select>
+                    </div>
+
+                    <div class="box skills">
+                        <label>Skills Required</label>
+
+                        <div class="skill-list">
+                            {% for skill in skills %}
+                            <label class="skill-item">
+                                <input type="checkbox" name="skills" value="{{ skill.id }}">
+                                <span>{{ skill.name }}</span>
+                            </label>
+                            {% endfor %}
+                        </div>
+
+                    </div>
+
+                </div>
+
             </div>
-          </div>
-        </div>
 
-        <div class="budget">
-          <div class="box">
-            <label>Min Budget</label>
-            <input type="number" name="budget_min" required />
-          </div>
+            <!-- BUDGET -->
+            <div class="budget">
+                <div class="box">
+                    <label>Min Budget</label>
+                    <input type="number" name="budget_min">
+                </div>
 
-          <div class="box">
-            <label>Max Budget</label>
-            <input type="number" name="budget_max" required />
-          </div>
-        </div>
+                <div class="box">
+                    <label>Max Budget</label>
+                    <input type="number" name="budget_max">
+                </div>
+            </div>
 
-        <div class="btn-wrapper">
-          <button type="submit" class="submit-btn">Post Job</button>
-        </div>
-      </form>
+            <button type="submit" class="btn">Post Job</button>
+
+        </form>
+
     </div>
-  </div>
+
+</div>
+
 {% endblock %}

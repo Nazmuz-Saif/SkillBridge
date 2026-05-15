@@ -20,9 +20,19 @@ body {
     overflow-x: hidden;
     padding-right: 0 !important;
     min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    padding-top: 78px;
+}
+
+.main-wrapper {
+    min-height: calc(100vh - 78px);
+    display: flex;
+    flex-direction: column;
 }
 
 .navbar {
+    height: 78px;
     position: fixed;
     top: 0;
     left: 0;
@@ -462,4 +472,19 @@ body {
     .dashboard-page {
         flex: 1;
     }
+}
+
+/* FIX: navbar break prevention */
+body, html {
+    transform: none !important;
+}
+
+/* prevent any child breaking fixed navbar */
+.dashboard-layout {
+    transform: none !important;
+}
+
+/* ensure navbar always on top */
+.navbar {
+    z-index: 99999 !important;
 }
