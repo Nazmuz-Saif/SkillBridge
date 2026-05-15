@@ -307,19 +307,19 @@ body {
 .pointlist {
     margin-top: 35px;
     list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
 }
 
 .pointlist li {
     display: flex;
     align-items: center;
-    gap: 14px;
-    color: #e2e8f0;
-    margin-bottom: 18px;
-    font-weight: 600;
-    font-size: 1rem;
+    gap: 12px;
 }
 
-.pointlist i {
+.pointlist li i {
     width: 34px;
     height: 34px;
     border-radius: 10px;
@@ -329,6 +329,25 @@ body {
     justify-content: center;
     color: #818cf8;
     font-size: 0.9rem;
+    flex-shrink: 0;
+    line-height: 1;
+    transform: translateY(-13px);
+}
+
+.pointlist .tag {
+    display: flex;
+    align-items: center;
+    padding: 8px 16px;
+    border-radius: 30px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.pointlist .tag-text {
+    line-height: 1;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #e2e8f0;
 }
 
 .visualside {

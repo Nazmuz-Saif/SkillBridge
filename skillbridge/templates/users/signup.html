@@ -2,19 +2,93 @@
 {% load static %}
 
 {% block title %}
-  SkillBridge | Online Freelance Platform
+SkillBridge | Create Account
 {% endblock %}
 
 {% block extra_css %}
-  <link rel="stylesheet" href="{% static 'css/core/home.css' %}" />
+<link rel="stylesheet" href="{% static 'css/user/signup.css' %}">
 {% endblock %}
 
-{% block content %}
-  <h1>Signup</h1>
-  <form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Signup</button>
-  </form>
-  <a href="{% url 'login' %}">Login</a>
+{% block guest_content %}
+
+<div class="signup-wrapper">
+
+    <div class="signup-container">
+
+        <!-- BRAND -->
+        <div class="brand">
+            <h2>SkillBridge</h2>
+        </div>
+
+        <!-- HEADER -->
+        <div class="signup-top">
+            <h1 class="gradient-title">Create Account</h1>
+            <p>Join SkillBridge and start your journey</p>
+        </div>
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <!-- ACCOUNT TYPE (ONLY ONCE - FIXED) -->
+            <div class="role-section">
+
+                <div class="role-options">
+
+                    {% for radio in form.role %}
+
+                    <label class="role-card">
+                        {{ radio.tag }}
+
+                        <div class="role-content">
+                            {% if radio.choice_label == "Freelancer" %}
+                                <h2>Freelancer</h2>
+                                <p>Find projects & earn money</p>
+                            {% else %}
+                                <h2>Client</h2>
+                                <p>Hire skilled freelancers</p>
+                            {% endif %}
+                        </div>
+                    </label>
+
+                    {% endfor %}
+
+                </div>
+
+            </div>
+
+            <!-- FORM FIELDS -->
+            <div class="form-fields">
+
+    <div class="input-group">
+        <label>Name</label>
+        {{ form.name }}
+    </div>
+
+    <div class="input-group">
+        <label>Email</label>
+        {{ form.email }}
+    </div>
+
+    <div class="input-group">
+        <label>Password</label>
+        {{ form.password }}
+    </div>
+
+</div>
+
+            <button type="submit">Create Account</button>
+
+        </form>
+
+        <div class="bottom-text">
+            <p>
+                Already have an account?
+                <a href="{% url 'login' %}">Login</a>
+            </p>
+        </div>
+
+    </div>
+
+</div>
+
 {% endblock %}

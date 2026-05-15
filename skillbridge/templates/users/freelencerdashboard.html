@@ -1,0 +1,136 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}
+  SkillBridge | Freelancer Dashboard
+{% endblock %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/user/freelancerdashboard.css' %}" />
+{% endblock %}
+
+{% block content %}
+  <div class="dashboard-page">
+    <section class="welcome-section">
+      <div class="welcome-left">
+        <span class="small-tag">Freelancer Dashboard</span>
+
+        <h1>
+          Welcome Back,
+          <span>{{ profile.name }}</span>
+        </h1>
+
+        <p>Track your applications, manage saved jobs and grow your freelancing journey with SkillBridge.</p>
+      </div>
+
+      <div class="welcome-right">
+        <a href="#" class="post-btn">Browse Jobs</a>
+      </div>
+    </section>
+
+    <!-- STATS -->
+    <section class="stats-grid">
+      <div class="stat-card">
+        <div class="icon-box blue">
+          <i class="fas fa-paper-plane"></i>
+        </div>
+        <div class="stat-info">
+          <h2>{{ total_applications }}</h2>
+          <p>Total Applications</p>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="icon-box orange">
+          <i class="fas fa-clock"></i>
+        </div>
+        <div class="stat-info">
+          <h2>{{ pending_applications }}</h2>
+          <p>Pending Applications</p>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="icon-box green">
+          <i class="fas fa-check"></i>
+        </div>
+        <div class="stat-info">
+          <h2>{{ accepted_jobs }}</h2>
+          <p>Accepted Jobs</p>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="icon-box purple">
+          <i class="fas fa-bookmark"></i>
+        </div>
+        <div class="stat-info">
+          <h2>{{ saved_jobs }}</h2>
+          <p>Saved Jobs</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- GRID -->
+    <section class="dashboard-grid">
+      <!-- RECENT APPLICATIONS -->
+      <div class="dashboard-card">
+        <div class="card-header">
+          <h3>Recent Applications</h3>
+          <a href="#">View All</a>
+        </div>
+
+        <div class="application-list">
+          {% for app in recent_applications %}
+            <div class="application-item">
+              <div>
+                <h4>{{ app.job.title }}</h4>
+                <p>{{ app.job.client.username }}</p>
+              </div>
+
+              <span class="status {{ app.status }}">{{ app.status|title }}</span>
+            </div>
+          {% empty %}
+            <p>No applications yet.</p>
+          {% endfor %}
+        </div>
+      </div>
+
+      <!-- SAVED JOBS -->
+      <div class="dashboard-card">
+        <div class="card-header">
+          <h3>Saved Jobs</h3>
+          <a href="#">Explore</a>
+        </div>
+
+        <div class="saved-job">
+          {% for saved in recent_saved_jobs %}
+            <div class="saved-item">
+              <h4>{{ saved.job.title }}</h4>
+              <p>Saved Job</p>
+            </div>
+          {% empty %}
+            <p>No saved jobs yet.</p>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+
+    <!-- QUICK ACTION -->
+    <section class="quick-action">
+      <div class="action-card">
+        <i class="fas fa-briefcase"></i>
+        <h3>Find New Jobs</h3>
+        <p>Explore the latest freelance opportunities.</p>
+        <a href="#">Browse Jobs</a>
+      </div>
+
+      <div class="action-card">
+        <i class="fas fa-user-edit"></i>
+        <h3>Update Profile</h3>
+        <p>Complete your profile to attract more clients.</p>
+        <a href="#">Edit Profile</a>
+      </div>
+    </section>
+  </div>
+{% endblock %}

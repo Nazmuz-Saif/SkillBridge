@@ -1,0 +1,167 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}
+Applications
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/jobs/job_applications.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="applications-page">
+
+    <div class="page-header">
+
+        <div>
+            <span class="small-tag">
+                Applications
+            </span>
+
+            <h1>
+                Freelancer Applications
+            </h1>
+
+            <p>
+                Manage freelancers who applied to your jobs.
+            </p>
+        </div>
+
+    </div>
+
+    <div class="applications-grid">
+
+        {% for app in applications %}
+
+        <div class="application-card">
+
+            <div class="card-top">
+
+                <div class="profile-section">
+
+                    <div class="profile-image">
+
+                        {% if app.freelancer.freelancerprofile.profileimage %}
+                            <img src="{{ app.freelancer.freelancerprofile.profileimage.url }}" alt="">
+                        {% else %}
+                            <div class="default-profile">
+                                {{ app.freelancer.freelancerprofile.name|slice:":1" }}
+                            </div>
+                        {% endif %}
+
+                    </div>
+
+                    <div>
+
+                        <h2>
+                            {{ app.freelancer.freelancerprofile.name }}
+                        </h2>
+
+                        <p>
+                            Applied For:
+                            {{ app.job.title }}
+                        </p>
+
+                    </div>
+
+                </div>
+
+                {% if app.status == 'pending' %}
+                    <span class="status pending">
+                        Pending
+                    </span>
+
+                {% elif app.status == 'accepted' %}
+                    <span class="status accepted">
+                        Accepted
+                    </span>
+
+                {% else %}
+                    <span class="status rejected">
+                        Rejected
+                    </span>
+                {% endif %}
+
+            </div>
+
+            <div class="details-grid">
+
+                <div class="detail-box">
+                    <label>Email</label>
+
+                    <div class="detail-value">
+                        {{ app.freelancer.email }}
+                    </div>
+                </div>
+
+                <div class="detail-box">
+                    <label>Phone</label>
+
+                    <div class="detail-value">
+                        {{ app.freelancer.freelancerprofile.phone }}
+                    </div>
+                </div>
+
+                <div class="detail-box">
+                    <label>Skills</label>
+
+                    <div class="detail-value">
+                        {{ app.freelancer.freelancerprofile.skills }}
+                    </div>
+                </div>
+
+                <div class="detail-box">
+                    <label>Experience</label>
+
+                    <div class="detail-value">
+                        {{ app.freelancer.freelancerprofile.experience }}
+                    </div>
+                </div>
+
+                <div class="detail-box full-width">
+                    <label>Cover Letter</label>
+
+                    <div class="detail-value">
+                        {{ app.cover_letter }}
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="action-buttons">
+
+                <a href="{% url 'update_application_status' app.id 'accepted' %}" class="accept-btn">
+                    Accept
+                </a>
+
+                <a href="{% url 'update_application_status' app.id 'rejected' %}" class="reject-btn">
+                    Reject
+                </a>
+
+            </div>
+
+        </div>
+
+        {% empty %}
+
+        <div class="empty-box">
+
+            <h2>
+                No Applications Yet
+            </h2>
+
+            <p>
+                Freelancers applications will appear here.
+            </p>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+{% endblock %}
