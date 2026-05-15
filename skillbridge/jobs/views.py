@@ -41,6 +41,7 @@ def post_job(request):
 
     return render(request, 'jobs/post_job.html', context)
 
+@login_required
 def job_list(request):
 
     jobs = Job.objects.filter(is_active=True).order_by('-created_at')
