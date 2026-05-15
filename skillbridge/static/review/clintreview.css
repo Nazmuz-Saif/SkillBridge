@@ -1,0 +1,191 @@
+/* =========================
+   REVIEW PAGE BACKGROUND (MATCH LOGIN THEME)
+========================= */
+
+.review-page {
+    width: 100%;
+    min-height: 100vh;
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(180deg, #0d38a4 0%, #143c93 100%); /* ছবির ড্যাশবোর্ডের ব্যাকগ্রাউন্ড কালার */
+}
+
+/* =========================
+   CONTAINER
+========================= */
+
+.review-container {
+    width: 100%;
+    max-width: 600px;
+}
+
+/* =========================
+   REVIEW CARD (GLASS DARK STYLE)
+========================= */
+
+.review-card {
+    padding: 34px;
+    border-radius: 20px;
+    background: rgba(4, 43, 127, 0.95); /* সলিড এবং গ্লসি ডার্ক মিক্স */
+    border: 1px solid rgba(255,255,255,0.06);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    box-shadow: 0 20px 45px rgba(0,0,0,0.5);
+    text-align: center;
+    transition: 0.3s ease;
+}
+
+.review-card:hover {
+    transform: translateY(-4px);
+}
+
+/* =========================
+   TITLE
+========================= */
+
+.review-title h1 {
+    font-size: 2.1rem;
+    font-weight: 800;
+    background: linear-gradient(to right, #818cf8, #a78bfa);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 8px;
+}
+
+.review-title p {
+    color: #94a3b8;
+    font-size: 0.95rem;
+    margin-bottom: 28px;
+}
+
+/* =========================
+   PROFILE IMAGE
+========================= */
+
+.review-profile {
+    margin-bottom: 25px;
+}
+
+.review-profile img {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid rgba(129,140,248,0.6);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+}
+
+/* DEFAULT AVATAR */
+.default-avatar {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    color: white;
+    font-size: 50px;
+    font-weight: 800;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+}
+
+/* =========================
+   NAME
+========================= */
+
+.review-name {
+    margin-top: 15px;
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: #fff;
+}
+
+/* =========================
+   STARS
+========================= */
+
+.star-rating {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin: 22px 0;
+}
+
+.star-rating i {
+    font-size: 34px;
+    color: #053c88; /* অফ-স্টার কালার */
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.star-rating i.active {
+    color: #facc15;
+    transform: scale(1.1);
+}
+
+/* =========================
+   FORM LABEL
+========================= */
+
+.review-form label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #cbd5e1;
+}
+
+/* =========================
+   TEXTAREA (MATCH LOGIN INPUT STYLE)
+========================= */
+
+.review-form textarea {
+    width: 100%;
+    height: 140px;
+    padding: 14px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: #093471; /* টেক্সট এরিয়া ডার্ক করা হলো যাতে ড্যাশবোর্ডের সাথে মিলে */
+    color: #ffffff; /* লেখার কালার সাদা */
+    font-size: 0.95rem;
+    outline: none;
+    resize: none;
+    transition: 0.25s ease;
+    margin-bottom: 20px;
+}
+
+.review-form textarea::placeholder {
+    color: #6b7280;
+}
+
+.review-form textarea:focus {
+    border-color: #6366f1;
+    box-shadow: 0 0 0 4px rgba(99,102,241,0.2);
+}
+
+/* =========================
+   BUTTON (SAME LOGIN STYLE)
+========================= */
+
+.submit-btn {
+    width: 100%;
+    padding: 11px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    color: #fff;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.submit-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(99,102,241,0.35);
+}
