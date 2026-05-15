@@ -1,0 +1,96 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}
+Find Talents
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/user/find_talents.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+{% endblock %}
+
+{% block content %}
+
+<div class="find-page">
+
+    <div class="talent-list">
+
+        {% for freelancer in freelancers %}
+
+        <div class="talent-card">
+
+            <!-- LEFT SIDE -->
+            <div class="talent-left">
+
+                <div class="talent-img">
+                    {% if freelancer.profileimage %}
+                        <img src="{{ freelancer.profileimage.url }}">
+                    {% else %}
+                        <div class="default-img">
+                            {{ freelancer.name|first }}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <h3>{{ freelancer.name }}</h3>
+                <p>{{ freelancer.email }}</p>
+
+            </div>
+
+            <!-- RIGHT SIDE -->
+            <div class="talent-right">
+
+                <div class="info-box">
+                    <label><i class="fa-solid fa-phone"></i> Phone</label>
+                    <div class="box">{{ freelancer.phone }}</div>
+                </div>
+
+                <div class="info-box">
+                    <label><i class="fa-solid fa-graduation-cap"></i> University</label>
+                    <div class="box">{{ freelancer.universityname }}</div>
+                </div>
+
+                <div class="info-box">
+                    <label><i class="fa-solid fa-code"></i> Skills</label>
+                    <div class="box">{{ freelancer.skills }}</div>
+                </div>
+
+                <div class="info-box">
+                    <label><i class="fa-solid fa-briefcase"></i> Experience</label>
+                    <div class="box">{{ freelancer.experience }}</div>
+                </div>
+
+                <div class="info-box full">
+                    <label><i class="fa-solid fa-user"></i> Bio</label>
+                    <div class="box">{{ freelancer.bio }}</div>
+                </div>
+
+                <div class="info-box full">
+                    <label><i class="fa-solid fa-link"></i> Links</label>
+                    <div class="box">
+                        {% if freelancer.linkedinlink %}
+                            <a href="{{ freelancer.linkedinlink }}" target="_blank">LinkedIn</a>
+                        {% endif %}
+
+                        {% if freelancer.githublink %}
+                            | <a href="{{ freelancer.githublink }}" target="_blank">GitHub</a>
+                        {% endif %}
+
+                        {% if freelancer.portfolio_link %}
+                            | <a href="{{ freelancer.portfolio_link }}" target="_blank">Portfolio</a>
+                        {% endif %}
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+{% endblock %}
