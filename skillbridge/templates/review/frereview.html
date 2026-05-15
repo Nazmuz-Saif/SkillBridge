@@ -1,0 +1,207 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}
+  Reviews Dashboard
+{% endblock %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <style>
+    .review-dashboard-page {
+      width: 100%;
+      min-height: 100vh;
+      background: #151f32;
+      padding: 40px;
+    }
+    
+    .dashboard-container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    
+    .page-title-section {
+      margin-bottom: 30px;
+    }
+    
+    .page-title-section h1 {
+      font-size: 32px;
+      color: #ffffff;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    
+    .page-title-section p {
+      color: #94a3b8;
+      font-size: 16px;
+    }
+    
+    .history-card {
+      background: #111625;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      padding: 24px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    }
+    
+    .freelancer-list-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+    
+    .freelancer-list-table th {
+      padding: 16px;
+      color: #94a3b8;
+      font-weight: 600;
+      font-size: 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .freelancer-list-table td {
+      padding: 20px 16px;
+      color: #ffffff;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      vertical-align: middle;
+    }
+    
+    .freelancer-profile-meta {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    
+    .freelancer-profile-meta img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #6d4aff;
+    }
+    
+    .meta-default-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: #6d4aff;
+      color: white;
+      font-weight: bold;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 18px;
+    }
+    
+    .fl-name {
+      font-weight: 600;
+      font-size: 16px;
+      color: #ffffff;
+    }
+    
+    .project-name-text {
+      color: #cbd5e1;
+      font-size: 15px;
+    }
+    
+    .project-status {
+      background: rgba(16, 185, 129, 0.1);
+      color: #10b981;
+      padding: 6px 14px;
+      border-radius: 50px;
+      font-size: 13px;
+      font-weight: 500;
+      display: inline-block;
+    }
+    
+    .action-review-btn {
+      background: #6d4aff;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: 0.3s ease;
+      border: none;
+      cursor: pointer;
+    }
+    
+    .action-review-btn:hover {
+      background: #5b3edd;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(109, 74, 255, 0.3);
+    }
+    
+    .empty-history {
+      text-align: center;
+      color: #94a3b8;
+      padding: 50px 0;
+      font-size: 16px;
+    }
+  </style>
+{% endblock %}
+
+{% block content %}
+  <div class="review-dashboard-page">
+    <div class="dashboard-container">
+      <div class="page-title-section">
+        <h1>Client Reviews</h1>
+        <p>List of freelancers you worked with. Share your experience.</p>
+      </div>
+      <div class="history-card">
+        {% if worked_freelancers %}
+          <table class="freelancer-list-table">
+            <thead>
+              <tr>
+                <th>Freelancer</th>
+                <th>Work / Project</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for data in worked_freelancers %}
+                <tr>
+                  <td>
+                    <div class="freelancer-profile-meta">
+                      {% if data.freelancer.profileimage %}
+                        <img src="{{ data.freelancer.profileimage.url }}" />
+                      {% else %}
+                        <div class="meta-default-avatar">{{ data.freelancer.name|slice:':1' }}</div>
+                      {% endif %}
+
+                      <div class="fl-name">{{ data.freelancer.name }}</div>
+                    </div>
+                  </td>
+
+                  <td>
+                    <span class="project-name-text">{{ data.project_title }}</span>
+                  </td>
+
+                  <td>
+                    <span class="project-status">Completed</span>
+                  </td>
+
+                  <td>
+                    <a href="{% url 'clintreview' data.freelancer.id data.job_id %}" class="action-review-btn"><i class="fa-solid fa-star"></i> Add Review</a>
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        {% else %}
+          <div class="empty-history">
+            <i class="fa-regular fa-comment-dots" style="font-size: 45px; margin-bottom: 15px; display: block; color: #4b5563;"></i>
+            You haven't completed any projects with a freelancer yet.
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+{% endblock %}
