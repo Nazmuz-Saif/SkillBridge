@@ -2,14 +2,214 @@
 {% load static %}
 
 {% block title %}
-  Clint Review
+  Client Review
 {% endblock %}
 
 {% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/clintreview.css' %}">
   <link rel="stylesheet" href="{% static 'css/user/clientprofile.css' %}" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <style>
+    .review-page {
+      width: 100%;
+      min-height: 100vh;
+      background: #151f32; /* ড্যাশবোর্ডের নিখুঁত ডার্ক নেভি ব্যাকগ্রাউন্ড */
+      padding: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: start;
+    }
+
+    .review-container {
+      width: 100%;
+      max-width: 600px;
+    }
+
+    .review-card {
+      background: #111625; /* ড্যাশবোর্ডের কার্ডের মতো ডার্ক নেভি ব্লু */
+      border-radius: 24px;
+      padding: 35px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    .review-title h1 {
+      font-size: 38px;
+      color: #ffffff;
+      margin-bottom: 8px;
+    }
+
+    .review-title p {
+      color: #94a3b8; /* স্লট গ্রে কালার */
+      font-size: 16px;
+      margin-bottom: 30px;
+    }
+
+    .review-profile {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .review-profile img {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 6px solid #6d4aff;
+    }
+
+    .default-avatar {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background: #6d4aff;
+      color: white;
+      font-size: 50px;
+      font-weight: bold;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: auto;
+    }
+
+    .review-name {
+      margin-top: 18px;
+      font-size: 28px;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .star-rating {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin: 25px 0;
+    }
+
+    .star-rating i {
+      font-size: 38px;
+      color: #242b3d; /* ডার্ক নেভি স্টার বেস কালার */
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .star-rating i.active {
+      color: #facc15;
+    }
+
+    .review-form label {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 20px;
+      font-weight: 600;
+      color: #cbd5e1;
+    }
+
+    .review-form textarea {
+      width: 100%;
+      height: 140px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: #181f32; /* ড্যাশবোর্ডের ইনপুট এরিয়ার মতো নেভি টোন */
+      color: #ffffff;
+      border-radius: 16px;
+      padding: 18px;
+      resize: none;
+      outline: none;
+      font-size: 16px;
+      margin-bottom: 25px;
+    }
+
+    .review-form textarea:focus {
+      border-color: #6d4aff;
+      box-shadow: 0 0 0 3px rgba(109, 74, 255, 0.2);
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 16px;
+      border: none;
+      border-radius: 14px;
+      background: #6d4aff; /* ড্যাশবোর্ডের পোস্ট এ জব বাটনের বেগুনি কালার */
+      color: white;
+      font-size: 20px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .submit-btn:hover {
+      background: #5b3edd;
+    }
+  </style>
 {% endblock %}
 
 {% block content %}
-  <h1>Review page</h1>
+  <div class="review-page">
+    <div class="review-container">
+      <div class="review-card">
+
+        <div class="review-title">
+          <h1>Give a Review</h1>
+          <p>Share your experience about this freelancer</p>
+        </div>
+
+        <div class="review-profile">
+
+          {% if profile.profileimage %}
+            <img src="{{ profile.profileimage.url }}" alt="">
+          {% else %}
+            <div class="default-avatar">
+              {{ profile.name|slice:':1' }}
+            </div>
+          {% endif %}
+
+          <div class="review-name">
+            {{ profile.name }}
+          </div>
+
+        </div>
+
+        <form method="POST" class="review-form">
+          {% csrf_token %}
+
+          <div class="star-rating">
+            <i class="fa-solid fa-star" onclick="rate(1)"></i>
+            <i class="fa-solid fa-star" onclick="rate(2)"></i>
+            <i class="fa-solid fa-star" onclick="rate(3)"></i>
+            <i class="fa-solid fa-star" onclick="rate(4)"></i>
+            <i class="fa-solid fa-star" onclick="rate(5)"></i>
+          </div>
+
+          <input type="hidden" name="rating" id="rating-value">
+
+          <label>Comment</label>
+
+          <textarea name="comment" placeholder="Write your review..."></textarea>
+
+          <button type="submit" class="submit-btn">
+            Submit Review
+          </button>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const stars = document.querySelectorAll('.star-rating i')
+    const ratingInput = document.getElementById('rating-value')
+
+    function rate(value) {
+      ratingInput.value = value
+      stars.forEach((star, index) => {
+        if (index < value) {
+          star.classList.add('active')
+        } else {
+          star.classList.remove('active')
+        }
+      })
+    }
+  </script>
 {% endblock %}
