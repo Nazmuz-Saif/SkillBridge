@@ -23,8 +23,8 @@
       <p class="sub-text">Connect directly with skilled freelancers for your projects. Simple, transparent, and efficient collaboration without unnecessary complexity.</p>
 
       <div class="action-buttons">
-        <a href="#" class="primary-btn">Get Started Now</a>
-        <a href="#" class="secondary-btn">Browse Projects</a>
+        <a href="{% url 'login' %}" class="primary-btn">Get Started Now</a>
+        <a href="{% url 'job_list' %}" class="secondary-btn">Browse Projects</a>
       </div>
     </div>
   </section>
@@ -169,7 +169,7 @@
     <h2 class="title-text">Ready to build the future?</h2>
     <p class="desc-text">Join thousands of members using SkillBridge to accelerate growth.</p>
     <div class="btn-wrap">
-      <a href="#" class="primary-btn">Create Free Account</a>
+      <a href="{% url 'signup' %}" class="primary-btn">Create Free Account</a>
     </div>
   </section>
 {% endblock %}
