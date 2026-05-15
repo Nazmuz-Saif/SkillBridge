@@ -1,0 +1,180 @@
+.post-job-page {
+    display: flex;
+    justify-content: center;
+    padding: 40px;
+}
+
+.post-job-card {
+    width: 900px;
+    background: #0f172a;
+    border-radius: 18px;
+    padding: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.page-title h2 {
+    color: white;
+    margin-bottom: 5px;
+}
+
+.page-title p {
+    color: #94a3b8;
+    margin-bottom: 20px;
+}
+
+.job-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.box {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+label {
+    color: #cbd5e1;
+    font-size: 14px;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: #111827;
+    color: white;
+    outline: none;
+}
+
+textarea {
+    min-height: 110px;
+    resize: vertical;
+}
+
+.grid {
+    display: flex;
+    gap: 16px;
+    align-items: stretch;
+    height: 200px;
+}
+
+.col-left {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 100%;
+}
+
+.col-right {
+    width: 60%;
+    height: 100%;
+    display: flex;
+}
+
+.col-left .fixed {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.col-left .fixed input,
+.col-left .fixed select {
+    flex: 1;
+    height: 100%;
+}
+
+.col-right .big {
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+.col-right select {
+    flex: 1;
+    height: 100%;
+}
+
+.budget {
+    display: flex;
+    gap: 20px;
+}
+
+.budget .box {
+    flex: 1;
+}
+
+.btn-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.skills-box {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 200px;
+    overflow-y: auto;
+    padding: 10px;
+    background: #111827;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+.skill-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #cbd5e1;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.skill-item input {
+    width: 16px;
+    height: 16px;
+    accent-color: #6366f1;
+    cursor: pointer;
+}
+
+.skill-item span {
+    user-select: none;
+}
+
+.submit-btn {
+    padding: 12px 40px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+}
+
+@media(max-width: 768px) {
+    .grid {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .col-left,
+    .col-right {
+        width: 100%;
+        height: auto;
+    }
+
+    .budget {
+        flex-direction: column;
+    }
+}

@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
     <link rel="stylesheet" href="{% static 'css/core/base.css' %}" />
     {% block extra_css %}
+
     {% endblock %}
   </head>
   <body>
@@ -19,37 +20,94 @@
       <div class="nav-container">
         <div class="nav-left">
           <a href="/" class="brand-logo"><div class="logo-box">S</div>SKILLBRIDGE</a>
-          <div class="nav-links">
-            <a href="/" class="nav-item">Home</a>
-            <a href="#" class="nav-item">Browse Jobs</a>
-            <a href="#" class="nav-item">Categories</a>
-          </div>
+          {% if user.is_authenticated %}
+            <div class="nav-search">
+              <form method="GET" action="{% url 'search' %}" class="search-form">
+                <input type="text" name="q" placeholder="Search jobs, clients, freelancers..." />
+                <button type="submit"><i class="fas fa-search"></i></button>
+              </form>
+            </div>
+          {% else %}
+            <div class="nav-links">
+              <a href="/" class="nav-item">Home</a>
+              <a href="#" class="nav-item">Browse Jobs</a>
+              <a href="#" class="nav-item">Find Talent</a>
+            </div>
+          {% endif %}
         </div>
-
         <div class="nav-right">
           {% if user.is_authenticated %}
-          <a href="#" class="nav-item">Messages</a>
-          <a href="{% url 'freelancerprofile' %}" class="nav-item">Dashboard</a>
-          <a href="{% url 'logout' %}" class="logout-box">Logout</a>
-          <div class="user-avatar">{{ user.username.0 | upper }}</div>
+            <a href="#" class="message-btn"><i class="fas fa-message"></i></a>
+            <div class="user-info">
+              <div class="user-avatar">{{ user.username.0|upper }}</div>
+              <span class="user-name">{{ user.username }}</span>
+            </div>
           {% else %}
-          <a href="{% url 'login' %}" class="btn-login">Login</a>
-          <a href="{% url 'signup' %}" class="btn-signup">Sign Up</a>
+            <a href="{% url 'login' %}" class="btn-login">Login</a>
+            <a href="{% url 'signup' %}" class="btn-signup">Sign Up</a>
           {% endif %}
         </div>
       </div>
     </nav>
 
-    <main class="main-wrapper">
-      {% block content %}
-      {% endblock %}
-    </main>
+    {% if user.is_authenticated %}
+      <div class="dashboard-layout">
+        {% with current=request.path %}
+          <aside class="sidebar">
+            {% if request.session.role == 'freelancer' %}
+              <div class="role-badge freelancer">Freelancer</div>
+              <a href="{% url 'freelencerdashboard' %}" class="sidebar-item {% if request.resolver_match.url_name == 'freelencerdashboard' %}active{% endif %}"><i class="fas fa-chart-line"></i>Dashboard</a>
+              <a href="{% url 'freelancerprofile' %}" class="sidebar-item {% if request.resolver_match.url_name == 'freelancerprofile' %}active{% endif %}"><i class="fas fa-user"></i>My Profile</a>
+              <a href="{% url 'job_list' %}" class="sidebar-item {% if request.resolver_match.url_name == 'job_list' %}active{% endif %}"><i class="fas fa-briefcase"></i>Browse Jobs</a>
+              <a href="{% url 'my_applications' %}" class="sidebar-item {% if request.resolver_match.url_name == 'my_applications' %}active{% endif %}"><i class="fas fa-file"></i>My Applications</a>
+              <a href="{% url 'saved_jobs' %}" class="sidebar-item {% if request.resolver_match.url_name == 'saved_jobs' %}active{% endif %}"><i class="fas fa-bookmark"></i>Saved Jobs</a>
+              <a href="#" class="sidebar-item"><i class="fas fa-message"></i>Messages</a>
+              <a href="{% url 'frereview' %}" class="sidebar-item {% if request.resolver_match.url_name == 'frereview' %}active{% endif %}"><i class="fas fa-star"></i>Reviews</a>
+            {% else %}
+              <div class="role-badge client">Client</div>
+              <a href="{% url 'clientdashboard' %}" class="sidebar-item {% if request.resolver_match.url_name == 'clientdashboard' %}active{% endif %}"><i class="fas fa-chart-line"></i>Dashboard</a>
+              <a href="{% url 'clientprofile' %}" class="sidebar-item {% if request.resolver_match.url_name == 'clientprofile' %}active{% endif %}"><i class="fas fa-user"></i>My Profile</a>
+              <a href="{% url 'job_list' %}" class="sidebar-item {% if request.resolver_match.url_name == 'job_list' %}active{% endif %}"><i class="fas fa-briefcase"></i>Browse Jobs</a>
+              <a href="{% url 'post_job' %}" class="sidebar-item {% if request.resolver_match.url_name == 'post_job' %}active{% endif %}"><i class="fas fa-plus"></i>Post a Job</a>
+              <a href="{% url 'findtalents' %}" class="sidebar-item {% if request.resolver_match.url_name == 'findtalents' %}active{% endif %}"><i class="fas fa-users"></i>Find Talent</a>
+              <a href="#" class="sidebar-item"><i class="fas fa-message"></i>Messages</a>
+              <a href="{% url 'clintreview' %}" class="sidebar-item {% if request.resolver_match.url_name == 'clintreview' %}active{% endif %}"><i class="fas fa-star"></i>Reviews</a>
+            {% endif %}
 
+            <a href="{% url 'logout' %}" class="sidebar-item logout-sidebar"><i class="fas fa-right-from-bracket"></i>Logout</a>
+          </aside>
+        {% endwith %}
+        <main class="dashboard-content">
+          {% block content %}
+
+          {% endblock %}
+        </main>
+      </div>
+    {% else %}
+      <main class="main-wrapper">
+        {% block guest_content %}
+
+        {% endblock %}
+      </main>
+    {% endif %}
     <footer class="footer">
-      <div class="footer-content">&copy; 2026 SkillBridge | Built with UAP_RedHawks.</div>
+      <div class="footer-content">&copy; 2026 SkillBridge | Built By UAP_RedHawks.</div>
     </footer>
-
+    <script>
+      const items = document.querySelectorAll('.sidebar-item:not(.logout-sidebar)')
+      
+      items.forEach((item) => {
+        item.addEventListener('click', function () {
+          items.forEach((i) => {
+            i.classList.remove('active')
+          })
+      
+          this.classList.add('active')
+        })
+      })
+    </script>
     {% block extra_js %}
+
     {% endblock %}
   </body>
 </html>
