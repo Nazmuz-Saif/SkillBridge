@@ -10,7 +10,8 @@ urlpatterns = [
     path('saved-jobs/', views.saved_jobs, name='saved_jobs'),
     path('save-job/<int:job_id>/', views.save_job, name='save_job'),
     path('post-job/', views.post_job, name='post_job'),
-    path('client-jobs/',views.client_jobs,name='client_jobs'),
+    path('my-jobs/', views.client_jobs, name='client_jobs'),
+    path('edit-job/<int:job_id>/', views.edit_job, name='edit_job'),
     path('job-applications/',job_applications,name='job_applications'),
     path('update-application-status/<int:app_id>/<str:status>/',update_application_status,name='update_application_status'),
     

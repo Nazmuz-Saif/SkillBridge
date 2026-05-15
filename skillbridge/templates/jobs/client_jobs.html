@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %}
-My Posted Jobs
+My Jobs
 {% endblock %}
 
 {% block extra_css %}
@@ -11,92 +11,63 @@ My Posted Jobs
 
 {% block content %}
 
-<div class="client-jobs-page">
+<div class="page">
 
-    <div class="page-header">
+    <div class="header">
         <div>
-            <span class="small-tag">Client Jobs</span>
-
-            <h1>
-                My Posted Jobs
-            </h1>
-
-            <p>
-                Manage all your posted jobs and track their status.
-            </p>
+            <h1>My Posted Jobs</h1>
+            <p>Manage, edit and track all your job posts</p>
         </div>
 
-        <a href="{% url 'post_job' %}" class="post-job-btn">
-            Post New Job
+        <a href="{% url 'post_job' %}" class="btn">
+            + Post New Job
         </a>
     </div>
 
-    <div class="jobs-grid">
+    <div class="grid">
 
         {% for job in jobs %}
 
-        <div class="job-card">
+        <div class="card">
 
-            <div class="job-top">
-
+            <div class="top">
                 <div>
                     <h2>{{ job.title }}</h2>
-
-                    <p class="budget">
-                        Budget: ৳{{ job.budget }}
-                    </p>
+                    <span class="category">{{ job.category.name }}</span>
                 </div>
 
                 {% if job.is_active %}
-                    <span class="status active">
-                        Active
-                    </span>
+                    <span class="status active">Active</span>
                 {% else %}
-                    <span class="status closed">
-                        Closed
-                    </span>
+                    <span class="status closed">Closed</span>
                 {% endif %}
-
             </div>
 
-            <div class="job-details">
+            <div class="info">
+                <p><b>Budget:</b> ৳{{ job.budget_min }} - ৳{{ job.budget_max }}</p>
+                <p><b>Deadline:</b> {{ job.deadline }}</p>
 
-                <div class="detail-box">
-                    <label>Skills Required</label>
+                <p class="desc">
+                    {{ job.description|truncatewords:25 }}
+                </p>
+            </div>
 
-                    <div class="detail-value">
-                        {{ job.skills_required }}
-                    </div>
-                </div>
+            <div class="skills">
+                {% for skill in job.skills_required.all %}
+                    <span>{{ skill.name }}</span>
+                {% endfor %}
+            </div>
 
-                <div class="detail-box">
-                    <label>Description</label>
-
-                    <div class="detail-value">
-                        {{ job.description|truncatewords:35 }}
-                    </div>
-                </div>
-
-                <div class="detail-box">
-                    <label>Posted Date</label>
-
-                    <div class="detail-value">
-                        {{ job.created_at|date:"d M Y" }}
-                    </div>
-                </div>
-
+            <div class="actions">
+                <a href="{% url 'edit_job' job.id %}" class="edit">Edit</a>
             </div>
 
         </div>
 
         {% empty %}
 
-        <div class="empty-box">
-            <h2>No Jobs Posted Yet</h2>
-
-            <p>
-                Start posting jobs to hire talented freelancers.
-            </p>
+        <div class="empty">
+            No jobs posted yet.
         </div>
 
         {% endfor %}
