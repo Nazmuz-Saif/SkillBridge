@@ -1,0 +1,27 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/jobs/edit_job.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="edit-page">
+
+    <div class="edit-card">
+
+        <h2>Edit Job Post</h2>
+
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+
+            <button type="submit">Save Changes</button>
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}
