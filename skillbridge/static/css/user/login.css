@@ -1,14 +1,8 @@
-/* =========================
-   LOGIN PAGE BACKGROUND
-========================= */
-
 body {
     background: linear-gradient(180deg, #0f172a 0%, #111827 100%);
 }
 
-/* =========================
-   WRAPPER CENTERING
-========================= */
+
 
 .login-wrapper {
     width: 100%;
@@ -19,9 +13,7 @@ body {
     padding: 40px 20px;
 }
 
-/* =========================
-   LOGIN BOX
-========================= */
+
 
 .login-container {
     width: 100%;
@@ -30,16 +22,17 @@ body {
     border-radius: 20px;
 
     background: rgba(15, 23, 42, 0.88);
-    border: 1px solid rgba(255,255,255,0.06);
+    border: 1px solid rgba(255, 255, 255, 0.06);
 
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
 
-    box-shadow: 0 20px 45px rgba(0,0,0,0.40);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.40);
 
     text-align: center;
     transition: 0.3s ease;
 }
+
 .gradient-title {
     background: linear-gradient(to right, #818cf8, #a78bfa);
     -webkit-background-clip: text;
@@ -49,9 +42,7 @@ body {
     font-weight: 900;
 }
 
-/* =========================
-   BRAND
-========================= */
+
 
 .brand {
     margin-bottom: 22px;
@@ -64,12 +55,12 @@ body {
     letter-spacing: 0.5px;
 }
 
-/* =========================
-   HEADER TEXT
-========================= */
+
 
 .login-top h1 {
-    color: #fff;
+    background: linear-gradient(to right, #818cf8, #f472b6);
+    background-clip: text;
+    -webkit-background-clip: text;
     font-size: 2.2rem;
     font-weight: 800;
     margin-bottom: 8px;
@@ -81,9 +72,7 @@ body {
     margin-bottom: 28px;
 }
 
-/* =========================
-   FORM
-========================= */
+
 
 form {
     display: flex;
@@ -91,9 +80,7 @@ form {
     gap: 18px;
 }
 
-/* =========================
-   INPUT GROUP
-========================= */
+
 
 .input-group {
     text-align: left;
@@ -107,9 +94,7 @@ form {
     margin-bottom: 8px;
 }
 
-/* =========================
-   INPUT FIELD
-========================= */
+
 
 .input-group input {
     width: 100%;
@@ -118,7 +103,7 @@ form {
     padding: 10px 12px;
     border-radius: 10px;
 
-    border: 1px solid rgba(255,255,255,0.08);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     background: #dbe2ee;
 
     color: #111827;
@@ -134,12 +119,10 @@ form {
 
 .input-group input:focus {
     border-color: #6366f1;
-    box-shadow: 0 0 0 4px rgba(99,102,241,0.15);
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
 }
 
-/* =========================
-   BUTTON
-========================= */
+
 
 button {
     width: 100%;
@@ -162,12 +145,10 @@ button {
 
 button:hover {
     transform: translateY(-3px);
-    box-shadow: 0 15px 30px rgba(99,102,241,0.35);
+    box-shadow: 0 15px 30px rgba(99, 102, 241, 0.35);
 }
 
-/* =========================
-   BOTTOM TEXT
-========================= */
+
 
 .bottom-text {
     margin-top: 24px;

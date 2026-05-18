@@ -8,8 +8,48 @@
     flex-direction: column;
     gap: 25px;
 }
+.job-top {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
 
-/* CARD */
+.job-tag {
+    display: flex;
+    padding: 8px 12px;
+    border-radius: 30px;
+    background: rgba(99, 102, 241, 0.12);
+    color: #818cf8;
+    font-size: 0.82rem;
+    font-weight: 700;
+    margin-bottom: 18px;
+    width: fit-content;
+}
+
+.job-top>div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.job-top h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 14px;
+
+    background: linear-gradient(to right, #818cf8, #f472b6);
+
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.job-top p {
+    color: #94a3b8;
+    max-width: 650px;
+    line-height: 1.7;
+}
 .talent-card {
     display: grid;
     grid-template-columns: 280px 1fr;
@@ -27,7 +67,6 @@
     transform: translateY(-5px);
 }
 
-/* LEFT */
 .talent-left {
     text-align: center;
     padding: 20px;
@@ -69,7 +108,6 @@
     font-size: 0.9rem;
 }
 
-/* RIGHT */
 .talent-right {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -117,7 +155,6 @@
     grid-column: span 2;
 }
 
-/* RESPONSIVE */
 @media (max-width: 900px) {
     .talent-card {
         grid-template-columns: 1fr;
