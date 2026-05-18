@@ -90,7 +90,11 @@ body {
     text-decoration: none;
     transition: 0.2s;
 }
-
+.primary-btn:hover {
+    background: #4338ca;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(79, 70, 229, 0.4);
+}
 .secondary-btn {
     background: rgba(255, 255, 255, 0.05);
     color: #fff;
@@ -100,7 +104,12 @@ body {
     text-decoration: none;
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
-
+.secondary-btn:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(255, 255, 255, 0.08);
+}
 
 
 .skill {
@@ -133,8 +142,8 @@ body {
     margin-bottom: 14px;
 }
 
-.blue-text {
-    background: linear-gradient(to right, #818cf8, #a78bfa);
+.gc-text {
+    background: linear-gradient(to right, #818cf8, #f472b6);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;

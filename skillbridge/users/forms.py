@@ -5,13 +5,13 @@ from .models import ClientProfile
 
 
 class SignupForm(forms.Form):
-    ROLE_CHOICES = (
+    rolechoices = (
         ('freelancer', 'Freelancer'),
         ('client', 'Client'),
     )
 
     role = forms.ChoiceField(
-        choices=ROLE_CHOICES,
+        choices=rolechoices,
         widget=forms.RadioSelect(attrs={'class': 'role-radio'})
     )
 
