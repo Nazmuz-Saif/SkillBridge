@@ -1,25 +1,29 @@
-.post-job-page {
+.post-job-wrapper {
     display: flex;
     justify-content: center;
-    padding: 40px;
+    padding: 40px 20px;
+    background: #0f172a;
+    min-height: 100vh;
+    box-sizing: border-box;
 }
 
 .post-job-card {
     width: 900px;
-    background: #0f172a;
-    border-radius: 18px;
-    padding: 30px;
+    background: rgba(15, 23, 42, 0.95);
     border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 30px;
 }
 
-.page-title h2 {
+.header h2 {
     color: white;
+    font-size: 28px;
     margin-bottom: 5px;
 }
 
-.page-title p {
+.header p {
     color: #94a3b8;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 }
 
 .job-form {
@@ -34,16 +38,15 @@
     gap: 6px;
 }
 
-label {
+.box label {
     color: #cbd5e1;
     font-size: 14px;
 }
 
-input,
-select,
-textarea {
-    width: 100%;
-    padding: 10px;
+.box input,
+.box select,
+.box textarea {
+    padding: 12px;
     border-radius: 10px;
     border: 1px solid rgba(255, 255, 255, 0.1);
     background: #111827;
@@ -51,104 +54,51 @@ textarea {
     outline: none;
 }
 
-textarea {
-    min-height: 110px;
+.box textarea {
+    min-height: 120px;
     resize: vertical;
 }
 
 .grid {
-    display: flex;
-    gap: 16px;
-    align-items: stretch;
-    height: 200px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
 }
 
-.col-left {
-    width: 40%;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    height: 100%;
-}
-
-.col-right {
-    width: 60%;
-    height: 100%;
-    display: flex;
-}
-
-.col-left .fixed {
-    flex: 1;
+.left,
+.right {
     display: flex;
     flex-direction: column;
+    gap: 12px;
 }
 
-.col-left .fixed input,
-.col-left .fixed select {
-    flex: 1;
-    height: 100%;
-}
-
-.col-right .big {
-    width: 100%;
-    height: 100%;
-    display: flex;
-}
-
-.col-right select {
-    flex: 1;
-    height: 100%;
-}
-
-.budget {
-    display: flex;
-    gap: 20px;
-}
-
-.budget .box {
-    flex: 1;
-}
-
-.btn-wrapper {
-    display: flex;
-    justify-content: center;
-    margin-top: 10px;
-}
-
-.skills-box {
+.skill-list {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    max-height: 200px;
-    overflow-y: auto;
+    gap: 8px;
     padding: 10px;
     background: #111827;
-    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    max-height: 200px;
+    overflow-y: auto;
 }
 
 .skill-item {
     display: flex;
-    align-items: center;
     gap: 10px;
     color: #cbd5e1;
-    cursor: pointer;
     font-size: 14px;
 }
 
-.skill-item input {
-    width: 16px;
-    height: 16px;
-    accent-color: #6366f1;
-    cursor: pointer;
+.budget {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
 }
 
-.skill-item span {
-    user-select: none;
-}
-
-.submit-btn {
-    padding: 12px 40px;
+.btn {
+    padding: 14px;
     border: none;
     border-radius: 12px;
     background: linear-gradient(135deg, #6366f1, #8b5cf6);
@@ -158,23 +108,14 @@ textarea {
     transition: 0.3s;
 }
 
-.submit-btn:hover {
+.btn:hover {
     transform: translateY(-2px);
 }
 
-@media(max-width: 768px) {
-    .grid {
-        flex-direction: column;
-        height: auto;
-    }
+@media (max-width: 768px) {
 
-    .col-left,
-    .col-right {
-        width: 100%;
-        height: auto;
-    }
-
+    .grid,
     .budget {
-        flex-direction: column;
+        grid-template-columns: 1fr;
     }
 }

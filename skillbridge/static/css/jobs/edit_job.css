@@ -1,0 +1,94 @@
+.edit-page {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+.edit-card {
+    width: 700px;
+    background: rgba(15, 23, 42, 0.96);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+}
+
+.edit-card h2 {
+    color: white;
+    margin-bottom: 20px;
+    font-size: 1.6rem;
+    background: linear-gradient(135deg, #60a5fa, #a855f7);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+
+.edit-card form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.edit-card form p {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.edit-card label {
+    color: #cbd5e1;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.edit-card input,
+.edit-card select,
+.edit-card textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: #111827;
+    color: white;
+    outline: none;
+    transition: 0.3s;
+}
+
+.edit-card input:focus,
+.edit-card select:focus,
+.edit-card textarea:focus {
+    border-color: #6366f1;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+}
+
+.edit-card textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.edit-card button {
+    margin-top: 10px;
+    padding: 14px;
+    border: none;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.edit-card button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 25px rgba(99, 102, 241, 0.3);
+}
+
+
+@media (max-width: 768px) {
+    .edit-card {
+        width: 100%;
+        padding: 20px;
+    }
+}
