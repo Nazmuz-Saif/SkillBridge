@@ -1,0 +1,31 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}
+  Browse Jobs
+{% endblock %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'chat/chat.css' %}" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+{% endblock %}
+
+{% block guest_content %}
+  <div class="chat-container">
+    <h2>{{ job.title }}</h2>
+    <div class="chat-box">
+      {% for msg in messages %}
+        <div class="message">
+          <strong>{{ msg.sender.username }}</strong>
+          <p>{{ msg.text }}</p>
+          <small>{{ msg.timestamp }}</small>
+        </div>
+      {% endfor %}
+    </div>
+    <form method="POST">
+      {% csrf_token %}
+      <input type="text" name="text" placeholder="Type message..." required />
+      <button type="submit">Send</button>
+    </form>
+  </div>
+{% endblock %}
