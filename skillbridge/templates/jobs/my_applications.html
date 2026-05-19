@@ -42,6 +42,8 @@ My Applications
                     <span class="status accepted">Accepted</span>
                 {% elif app.status == "rejected" %}
                     <span class="status rejected">Rejected</span>
+                {% elif app.status == "completed" %}
+                    <span class="status completed">Completed</span>
                 {% else %}
                     <span class="status">Unknown</span>
                 {% endif %}

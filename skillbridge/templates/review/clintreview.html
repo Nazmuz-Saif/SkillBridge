@@ -1,272 +1,76 @@
 {% extends 'core/base.html' %}
 {% load static %}
 
-{% block title %}
-  Leave a Review
-{% endblock %}
+{% block title %}Give Review{% endblock %}
 
 {% block extra_css %}
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-
-  <style>
-    .review-dashboard-page {
-      width: 100%;
-      min-height: 100vh;
-      background: #151f32;
-      padding: 40px;
-    }
-    
-    .dashboard-container {
-      max-width: 600px; /* Slimmer layout optimized for a single form */
-      margin: 0 auto;
-    }
-    
-    .page-title-section {
-      margin-bottom: 30px;
-    }
-    
-    .page-title-section h1 {
-      font-size: 32px;
-      color: #ffffff;
-      font-weight: 700;
-      margin-bottom: 6px;
-    }
-    
-    .page-title-section p {
-      color: #94a3b8;
-      font-size: 16px;
-    }
-    
-    .review-card {
-      background: #111625;
-      border-radius: 20px;
-      border: 1px solid rgba(255, 255, 255, 0.04);
-      padding: 30px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-    }
-
-    /* Freelancer Info Header inside form */
-    .target-freelancer-meta {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      padding-bottom: 24px;
-      margin-bottom: 24px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-    }
-
-    .target-freelancer-meta img {
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 2px solid #6d4aff;
-    }
-
-    .target-default-avatar {
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      background: #6d4aff;
-      color: white;
-      font-weight: bold;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 22px;
-    }
-
-    .target-info .fl-name {
-      font-weight: 600;
-      font-size: 18px;
-      color: #ffffff;
-      margin-bottom: 4px;
-    }
-
-    .target-info .project-title {
-      color: #94a3b8;
-      font-size: 14px;
-    }
-
-    /* Form Styles */
-    .form-group {
-      margin-bottom: 24px;
-    }
-
-    .form-label {
-      display: block;
-      color: #cbd5e1;
-      font-size: 15px;
-      font-weight: 500;
-      margin-bottom: 10px;
-    }
-
-    /* Interactive Star Rating CSS */
-    .star-rating-wrapper {
-      display: flex;
-      flex-direction: row-reverse; /* Allows hover-prev coloring in pure CSS if preferred */
-      justify-content: flex-end;
-      gap: 8px;
-    }
-
-    .star-rating-wrapper input {
-      display: none;
-    }
-
-    .star-rating-wrapper label {
-      font-size: 28px;
-      color: #334155;
-      cursor: pointer;
-      transition: color 0.2s ease;
-    }
-
-    /* Target stars when radio inputs are checked or hovered */
-    .star-rating-wrapper input:checked ~ label,
-    .star-rating-wrapper label:hover,
-    .star-rating-wrapper label:hover ~ label {
-      color: #f59e0b; /* Amber/Gold star color */
-    }
-
-    /* Form Fields */
-    .form-textarea {
-      width: 100%;
-      min-height: 120px;
-      background: #1e293b;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 12px;
-      padding: 14px;
-      color: #ffffff;
-      font-size: 15px;
-      font-family: inherit;
-      resize: vertical;
-      transition: border-color 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .form-textarea:focus {
-      outline: none;
-      border-color: #6d4aff;
-      box-shadow: 0 0 0 3px rgba(109, 74, 255, 0.15);
-    }
-
-    .form-textarea::placeholder {
-      color: #64748b;
-    }
-
-    /* Action Buttons */
-    .form-actions {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      margin-top: 30px;
-    }
-
-    .submit-review-btn {
-      background: #6d4aff;
-      color: white;
-      padding: 12px 24px;
-      border-radius: 12px;
-      text-decoration: none;
-      font-size: 15px;
-      font-weight: 600;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      transition: 0.3s ease;
-      border: none;
-      cursor: pointer;
-    }
-
-    .submit-review-btn:hover {
-      background: #5b3edd;
-      transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(109, 74, 255, 0.3);
-    }
-
-    .cancel-btn {
-      color: #94a3b8;
-      text-decoration: none;
-      font-size: 15px;
-      font-weight: 500;
-      transition: color 0.2s ease;
-    }
-
-    .cancel-btn:hover {
-      color: #ffffff;
-    }
-  </style>
+<link rel="stylesheet" href="{% static 'reviews/clintreview.css' %}">
 {% endblock %}
 
 {% block content %}
-  <div class="review-dashboard-page">
-    <div class="dashboard-container">
-      
-      <div class="page-title-section">
-        <h1>Freelancer Reviews</h1>
-        <p>Your feedback helps maintain a trusted marketplace community.</p>
-      </div>
 
-      <div class="review-card">
-        <!-- Target Freelancer & Job details layout header -->
-        <div class="target-freelancer-meta">
-          {% if freelancer.profileimage %}
-            <img src="{{ freelancer.profileimage.url }}" alt="{{ freelancer.name }}" />
-          {% else %}
-            <div class="target-default-avatar">{{ freelancer.name|slice:':1' }}</div>
-          {% endif %}
-          <div class="target-info">
-            <div class="fl-name">{{ freelancer.name }}</div>
-            <div class="project-title"><i class="fa-solid fa-briefcase"></i> {{ project_title }}</div>
-          </div>
+<div class="review-form-page">
+
+    <div class="review-form-box">
+
+        <h1>Write a Review</h1>
+
+        <div class="top">
+
+            {% if freelancer.profile_picture %}
+                <img src="{{ freelancer.profile_picture.url }}">
+            {% else %}
+                <div class="avatar">
+                    {{ freelancer.user.username|first|upper }}
+                </div>
+            {% endif %}
+
+            <h2>{{ freelancer.user.username }}</h2>
+
+            <p>
+                Working on:
+                {{ job.title }}
+            </p>
+
         </div>
 
-        <!-- Review Submission Form -->
-        <form method="POST" action="">
-          {% csrf_token %}
+        <form method="POST">
 
-          <!-- Rating Stars Section -->
-          <div class="form-group">
-            <label class="form-label">Overall Rating</label>
-            <div class="star-rating-wrapper">
-              <!-- Rendered backwards via layout engine for pure CSS active selector states -->
-              <input type="radio" id="star5" name="rating" value="5" required />
-              <label for="star5" class="fa-solid fa-star" title="5 Stars">Wonderfull</label>
-              
-              <input type="radio" id="star4" name="rating" value="4" />
-              <label for="star4" class="fa-solid fa-star" title="4 Stars">Very good</label>
-              
-              <input type="radio" id="star3" name="rating" value="3" />
-              <label for="star3" class="fa-solid fa-star" title="3 Stars">Good</label>
-              
-              <input type="radio" id="star2" name="rating" value="2" />
-              <label for="star2" class="fa-solid fa-star" title="2 Stars">Okay</label>
-              
-              <input type="radio" id="star1" name="rating" value="1" />
-              <label for="star1" class="fa-solid fa-star" title="1 Star">Bad</label>
+            {% csrf_token %}
+
+            <div class="star-rating">
+
+                <input type="radio" name="rating" id="star5" value="5">
+                <label for="star5">★</label>
+
+                <input type="radio" name="rating" id="star4" value="4">
+                <label for="star4">★</label>
+
+                <input type="radio" name="rating" id="star3" value="3">
+                <label for="star3">★</label>
+
+                <input type="radio" name="rating" id="star2" value="2">
+                <label for="star2">★</label>
+
+                <input type="radio" name="rating" id="star1" value="1">
+                <label for="star1">★</label>
+
             </div>
-          </div>
 
-          <!-- Written Review Field -->
-          <div class="form-group">
-            <label for="review_text" class="form-label">Your Review</label>
-            <textarea 
-              id="review_text" 
-              name="review_text" 
-              class="form-textarea" 
-              placeholder="Describe what it was like working with this freelancer. Quality of work, communication, and adherence to timelines..." 
-              required></textarea>
-          </div>
+            <textarea
+                name="comment"
+                placeholder="Write your review..."
+                required
+            ></textarea>
 
-          <!-- Interaction Footer Actions -->
-          <div class="form-actions">
-            <button type="submit" class="submit-review-btn">
-              <i class="fa-solid fa-paper-plane"></i> Submit Review
+            <button type="submit">
+                Submit Review
             </button>
-            <!-- Points back to the list layout dashboard view -->
-            <a href="{% url 'client_dashboard_url_name_here' %}" class="cancel-btn">Cancel</a>
-          </div>
+
         </form>
-      </div>
 
     </div>
-  </div>
+
+</div>
+
 {% endblock %}

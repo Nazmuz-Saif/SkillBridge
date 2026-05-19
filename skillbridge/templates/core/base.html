@@ -38,8 +38,7 @@
         </div>
         <div class="nav-right">
           {% if user.is_authenticated %}
-            <a href="#" class="message-btn"><i class="fas fa-message"></i></a>
-
+            <a href="{% url 'nochat' %}" class="message-btn"><i class="fas fa-message"></i></a>
             <div class="user-info">
               <div class="user-avatar">{{ user.username.0|upper }}</div>
               <span class="user-name">{{ user.username }}</span>
@@ -79,7 +78,7 @@
               <a href="{% url 'job_list' %}" class="sidebar-item {% if request.resolver_match.url_name == 'job_list' %}active{% endif %}"><i class="fas fa-briefcase"></i>Browse Jobs</a>
               <a href="{% url 'my_applications' %}" class="sidebar-item {% if request.resolver_match.url_name == 'my_applications' %}active{% endif %}"><i class="fas fa-file"></i>My Applications</a>
               <a href="{% url 'saved_jobs' %}" class="sidebar-item {% if request.resolver_match.url_name == 'saved_jobs' %}active{% endif %}"><i class="fas fa-bookmark"></i>Saved Jobs</a>
-              <a href="#" class="sidebar-item"><i class="fas fa-message"></i>Messages</a>
+              <a href="{% url 'nochat' %}" class="sidebar-item {% if request.resolver_match.url_name == 'nochat' %}active{% endif %}"><i class="fas fa-message"></i>Messages</a>
               <a href="{% url 'frereview' %}" class="sidebar-item {% if request.resolver_match.url_name == 'frereview' %}active{% endif %}"><i class="fas fa-star"></i>Reviews</a>
             {% else %}
               <div class="role-badge client">Client</div>
@@ -88,7 +87,7 @@
               <a href="{% url 'client_jobs' %}" class="sidebar-item {% if request.resolver_match.url_name == 'client_jobs' %}active{% endif %}"><i class="fas fa-briefcase"></i>Manage Jobs</a>
               <a href="{% url 'post_job' %}" class="sidebar-item {% if request.resolver_match.url_name == 'post_job' %}active{% endif %}"><i class="fas fa-plus"></i>Post a Job</a>
               <a href="{% url 'findtalents' %}" class="sidebar-item {% if request.resolver_match.url_name == 'findtalents' %}active{% endif %}"><i class="fas fa-users"></i>Find Talent</a>
-              <a href="#" class="sidebar-item"><i class="fas fa-message"></i>Messages</a>
+              <a href="{% url 'nochat' %}" class="sidebar-item {% if request.resolver_match.url_name == 'nochat' %}active{% endif %}"><i class="fas fa-message"></i>Messages</a>
               <a href="{% url 'frereview' %}" class="sidebar-item {% if request.resolver_match.url_name == 'frereview' %}active{% endif %}"><i class="fas fa-star"></i> Reviews</a>
             {% endif %}
 

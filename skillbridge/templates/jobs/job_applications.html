@@ -78,6 +78,11 @@ Applications
                         Accepted
                     </span>
 
+                {% elif app.status == 'completed' %}
+                    <span class="status completed">
+                        Completed
+                    </span>
+
                 {% else %}
                     <span class="status rejected">
                         Rejected
@@ -128,15 +133,30 @@ Applications
                     </div>
                 </div>
 
+                <div class="detail-box full-width">
+                    <label>Proposed Budget</label>
+
+                    <div class="detail-value">
+                        ${{ app.proposed_budget }}
+                    </div>
+                </div>
+
             </div>
 
             <div class="action-buttons">
 
-                <a href="{% url 'update_application_status' app.id 'accepted' %}" class="accept-btn">
+                <a href="{% url 'update_application_status' app.id 'accepted' %}"
+                class="accept-btn">
                     Accept
                 </a>
 
-                <a href="{% url 'update_application_status' app.id 'rejected' %}" class="reject-btn">
+                <a href="{% url 'update_application_status' app.id 'completed' %}"
+                class="complete-btn">
+                    Completed
+                </a>
+
+                <a href="{% url 'update_application_status' app.id 'rejected' %}"
+                class="reject-btn">
                     Reject
                 </a>
 

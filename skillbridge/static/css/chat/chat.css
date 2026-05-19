@@ -1,0 +1,15 @@
+.chat-container {
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.chat-container h2 {
+    background: white;
+    padding: 25px 40px;
+    border-radius: 12px;
+    font-size: 22px;
+    color: #555;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
