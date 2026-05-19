@@ -2,11 +2,10 @@
     width:100%;
 }
 
+/* HEADER */
 .page-header{
     margin-bottom:35px;
-
     padding:35px;
-
     border-radius:24px;
 
     background:linear-gradient(
@@ -20,13 +19,10 @@
 
 .small-tag{
     display:inline-block;
-
     padding:8px 14px;
-
     border-radius:30px;
 
     background:rgba(255,255,255,0.05);
-
     color:#818cf8;
 
     font-size:0.8rem;
@@ -37,9 +33,7 @@
 
 .page-header h1{
     color:white;
-
     font-size:2.2rem;
-
     margin-bottom:10px;
 }
 
@@ -47,22 +41,28 @@
     color:#94a3b8;
 }
 
+/* GRID */
 .applications-grid{
     display:flex;
     flex-direction:column;
     gap:25px;
 }
 
+/* CARD */
 .application-card{
     background:rgba(15,23,42,0.96);
-
     border:1px solid rgba(255,255,255,0.08);
-
     border-radius:24px;
-
     padding:30px;
+
+    transition:0.3s ease;
 }
 
+.application-card:hover{
+    transform:translateY(-4px);
+}
+
+/* TOP */
 .card-top{
     display:flex;
     justify-content:space-between;
@@ -72,6 +72,7 @@
     margin-bottom:30px;
 }
 
+/* PROFILE */
 .profile-section{
     display:flex;
     align-items:center;
@@ -99,14 +100,12 @@
     justify-content:center;
 
     color:white;
-
     font-size:2rem;
     font-weight:700;
 }
 
 .profile-section h2{
     color:white;
-
     margin-bottom:8px;
 }
 
@@ -114,15 +113,16 @@
     color:#94a3b8;
 }
 
+/* STATUS */
 .status{
     padding:10px 16px;
-
     border-radius:30px;
 
     font-size:0.82rem;
     font-weight:700;
 }
 
+/* STATUS COLORS */
 .pending{
     background:rgba(251,146,60,0.15);
     color:#fb923c;
@@ -138,6 +138,12 @@
     color:#f87171;
 }
 
+.status.completed{
+    background:rgba(59,130,246,0.15);
+    color:#60a5fa;
+}
+
+/* DETAILS */
 .details-grid{
     display:grid;
     grid-template-columns:repeat(2,1fr);
@@ -152,21 +158,16 @@
 
 .detail-box label{
     color:white;
-
     font-weight:700;
 }
 
 .detail-value{
     background:rgba(255,255,255,0.04);
-
     border:1px solid rgba(255,255,255,0.08);
-
     border-radius:12px;
 
     padding:14px 16px;
-
     color:#cbd5e1;
-
     line-height:1.7;
 }
 
@@ -174,84 +175,72 @@
     grid-column:span 2;
 }
 
+/* BUTTONS */
 .action-buttons{
     margin-top:30px;
-
     display:flex;
     gap:16px;
 }
 
+/* COMMON BUTTON STYLE */
 .accept-btn,
-.reject-btn{
+.reject-btn,
+.complete-btn{
+    flex:1;
+
+    text-align:center;
     text-decoration:none;
 
     padding:13px 22px;
-
     border-radius:12px;
 
     font-weight:700;
 
-    transition:0.3s;
+    transition:0.3s ease;
+    display:inline-block;
 }
 
+/* ACCEPT */
 .accept-btn{
     background:rgba(34,197,94,0.15);
     color:#22c55e;
 }
 
+/* REJECT */
 .reject-btn{
     background:rgba(248,113,113,0.15);
     color:#f87171;
 }
 
+/* COMPLETE */
+.complete-btn{
+    background:rgba(59,130,246,0.15);
+    color:#60a5fa;
+}
+
+/* HOVER */
 .accept-btn:hover,
-.reject-btn:hover{
+.reject-btn:hover,
+.complete-btn:hover{
     transform:translateY(-3px);
 }
 
-.status.completed{
-    background: rgba(59,130,246,0.15);
-    color: #60a5fa;
-}
-
-
-.complete-btn{
-    flex: 1;
-    text-align: center;
-    padding: 12px;
-    border-radius: 12px;
-
-    background: rgba(59,130,246,0.15);
-
-    color: #60a5fa;
-
-    text-decoration: none;
-    font-weight: 700;
-
-    transition: 0.3s;
-}
-
 .complete-btn:hover{
-    transform: translateY(-2px);
-
-    background: rgba(59,130,246,0.25);
+    background:rgba(59,130,246,0.25);
 }
 
+/* EMPTY */
 .empty-box{
     background:rgba(15,23,42,0.96);
-
     border:1px solid rgba(255,255,255,0.08);
-
     border-radius:24px;
 
     padding:60px 30px;
-
     text-align:center;
 }
 
 .empty-box h2{
     color:white;
-
     margin-bottom:10px;
 }
 
@@ -259,6 +248,7 @@
     color:#94a3b8;
 }
 
+/* RESPONSIVE */
 @media(max-width:768px){
 
     .card-top{
