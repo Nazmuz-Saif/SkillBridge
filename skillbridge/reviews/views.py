@@ -7,20 +7,22 @@ from users.models import FreelancerProfile, ClientProfile
 from .models import Review
 
 
-# CLIENT SHOWS FREELANCERS
+# CLIENT → FREELANCER LIST
 @login_required
 def frereview(request):
 
+    client = ClientProfile.objects.filter(user=request.user).first()
     apps = Application.objects.filter(
-        job__client=request.user.clientprofile,
-        status='accepted'
-    )
+    job__client=request.user,
+    status='accepted'
+)
 
     return render(request, 'review/frereview.html', {
         'apps': apps
     })
 
 
+# CLIENT → GIVE REVIEW
 @login_required
 def give_review(request, email, job_id):
 
@@ -30,10 +32,12 @@ def give_review(request, email, job_id):
 
     job = Job.objects.get(id=job_id)
 
+    client = ClientProfile.objects.get(user=request.user)
+
     if request.method == "POST":
 
         Review.objects.create(
-            client=request.user.clientprofile,
+            client=client,
             freelancer=freelancer,
             job=job,
             rating=request.POST.get('rating'),
@@ -48,12 +52,14 @@ def give_review(request, email, job_id):
     })
 
 
-# FREELANCER SHOWS CLIENTS
+# FREELANCER → CLIENT LIST
 @login_required
 def clientreview(request):
 
+    freelancer = FreelancerProfile.objects.get(user=request.user)
+
     apps = Application.objects.filter(
-        freelancer=request.user,
+        freelancer=freelancer,
         status='accepted'
     )
 
@@ -61,6 +67,8 @@ def clientreview(request):
         'apps': apps
     })
 
+
+# FREELANCER → GIVE CLIENT REVIEW
 @login_required
 def give_client_review(request, email, job_id):
 
@@ -70,7 +78,7 @@ def give_client_review(request, email, job_id):
 
     job = Job.objects.get(id=job_id)
 
-    freelancer = request.user.freelancerprofile
+    freelancer = FreelancerProfile.objects.get(user=request.user)
 
     if request.method == "POST":
 
@@ -84,7 +92,7 @@ def give_client_review(request, email, job_id):
 
         return redirect('clientreview')
 
-    return render(request, 'review/give_client_review.html', {
+    return render(request, 'review/client_review_form.html', {
         'client': client,
         'job': job
     })

@@ -1,0 +1,34 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'reviews/clintreview.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="review-page">
+    <div class="review-container">
+        <div class="review-card">
+
+            <h1>Clients</h1>
+
+            {% for app in apps %}
+
+            <div class="box">
+                <h3>{{ app.job.title }}</h3>
+                <p>{{ app.job.client.user.email }}</p>
+
+                <a class="btn"
+                   href="{% url 'give_client_review' app.job.client.user.email app.job.id %}">
+                   Review
+                </a>
+            </div>
+
+            {% endfor %}
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

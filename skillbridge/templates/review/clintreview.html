@@ -1,61 +1,73 @@
 {% extends 'core/base.html' %}
 {% load static %}
 
-{% block title %}
-Client Review
-{% endblock %}
+{% block title %}Give Review{% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'reviews/clientreview.css' %}">
+<link rel="stylesheet" href="{% static 'reviews/clintreview.css' %}">
 {% endblock %}
 
 {% block content %}
 
-<div class="review-page">
+<div class="review-form-page">
 
-    <div class="review-container">
+    <div class="review-form-box">
 
-        <div class="review-card">
+        <h1>Write a Review</h1>
 
-            <div class="review-title">
-                <h1>Client Review</h1>
-                <p>Share your experience about this freelancer</p>
-            </div>
+        <div class="top">
 
-            <div class="review-profile">
+            {% if freelancer.profile_picture %}
+                <img src="{{ freelancer.profile_picture.url }}">
+            {% else %}
+                <div class="avatar">
+                    {{ freelancer.user.username|first|upper }}
+                </div>
+            {% endif %}
 
-                {% if freelancer.profile_picture %}
-                    <img src="{{ freelancer.profile_picture.url }}">
-                {% else %}
-                    <div class="default-avatar">
-                        {{ freelancer.user.username|first|upper }}
-                    </div>
-                {% endif %}
+            <h2>{{ freelancer.user.username }}</h2>
 
-                <h2 class="review-name">{{ freelancer.user.username }}</h2>
-
-            </div>
-
-            <form method="POST" class="review-form">
-                {% csrf_token %}
-
-                <label>Rating</label>
-                <select name="rating" required>
-                    <option value="">Select rating</option>
-                    <option value="5">★★★★★ (5)</option>
-                    <option value="4">★★★★ (4)</option>
-                    <option value="3">★★★ (3)</option>
-                    <option value="2">★★ (2)</option>
-                    <option value="1">★ (1)</option>
-                </select>
-
-                <label>Write Review</label>
-                <textarea name="comment" placeholder="Write your review..." required></textarea>
-
-                <button type="submit">Submit Review</button>
-            </form>
+            <p>
+                Working on:
+                {{ job.title }}
+            </p>
 
         </div>
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            <div class="star-rating">
+
+                <input type="radio" name="rating" id="star5" value="5">
+                <label for="star5">★</label>
+
+                <input type="radio" name="rating" id="star4" value="4">
+                <label for="star4">★</label>
+
+                <input type="radio" name="rating" id="star3" value="3">
+                <label for="star3">★</label>
+
+                <input type="radio" name="rating" id="star2" value="2">
+                <label for="star2">★</label>
+
+                <input type="radio" name="rating" id="star1" value="1">
+                <label for="star1">★</label>
+
+            </div>
+
+            <textarea
+                name="comment"
+                placeholder="Write your review..."
+                required
+            ></textarea>
+
+            <button type="submit">
+                Submit Review
+            </button>
+
+        </form>
 
     </div>
 
