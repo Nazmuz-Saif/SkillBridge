@@ -55,44 +55,59 @@ def post_job(request):
 
     return render(request, 'jobs/post_job.html', context)
 
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required
+from .models import Job, Application, SavedJob
+
+
 @login_required
 def job_list(request):
 
     jobs = Job.objects.filter(is_active=True).order_by('-created_at')
 
+    applied_jobs = Application.objects.filter(
+        freelancer=request.user
+    ).values_list('job_id', flat=True)
+
+    saved_jobs = SavedJob.objects.filter(
+        freelancer=request.user
+    ).values_list('job_id', flat=True)
+
     context = {
-        'jobs': jobs
+        'jobs': jobs,
+        'applied_jobs': applied_jobs,
+        'saved_jobs': saved_jobs,
     }
 
     return render(request, 'jobs/job_list.html', context)
 
 @login_required
 def apply_job(request, job_id):
-    job = Job.objects.get(id=job_id)
-
-    if request.method == "POST":
-        cover_letter = request.POST['cover_letter']
-
+    job = get_object_or_404(Job, id=job_id)
+    already_applied = Application.objects.filter(
+        freelancer=request.user,
+        job=job
+    ).exists()
+    if not already_applied:
         Application.objects.create(
-            job=job,
             freelancer=request.user,
-            cover_letter=cover_letter
+            job=job
         )
-
-        return redirect('freelencerdashboard')
-
-    return render(request, 'jobs/apply.html', {'job': job})
+    return redirect('job_list')
 
 @login_required
-def savejob(request, job_id):
-    job = Job.objects.get(id=job_id)
-
-    SavedJob.objects.get_or_create(
-        job=job,
-        freelancer=request.user
-    )
-
-    return redirect('freelencerdashboard')
+def save_job(request, job_id):
+    job = get_object_or_404(Job, id=job_id)
+    already_saved = SavedJob.objects.filter(
+        freelancer=request.user,
+        job=job
+    ).exists()
+    if not already_saved:
+        SavedJob.objects.create(
+            freelancer=request.user,
+            job=job
+        )
+    return redirect('job_list')
 
 @login_required
 def my_applications(request):
