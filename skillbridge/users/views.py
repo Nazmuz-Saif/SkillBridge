@@ -56,6 +56,11 @@ def loginview(request):
             return render(request, 'users/login.html', {
                 'error': 'Please enter email and password.'
             })
+        agree = request.POST.get('agree')
+        if not agree:
+            return render(request, 'users/login.html', {
+                'error': 'You must agree before login.'
+            })
         user = authenticate(username=email, password=password)
         if user is not None:
             login(request, user)
