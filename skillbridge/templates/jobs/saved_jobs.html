@@ -41,12 +41,65 @@ Saved Jobs
 
                 <p class="desc">{{ item.job.description|truncatechars:120 }}</p>
 
-                <a href="#" class="apply-btn">
+                <button class="apply-btn" onclick="openModal('modal{{ item.job.id }}')">
                     View Job
-                </a>
+                </button>
 
             </div>
 
+        </div>
+
+        <div class="job-modal" id="modal{{ item.job.id }}">
+
+            <div class="modal-content">
+
+                <span class="close-btn"
+                    onclick="closeModal('modal{{ item.job.id }}')">
+                    &times;
+                </span>
+
+                <h2>{{ item.job.title }}</h2>
+
+                <div class="modal-section">
+                    <label>Description</label>
+                    <p>{{ item.job.description }}</p>
+                </div>
+
+                <div class="modal-grid">
+
+                    <div>
+                        <label>Client</label>
+                        <p>{{ item.job.client.username }}</p>
+                    </div>
+
+                    <div>
+                        <label>Budget</label>
+                        <p>{{ item.job.budget_min }} - {{ item.job.budget_max }}</p>
+                    </div>
+
+                    <div>
+                        <label>Category</label>
+                        <p>{{ item.job.category.name }}</p>
+                    </div>
+
+                    <div>
+                        <label>Deadline</label>
+                        <p>{{ item.job.deadline }}</p>
+                    </div>
+
+                </div>
+
+                <div class="modal-section">
+                    <label>Skills Required</label>
+
+                    <div class="job-skills">
+                        {% for skill in item.job.skills_required.all %}
+                            <span class="skill-tag">{{ skill.name }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+
+            </div>
         </div>
 
         {% empty %}
@@ -56,5 +109,23 @@ Saved Jobs
     </div>
 
 </div>
+
+<script>
+function openModal(id){
+    document.getElementById(id).style.display = 'flex';
+}
+
+function closeModal(id){
+    document.getElementById(id).style.display = 'none';
+}
+
+window.onclick = function(event){
+    document.querySelectorAll('.job-modal').forEach(modal=>{
+        if(event.target == modal){
+            modal.style.display = 'none';
+        }
+    });
+}
+</script>
 
 {% endblock %}

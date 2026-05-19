@@ -1,0 +1,61 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}
+Give Client Review
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'reviews/clintreview.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="review-page">
+    <div class="review-container">
+        <div class="review-card">
+
+            <div class="review-title">
+                <h1>Review Client</h1>
+                <p>Share your experience about this client</p>
+            </div>
+
+            <div class="review-profile">
+
+                {% if client.profile_picture %}
+                    <img src="{{ client.profile_picture.url }}">
+                {% else %}
+                    <div class="default-avatar">
+                        {{ client.user.username|first|upper }}
+                    </div>
+                {% endif %}
+
+                <h2 class="review-name">{{ client.user.username }}</h2>
+                <p>{{ job.title }}</p>
+
+            </div>
+
+            <form method="POST" class="review-form">
+                {% csrf_token %}
+
+                <label>Rating</label>
+                <select name="rating" required>
+                    <option value="">Select rating</option>
+                    <option value="5">★★★★★ (5)</option>
+                    <option value="4">★★★★ (4)</option>
+                    <option value="3">★★★ (3)</option>
+                    <option value="2">★★ (2)</option>
+                    <option value="1">★ (1)</option>
+                </select>
+
+                <label>Write Review</label>
+                <textarea name="comment" placeholder="Write your review..." required></textarea>
+
+                <button type="submit">Submit Review</button>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

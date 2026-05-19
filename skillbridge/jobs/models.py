@@ -91,6 +91,7 @@ class Application(models.Model):
         ('pending', 'Pending'),
         ('accepted', 'Accepted'),
         ('rejected', 'Rejected'),
+        ('completed', 'Completed'),
     )
 
     job = models.ForeignKey(Job, on_delete=models.CASCADE, related_name='applications')
