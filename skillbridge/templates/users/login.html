@@ -1,70 +1,83 @@
 {% extends 'core/base.html' %}
 {% load static %}
-
 {% block title %}
   SkillBridge | Login
 {% endblock %}
-
 {% block extra_css %}
   <link rel="stylesheet" href="{% static 'css/user/login.css' %}" />
 {% endblock %}
-
 {% block guest_content %}
-
-<div class="login-wrapper">
-
+  <div class="login-wrapper">
     <div class="login-container">
-
       <div class="brand">
         <h2>SkillBridge</h2>
       </div>
-
-        <div class="login-top">
-            <h1 class="gradient-title">Welcome Back</h1>
-            <p>Login to continue using SkillBridge</p>
+      <div class="login-top">
+        <h1 class="gradient-title">Welcome Back</h1>
+        <p>Login to continue using SkillBridge</p>
+      </div>
+      <form method="POST">
+        {% csrf_token %}
+        {% if error %}
+          <div class="error-box">{{ error }}</div>
+        {% endif %}
+        <div class="input-group">
+          <label>Email</label>
+          <input type="text" name="email" placeholder="Enter your email" />
         </div>
-
-        <form method="POST">
-
-            {% csrf_token %}
-
-            {% if error %}
-            <div class="error-box">
-                {{ error }}
-            </div>
-            {% endif %}
-
-            <div class="input-group">
-                <label>Email</label>
-                <input type="text"
-                       name="email"
-                       placeholder="Enter your email" />
-            </div>
-
-            <div class="input-group">
-                <label>Password</label>
-                <input type="password"
-                       name="password"
-                       placeholder="Enter your password" />
-            </div>
-
-            <button type="submit">
-                Login
-            </button>
-
-        </form>
-
-        <div class="bottom-text">
-            <p>
-                Don't have an account?
-                <a href="{% url 'signup' %}">
-                    Signup
-                </a>
-            </p>
+        <div class="input-group">
+          <label>Password</label>
+          <input type="password" name="password" placeholder="Enter your password" />
         </div>
-
+        <input type="hidden" name="agree" id="agreeInput" />
+        <button type="button" id="openModalBtn">Login</button>
+      </form>
+      <div class="bottom-text">
+        <p>
+          Don't have an account?
+          <a href="{% url 'signup' %}">Signup</a>
+        </p>
+      </div>
     </div>
-
-</div>
-
+  </div>
+  <div class="popup-overlay" id="popupOverlay">
+    <div class="popup-box">
+      <h2>গুরুত্বপূর্ণ নোটিশ</h2>
+      <p>আমি প্রতিজ্ঞা করছি যে, আমি এই ওয়েবসাইটে কখনোই কোনো অসৎ বা অনৈতিক কাজ করব না। আমি সর্বদা সৎ ও ন্যায়নিষ্ঠ থাকব এবং নিয়ম মেনে চলব।</p>
+      <div class="agree-section">
+        <label><input type="checkbox" id="agreeCheck" />আমি শপথ করলাম</label>
+      </div>
+      <div class="popup-buttons">
+        <button type="button" id="cancelBtn">Cancel</button>
+        <button type="button" id="continueBtn">Continue Login</button>
+      </div>
+      <div class="modal-error" id="modalError"></div>
+    </div>
+  </div>
+{% endblock %}
+{% block extra_js %}
+  <script>
+    const openModalBtn = document.getElementById('openModalBtn')
+    const popupOverlay = document.getElementById('popupOverlay')
+    const cancelBtn = document.getElementById('cancelBtn')
+    const continueBtn = document.getElementById('continueBtn')
+    const agreeCheck = document.getElementById('agreeCheck')
+    const agreeInput = document.getElementById('agreeInput')
+    const modalError = document.getElementById('modalError')
+    openModalBtn.addEventListener('click', function () {
+      popupOverlay.style.display = 'flex'
+    })
+    cancelBtn.addEventListener('click', function () {
+      popupOverlay.style.display = 'none'
+      modalError.innerText = ''
+    })
+    continueBtn.addEventListener('click', function () {
+      if (!agreeCheck.checked) {
+        modalError.innerText = 'Please agree before continuing.'
+        return
+      }
+      agreeInput.value = 'true'
+      document.querySelector('form').submit()
+    })
+  </script>
 {% endblock %}
