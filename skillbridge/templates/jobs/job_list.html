@@ -133,15 +133,22 @@ Browse Jobs
 
                 {% else %}
 
-                <a href="{% url 'apply_job' job.id %}" class="apply-btn">
+                <button
+                    class="apply-btn"
+                    onclick="openApplyModal('applyModal{{ job.id }}')">
+
                     Apply Now
-                </a>
+
+                </button>
 
                 {% endif %}
 
-                <button class="details-btn"
+                <button
+                    class="details-btn"
                     onclick="openModal('modal{{ job.id }}')">
+
                     Details
+
                 </button>
 
             </div>
@@ -213,6 +220,59 @@ Browse Jobs
 
         </div>
 
+        <div class="apply-modal" id="applyModal{{ job.id }}">
+
+            <div class="apply-modal-content">
+
+                <span class="close-btn"
+                    onclick="closeApplyModal('applyModal{{ job.id }}')">
+
+                    &times;
+
+                </span>
+
+                <h2>Apply For Job</h2>
+
+                <form method="POST"
+                    action="{% url 'apply_job' job.id %}">
+
+                    {% csrf_token %}
+
+                    <div class="input-box">
+
+                        <label>Proposed Budget</label>
+
+                        <input
+                            type="number"
+                            name="proposed_budget"
+                            required>
+
+                    </div>
+
+                    <div class="input-box">
+
+                        <label>Cover Letter</label>
+
+                        <textarea
+                            name="cover_letter"
+                            placeholder="Write your proposal..."
+                            required></textarea>
+
+                    </div>
+
+                    <button type="submit"
+                        class="submit-apply-btn">
+
+                        Submit Application
+
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
         {% empty %}
 
         <div class="empty-box">
@@ -241,6 +301,30 @@ function openModal(id){
 
 function closeModal(id){
     document.getElementById(id).style.display='none'
+}
+
+function openApplyModal(id){
+    document.getElementById(id).style.display='flex'
+}
+
+function closeApplyModal(id){
+    document.getElementById(id).style.display='none'
+}
+
+window.onclick = function(event){
+
+    const modals = document.querySelectorAll(
+        '.job-modal, .apply-modal'
+    )
+
+    modals.forEach(modal => {
+
+        if(event.target == modal){
+            modal.style.display='none'
+        }
+
+    })
+
 }
 
 </script>
