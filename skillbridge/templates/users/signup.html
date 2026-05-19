@@ -27,6 +27,12 @@ SkillBridge | Create Account
         <form method="POST">
             {% csrf_token %}
 
+            {% if error %}
+            <div class="error-box">
+                {{ error }}
+            </div>
+            {% endif %}
+
             <div class="role-section">
 
                 <div class="role-options">

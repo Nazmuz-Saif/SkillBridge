@@ -24,11 +24,10 @@
       </div>
 
       <div class="welcome-right">
-        <a href="#" class="post-btn">Browse Jobs</a>
+        <a href="{% url 'job_list' %}" class="post-btn">Browse Jobs</a>
       </div>
     </section>
 
-    <!-- STATS -->
     <section class="stats-grid">
       <div class="stat-card">
         <div class="icon-box blue">
@@ -71,13 +70,11 @@
       </div>
     </section>
 
-    <!-- GRID -->
     <section class="dashboard-grid">
-      <!-- RECENT APPLICATIONS -->
       <div class="dashboard-card">
         <div class="card-header">
           <h3>Recent Applications</h3>
-          <a href="#">View All</a>
+          <a href="{% url 'my_applications' %}">View All</a>
         </div>
 
         <div class="application-list">
@@ -96,11 +93,10 @@
         </div>
       </div>
 
-      <!-- SAVED JOBS -->
       <div class="dashboard-card">
         <div class="card-header">
           <h3>Saved Jobs</h3>
-          <a href="#">Explore</a>
+          <a href="{% url 'saved_jobs' %}">Explore</a>
         </div>
 
         <div class="saved-job">
@@ -116,20 +112,19 @@
       </div>
     </section>
 
-    <!-- QUICK ACTION -->
     <section class="quick-action">
       <div class="action-card">
         <i class="fas fa-briefcase"></i>
         <h3>Find New Jobs</h3>
         <p>Explore the latest freelance opportunities.</p>
-        <a href="#">Browse Jobs</a>
+        <a href="{% url 'job_list' %}">Browse Jobs</a>
       </div>
 
       <div class="action-card">
         <i class="fas fa-user-edit"></i>
         <h3>Update Profile</h3>
         <p>Complete your profile to attract more clients.</p>
-        <a href="#">Edit Profile</a>
+        <a href="{% url 'freelancerprofile' %}">Edit Profile</a>
       </div>
     </section>
   </div>
