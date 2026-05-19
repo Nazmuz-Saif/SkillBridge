@@ -169,3 +169,22 @@ button:hover {
 .bottom-text a:hover {
     color: #a5b4fc;
 }
+
+.error-box{
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 18px;
+
+    border-radius: 12px;
+
+    background: rgba(239, 68, 68, 0.15);
+
+    border: 1px solid rgba(239, 68, 68, 0.4);
+
+    color: #fca5a5;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    text-align: center;
+}
