@@ -5,7 +5,8 @@ from django.contrib.auth.decorators import login_required
 from .models import Job, Application, SavedJob, Skill, JobCategory
 from .forms import JobForm
 from users.models import FreelancerProfile
-
+from django.contrib.auth.decorators import login_required
+from .models import Job, Application, SavedJob
 
 @login_required
 def post_job(request):
@@ -54,10 +55,6 @@ def post_job(request):
     }
 
     return render(request, 'jobs/post_job.html', context)
-
-from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth.decorators import login_required
-from .models import Job, Application, SavedJob
 
 
 @login_required
@@ -186,11 +183,16 @@ def update_application_status(request, app_id, status):
 
     application = get_object_or_404(
         Application,
-        id=app_id,
-        job__client=request.user
+        id=app_id
     )
 
-    application.status = status
-    application.save()
+    if application.job.client != request.user:
+        return redirect('clientdashboard')
+
+    valid_status = ['accepted', 'rejected', 'completed']
+
+    if status in valid_status:
+        application.status = status
+        application.save()
 
     return redirect('job_applications')
