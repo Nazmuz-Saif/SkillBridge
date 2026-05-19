@@ -1,5 +1,4 @@
 
-
 .review-page {
     width: 100%;
     min-height: 100vh;
@@ -7,7 +6,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(180deg, #0d38a4 0%, #143c93 100%); /* ছবির ড্যাশবোর্ডের ব্যাকগ্রাউন্ড কালার */
+    background: linear-gradient(180deg, #0d38a4 0%, #143c93 100%); 
 }
 
 
@@ -21,7 +20,7 @@
 .review-card {
     padding: 34px;
     border-radius: 20px;
-    background: rgba(4, 43, 127, 0.95); /* সলিড এবং গ্লসি ডার্ক মিক্স */
+    background: rgba(4, 43, 127, 0.95); 
     border: 1px solid rgba(255,255,255,0.06);
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
@@ -103,7 +102,7 @@
 
 .star-rating i {
     font-size: 34px;
-    color: #053c88; /* অফ-স্টার কালার */
+    color: #053c88; 
     cursor: pointer;
     transition: 0.3s ease;
 }
@@ -130,8 +129,8 @@
     padding: 14px;
     border-radius: 10px;
     border: 1px solid rgba(255, 255, 255, 0.1);
-    background: #093471; /* টেক্সট এরিয়া ডার্ক করা হলো যাতে ড্যাশবোর্ডের সাথে মিলে */
-    color: #ffffff; /* লেখার কালার সাদা */
+    background: #093471; 
+    color: #ffffff; 
     font-size: 0.95rem;
     outline: none;
     resize: none;
