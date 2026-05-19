@@ -3,7 +3,6 @@
     flex: 1;
 }
 
-/* HERO */
 .welcome-section {
     display: flex;
     justify-content: space-between;
@@ -52,7 +51,6 @@
     font-weight: 700;
 }
 
-/* STATS */
 .stats-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -99,7 +97,6 @@
     color: #a855f7;
 }
 
-/* GRID */
 .dashboard-grid {
     display: grid;
     grid-template-columns: 1.5fr 1fr;
@@ -128,7 +125,6 @@
     color: #818cf8;
 }
 
-/* LIST */
 .application-item,
 .saved-item {
     display: flex;
@@ -150,7 +146,6 @@
     color: #94a3b8;
 }
 
-/* STATUS */
 .status {
     padding: 8px 14px;
     border-radius: 30px;
@@ -173,7 +168,6 @@
     color: #f87171;
 }
 
-/* ACTION */
 .quick-action {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
