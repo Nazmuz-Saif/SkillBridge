@@ -8,7 +8,7 @@ from .models import FreelancerProfile, ClientProfile
 from jobs.models import Job, Application, SavedJob ,JobCategory
 from django.db.models import Q
 def signup(request):
-    form=SignupForm()
+    form = SignupForm()
     if request.method == "POST":
         form = SignupForm(request.POST)
         if form.is_valid():
@@ -17,19 +17,45 @@ def signup(request):
             password = form.cleaned_data['password']
             role = form.cleaned_data['role']
             if User.objects.filter(username=email).exists():
-                return render(request, 'users/signup.html', {'form': form, 'error': 'Email already exists'})
-            user = User.objects.create_user(username=email,email=email,password=password)
+                return render(request, 'users/signup.html', {
+                    'form': form,
+                    'error': 'Email already exists!'
+                })
+            user = User.objects.create_user(
+                username=email,
+                email=email,
+                password=password
+            )
             if role == 'freelancer':
-                FreelancerProfile.objects.create(user=user,name=name,email=email)
+                FreelancerProfile.objects.create(
+                    user=user,
+                    name=name,
+                    email=email
+                )
             else:
-                ClientProfile.objects.create(user=user,name=name,email=email)
+                ClientProfile.objects.create(
+                    user=user,
+                    name=name,
+                    email=email
+                )
             return redirect('login')
-    return render(request, 'users/signup.html', {'form': form})
+        else:
+            return render(request, 'users/signup.html', {
+                'form': form,
+                'error': 'Please fill all fields correctly.'
+            })
+    return render(request, 'users/signup.html', {
+        'form': form
+    })
 
 def loginview(request):
     if request.method == "POST":
-        email = request.POST['email']
-        password = request.POST['password']
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        if not email or not password:
+            return render(request, 'users/login.html', {
+                'error': 'Please enter email and password.'
+            })
         user = authenticate(username=email, password=password)
         if user is not None:
             login(request, user)
@@ -39,9 +65,10 @@ def loginview(request):
             elif ClientProfile.objects.filter(user=user).exists():
                 request.session['role'] = 'client'
                 return redirect('clientdashboard')
-        return render(request, 'users/login.html', {
-            'error': 'Invalid credentials'
-        })
+        else:
+            return render(request, 'users/login.html', {
+                'error': 'Invalid email or password.'
+            })
     return render(request, 'users/login.html')
 
 @login_required
