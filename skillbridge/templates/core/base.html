@@ -20,6 +20,13 @@
       <div class="nav-container">
         <div class="nav-left">
           <a href="/" class="brand-logo"><div class="logo-box">S</div>SKILLBRIDGE</a>
+          {% if not user.is_authenticated %}
+            <div class="nav-links desktop-menu">
+              <a href="{% url 'home' %}" class="nav-item">Home</a>
+              <a href="{% url 'guest_job_list' %}" class="nav-item">Browse Jobs</a>
+              <a href="{% url 'guest_talents_list' %}" class="nav-item">Find Talent</a>
+            </div>
+          {% endif %}
           {% if user.is_authenticated %}
             <div class="nav-search">
               <form method="GET" action="{% url 'search' %}" class="search-form">
@@ -27,29 +34,40 @@
                 <button type="submit"><i class="fas fa-search"></i></button>
               </form>
             </div>
-          {% else %}
-            <div class="nav-links">
-              <a href="{% url 'home' %}" class="nav-item">Home</a>
-              <a href="{% url 'job_list' %}" class="nav-item">Browse Jobs</a>
-              <a href="{% url 'findtalents' %}" class="nav-item">Find Talent</a>
-            </div>
           {% endif %}
         </div>
         <div class="nav-right">
           {% if user.is_authenticated %}
             <a href="#" class="message-btn"><i class="fas fa-message"></i></a>
+
             <div class="user-info">
               <div class="user-avatar">{{ user.username.0|upper }}</div>
               <span class="user-name">{{ user.username }}</span>
             </div>
           {% else %}
-            <a href="{% url 'login' %}" class="btn-login">Login</a>
-            <a href="{% url 'signup' %}" class="btn-signup">Sign Up</a>
+            <div class="auth-desktop">
+              <a href="{% url 'login' %}" class="btn-login">Login</a>
+              <a href="{% url 'signup' %}" class="btn-signup">Sign Up</a>
+            </div>
           {% endif %}
+          <div class="mobile-menu-btn">
+            <i class="fas fa-bars"></i>
+          </div>
         </div>
       </div>
     </nav>
+    <div class="mbar">
+      {% if not user.is_authenticated %}
+        <a href="{% url 'home' %}" class="mbar-item">Home</a>
+        <a href="{% url 'job_list' %}" class="mbar-item">Browse Jobs</a>
+        <a href="{% url 'findtalents' %}" class="mbar-item">Find Talent</a>
+        <hr style="opacity:0.2;" />
+        <a href="{% url 'login' %}" class="mbar-item">Login</a>
+        <a href="{% url 'signup' %}" class="mbar-item">Sign Up</a>
+      {% endif %}
+    </div>
 
+    <div class="mbar-overlay"></div>
     {% if user.is_authenticated %}
       <div class="dashboard-layout">
         {% with current=request.path %}
@@ -104,6 +122,20 @@
       
           this.classList.add('active')
         })
+      })
+      
+      const btn = document.querySelector('.mobile-menu-btn')
+      const sidebar = document.querySelector('.mbar')
+      const overlay = document.querySelector('.mbar-overlay')
+      
+      btn.addEventListener('click', () => {
+        sidebar.classList.toggle('active')
+        overlay.classList.toggle('active')
+      })
+      
+      overlay.addEventListener('click', () => {
+        sidebar.classList.remove('active')
+        overlay.classList.remove('active')
       })
     </script>
     {% block extra_js %}
