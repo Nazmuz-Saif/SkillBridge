@@ -1,0 +1,145 @@
+.app-page {
+    width: 100%;
+    padding: 30px;
+}
+
+.app-header {
+    margin-bottom: 30px;
+}
+
+.app-header h1 {
+    color: white;
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.app-header p {
+    color: #94a3b8;
+    font-size: 0.95rem;
+}
+
+.app-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.app-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(
+        145deg,
+        rgba(15, 23, 42, 0.98),
+        rgba(30, 41, 59, 0.95)
+    );
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 24px;
+    box-shadow:
+        0 10px 25px rgba(0,0,0,0.25),
+        inset 0 1px 0 rgba(255,255,255,0.03);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.app-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -50%;
+    width: 200%;
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(96,165,250,0.7),
+        transparent
+    );
+}
+
+.app-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(96,165,250,0.3);
+
+    box-shadow:
+        0 15px 35px rgba(0,0,0,0.35),
+        0 0 18px rgba(59,130,246,0.12);
+}
+
+.app-left h3 {
+    color: white;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.app-left p {
+    color: #94a3b8;
+    font-size: 0.92rem;
+    margin-bottom: 6px;
+}
+
+.app-right {
+    text-align: right;
+}
+
+.status {
+    display: inline-block;
+    padding: 10px 18px;
+    border-radius: 999px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    border: 1px solid transparent;
+}
+
+.pending {
+    background: rgba(251,146,60,0.12);
+    color: #fb923c;
+    border-color: rgba(251,146,60,0.25);
+}
+
+.accepted {
+    background: rgba(34,197,94,0.12);
+    color: #22c55e;
+    border-color: rgba(34,197,94,0.25);
+}
+
+.rejected {
+    background: rgba(248,113,113,0.12);
+    color: #f87171;
+    border-color: rgba(248,113,113,0.25);
+}
+
+.completed {
+    background: rgba(59,130,246,0.12);
+    color: #60a5fa;
+    border-color: rgba(59,130,246,0.25);
+}
+
+.empty {
+    text-align: center;
+    color: #94a3b8;
+    margin-top: 50px;
+    font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+    .app-page {
+        padding: 20px;
+    }
+    .app-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 18px;
+    }
+    .app-right {
+        width: 100%;
+        text-align: left;
+    }
+    .status {
+        font-size: 0.8rem;
+    }
+}
