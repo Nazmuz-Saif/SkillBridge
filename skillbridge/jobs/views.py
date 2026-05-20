@@ -121,6 +121,21 @@ def edit_job(request, job_id):
         'job': job
     })
 
+from django.shortcuts import get_object_or_404
+
+@login_required
+def delete_job(request, job_id):
+
+    job = get_object_or_404(
+        Job,
+        id=job_id,
+        client=request.user
+    )
+
+    job.delete()
+
+    return redirect('client_jobs')
+
 @login_required
 def job_applications(request):
     applications = Application.objects.filter(job__client=request.user).order_by('-applied_at')
