@@ -1,0 +1,120 @@
+.post-job-wrapper {
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+    background: #0f172a;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+.post-job-card {
+    width: 900px;
+    background: rgba(15, 23, 42, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 30px;
+}
+
+.header h2 {
+    color: white;
+    font-size: 28px;
+    margin-bottom: 5px;
+}
+
+.header p {
+    color: #94a3b8;
+    margin-bottom: 25px;
+}
+
+.job-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.box {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.box label {
+    color: #cbd5e1;
+    font-size: 14px;
+}
+
+.box input,
+.box select,
+.box textarea {
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: #111827;
+    color: white;
+    outline: none;
+}
+
+.box textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+}
+
+.left,
+.right {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.skill-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 10px;
+    background: #111827;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.skill-item {
+    display: flex;
+    gap: 10px;
+    color: #cbd5e1;
+    font-size: 14px;
+}
+
+.budget {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+}
+
+.btn {
+    padding: 14px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+    .grid,
+    .budget {
+        grid-template-columns: 1fr;
+    }
+}

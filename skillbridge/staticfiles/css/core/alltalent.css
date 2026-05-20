@@ -1,0 +1,175 @@
+.find-page {
+    width: 100%;
+    padding: 20px;
+}
+
+.talent-list {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+.job-top {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.job-tag {
+    display: flex;
+    padding: 8px 12px;
+    border-radius: 30px;
+    background: rgba(99, 102, 241, 0.12);
+    color: #818cf8;
+    font-size: 0.82rem;
+    font-weight: 700;
+    margin-bottom: 18px;
+    width: fit-content;
+}
+
+.job-top>div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.job-top h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 14px;
+
+    background: linear-gradient(to right, #818cf8, #f472b6);
+
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.job-top p {
+    color: #94a3b8;
+    max-width: 650px;
+    line-height: 1.7;
+}
+.talent-card {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 25px;
+
+    background: rgba(15, 23, 42, 0.96);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 24px;
+    padding: 25px;
+
+    transition: 0.3s ease;
+}
+
+.talent-card:hover {
+    transform: translateY(-5px);
+}
+
+.talent-left {
+    text-align: center;
+    padding: 20px;
+    border-right: 1px solid rgba(255,255,255,0.06);
+}
+
+.talent-img {
+    width: 110px;
+    height: 110px;
+    margin: auto;
+    margin-bottom: 15px;
+}
+
+.talent-img img,
+.default-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.default-img {
+    background: linear-gradient(135deg,#6366f1,#9333ea);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: white;
+}
+
+.talent-left h3 {
+    color: white;
+    margin-bottom: 6px;
+}
+
+.talent-left p {
+    color: #94a3b8;
+    font-size: 0.9rem;
+}
+
+.talent-right {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+}
+
+.info-box {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.info-box label {
+    color: white;
+    font-weight: 600;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.box {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    padding: 12px 14px;
+    border-radius: 12px;
+    color: #cbd5e1;
+    min-height: 45px;
+    display: flex;
+    align-items: center;
+    line-height: 1.5;
+}
+
+.box a {
+    color: #818cf8;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.box a:hover {
+    text-decoration: underline;
+}
+
+.info-box.full {
+    grid-column: span 2;
+}
+
+@media (max-width: 900px) {
+    .talent-card {
+        grid-template-columns: 1fr;
+    }
+
+    .talent-left {
+        border-right: none;
+        border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .talent-right {
+        grid-template-columns: 1fr;
+    }
+
+    .info-box.full {
+        grid-column: span 1;
+    }
+}

@@ -1,34 +1,28 @@
 # ==========================================
-# 1. Django Framework Specific
+# Django Core
 # ==========================================
 *.log
 local_settings.py
 db.sqlite3
 db.sqlite3-journal
 media/
-staticfiles/
-static/collected/
-static/root/
-static/assets/dist/
-/templates/jit/
-.python-version
 celerybeat-schedule
 celerybeat.pid
 
-# Django migrations (keeping __init__.py only)
-/migrations/*.py
-!/migrations/__init__.py
+.python-version
 
 # ==========================================
-# 2. Python Core & Environment
+# Python / Virtual Environment
 # ==========================================
 __pycache__/
 *.py[cod]
-*$py.class
 *.so
+*.pyo
+*.pyd
+
 .Python
+
 build/
-develop-eggs/
 dist/
 downloads/
 eggs/
@@ -39,127 +33,73 @@ parts/
 sdist/
 var/
 wheels/
-share/python-wheels/
 *.egg-info/
 .installed.cfg
 *.egg
 MANIFEST
+
 .env
 .envrc
 .venv
-env/
 venv/
 ENV/
+env/
 env.bak/
 venv.bak/
 
 # ==========================================
-# 3. Development Tools (VS Code, PyCharm, etc)
+# IDE / Editors
 # ==========================================
 .idea/
 .vscode/
 *.code-workspace
 .history/
-.project
-.pydevproject
-.settings/
 *.swp
 *.swo
-.ropeproject
-.spyderproject
-.spyproject
-.cache
+
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/
+.cache/
 
 # ==========================================
-# 4. Operating System (Mac, Windows, Linux)
+# OS Files
 # ==========================================
 .DS_Store
 .DS_Store?
 ._*
 .Spotlight-V100
 .Trashes
-ehthumbs.db
 Thumbs.db
 Desktop.ini
-$RECYCLE.BIN/
+
+# ==========================================
+# Logs (optional local logs)
+# ==========================================
+logs/
 *.tmp
 *.temp
-*~
-.nfs*
 
 # ==========================================
-# 5. Massive Log & Cache Patterns (Line Fillers)
+# Database files
 # ==========================================
-# Copy-paste this pattern to increase line count rapidly
-logs/access.log
-logs/error.log
-logs/django_debug.log
-logs/sql_queries.log
-logs/celery_worker.log
-logs/celery_beat.log
-logs/redis.log
-logs/mail.log
-logs/gunicorn.access.log
-logs/gunicorn.error.log
-logs/nginx.access.log
-logs/nginx.error.log
-
-# ==========================================
-# 6. Database Dumps & Large Data
-# ==========================================
-*.sql
 *.sqlite
 *.db
 *.dump
-*.rdb
-*.aof
-*.parquet
-*.csv
-*.tsv
-*.jsonl
-*.h5
-*.hdf5
-*.pkl
-*.pickle
-*.npy
-*.npz
 
 # ==========================================
-# 7. PRO TRICK: System Artifacts (To reach 1K+)
-# ==========================================
-# Nicher line gulo 1 theke 100 porjonto copy kore paste koro
-# Dekhte ekdom real pro-level architecture mone hobe
-runtime/cache/001/
-runtime/cache/002/
-runtime/cache/003/
-runtime/cache/004/
-runtime/cache/005/
-# [Eibhabe 100 porjonto line add koro...]
-
-temp_artifacts/build_01/
-temp_artifacts/build_02/
-temp_artifacts/build_03/
-temp_artifacts/build_04/
-temp_artifacts/build_05/
-# [Eibhabe numbering barale line druto barbe...]
-
-# Deployment Version Backups
-backups/v1.0.0/
-backups/v1.0.1/
-backups/v1.1.0/
-backups/v2.0.0/
-# [Eibhabe aro version add koro...]
-
-# ==========================================
-# 8. Extra Dependencies
+# Node (if frontend exists)
 # ==========================================
 node_modules/
-bower_components/
-jspm_packages/
-.npm/
-.eslintcache
-pip-log.txt
-pip-delete-this-directory.txt
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ==========================================
+# ❌ IMPORTANT WARNING SECTION
+# ==========================================
+# DO NOT ignore:
+# - static/
+# - static/assets/
+# - templates/
+# These must go to Git for Django + Render to work properly

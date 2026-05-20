@@ -1,0 +1,148 @@
+.search-page {
+    padding: 6px 40px 20px;
+    min-height: 100vh;
+    background: #0f172a;
+}
+
+
+.search-header {
+    margin-bottom: 10px;
+}
+
+.search-header h1 {
+    font-size: 34px;
+    color: #a855f7;
+    margin: 0;
+    font-weight: 800;
+}
+
+.search-box {
+    display: flex;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+.search-box input {
+    width: 320px;
+    padding: 10px 14px;
+    border-radius: 12px;
+    border: 1px solid rgba(168, 85, 247, 0.4);
+    background: rgba(168, 85, 247, 0.08);
+    color: white;
+    outline: none;
+    backdrop-filter: blur(10px);
+}
+
+.search-box button {
+    background: rgba(168, 85, 247, 0.3);
+    border: none;
+    padding: 10px 14px;
+    color: white;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+.search-header p {
+    color: #c4b5fd;
+    margin: 4px 0 0 0;
+}
+
+.search-header span {
+    color: #a855f7;
+    font-weight: 700;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.card {
+    border-radius: 14px;
+    padding: 14px;
+    border: 1px solid rgba(168, 85, 247, 0.25);
+    background: rgba(168, 85, 247, 0.08);
+    backdrop-filter: blur(14px);
+    height: 260px;
+    overflow: hidden;
+}
+
+.jobs {
+    background: rgba(168, 85, 247, 0.10)
+}
+
+.clients {
+    background: rgba(139, 92, 246, 0.10)
+}
+
+.freelancers {
+    background: rgba(124, 58, 237, 0.10)
+}
+
+.categories {
+    background: rgba(196, 181, 253, 0.10)
+}
+
+.title-box {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 10px;
+    border-radius: 12px;
+    border: 1px solid rgba(168, 85, 247, 0.3);
+    background: rgba(0, 0, 0, 0.2);
+    width: fit-content;
+    margin-bottom: 10px;
+}
+
+.title-box i {
+    color: #a855f7;
+}
+
+.title-box span {
+    color: white;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.item {
+    background: rgba(255, 255, 255, 0.04);
+    color: #ddd6fe;
+    padding: 8px;
+    margin-bottom: 6px;
+    border-radius: 10px;
+    border: 1px solid rgba(168, 85, 247, 0.15);
+    transition: 0.2s;
+    font-size: 13px;
+}
+
+.item:hover {
+    background: rgba(168, 85, 247, 0.25);
+    transform: translateY(-2px);
+}
+
+.back-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 18px;
+}
+
+.back-btn {
+    background: linear-gradient(135deg, #7c3aed, #a855f7);
+    color: white;
+    text-decoration: none;
+    padding: 9px 18px;
+    border-radius: 12px;
+    font-weight: 600;
+}
+
+.back-btn:hover {
+    transform: translateY(-2px);
+}
+
+@media(max-width:768px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,91 @@
+.review-page {
+    width: 100%;
+    min-height: 100vh;
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(180deg, #0d38a4, #143c93);
+}
+
+.review-container {
+    width: 100%;
+    max-width: 600px;
+}
+
+.review-card {
+    padding: 30px;
+    border-radius: 18px;
+    background: rgba(4, 43, 127, 0.95);
+    color: white;
+    text-align: center;
+}
+
+.review-title h1 {
+    font-size: 2rem;
+    color: #a78bfa;
+}
+
+.review-title p {
+    color: #94a3b8;
+    margin-bottom: 20px;
+}
+
+.review-profile img,
+.default-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin: auto;
+}
+
+.default-avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #6366f1;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.review-name {
+    margin-top: 10px;
+    font-size: 20px;
+}
+
+.review-form {
+    margin-top: 20px;
+    text-align: left;
+}
+
+.review-form label {
+    display: block;
+    margin: 10px 0 5px;
+}
+
+.review-form select,
+.review-form textarea {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    background: #093471;
+    color: white;
+}
+
+.review-form textarea {
+    height: 120px;
+    resize: none;
+}
+
+.review-form button {
+    width: 100%;
+    margin-top: 15px;
+    padding: 12px;
+    background: #6366f1;
+    border: none;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+}
