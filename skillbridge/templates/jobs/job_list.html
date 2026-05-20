@@ -155,146 +155,92 @@ Browse Jobs
 
         </div>
 
-
-        <!-- MODAL -->
-
         <div class="job-modal" id="modal{{ job.id }}">
-
             <div class="modal-content">
-
                 <span class="close-btn"
                     onclick="closeModal('modal{{ job.id }}')">
                     &times;
                 </span>
-
                 <h2>{{ job.title }}</h2>
-
                 <div class="modal-section">
                     <label>Description</label>
-
                     <p>{{ job.description }}</p>
                 </div>
-
                 <div class="modal-grid">
-
                     <div>
                         <label>Category</label>
                         <p>{{ job.category.name }}</p>
                     </div>
-
                     <div>
                         <label>Job Type</label>
                         <p>{{ job.get_job_type_display }}</p>
                     </div>
-
                     <div>
                         <label>Experience</label>
                         <p>{{ job.get_experience_level_display }}</p>
                     </div>
-
                     <div>
                         <label>Deadline</label>
                         <p>{{ job.deadline }}</p>
                     </div>
-
                 </div>
-
                 <div class="modal-section">
                     <label>Skills Required</label>
-
                     <div class="job-skills">
-
                         {% for skill in job.skills_required.all %}
-
                         <span class="skill-tag">
                             {{ skill.name }}
                         </span>
-
                         {% endfor %}
-
                     </div>
-
                 </div>
-
             </div>
-
         </div>
-
         <div class="apply-modal" id="applyModal{{ job.id }}">
-
             <div class="apply-modal-content">
-
                 <span class="close-btn"
                     onclick="closeApplyModal('applyModal{{ job.id }}')">
-
                     &times;
-
                 </span>
-
                 <h2>Apply For Job</h2>
-
                 <form method="POST"
                     action="{% url 'apply_job' job.id %}">
-
                     {% csrf_token %}
-
                     <div class="input-box">
-
                         <label>Proposed Budget</label>
-
                         <input
                             type="number"
                             name="proposed_budget"
                             required>
-
                     </div>
-
                     <div class="input-box">
-
                         <label>Cover Letter</label>
-
                         <textarea
                             name="cover_letter"
                             placeholder="Write your proposal..."
                             required></textarea>
-
                     </div>
-
                     <button type="submit"
                         class="submit-apply-btn">
-
                         Submit Application
-
                     </button>
-
                 </form>
-
             </div>
-
         </div>
-
         {% empty %}
 
         <div class="empty-box">
-
             <i class="fas fa-briefcase"></i>
-
             <h2>No Jobs Available</h2>
-
             <p>
                 No client has posted any job yet.
             </p>
-
         </div>
-
         {% endfor %}
-
     </div>
-
 </div>
 
 <script>
-
 function openModal(id){
     document.getElementById(id).style.display='flex'
 }
@@ -312,21 +258,15 @@ function closeApplyModal(id){
 }
 
 window.onclick = function(event){
-
     const modals = document.querySelectorAll(
         '.job-modal, .apply-modal'
     )
-
     modals.forEach(modal => {
-
         if(event.target == modal){
             modal.style.display='none'
         }
-
     })
-
 }
-
 </script>
 
 {% endblock %}

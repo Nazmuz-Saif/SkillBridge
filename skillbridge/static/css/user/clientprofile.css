@@ -258,7 +258,6 @@
         position: relative;
         top: 0;
     }
-
     .details-grid,
     .form-grid {
         grid-template-columns: 1fr;
