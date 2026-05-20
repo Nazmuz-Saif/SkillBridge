@@ -22,25 +22,16 @@ Post Job
 
         <form method="POST" class="job-form">
             {% csrf_token %}
-
-            <!-- TITLE -->
             <div class="box">
                 <label>Job Title</label>
                 <input type="text" name="title" required>
             </div>
-
-            <!-- DESCRIPTION -->
             <div class="box">
                 <label>Job Description</label>
                 <textarea name="description" required></textarea>
             </div>
-
-            <!-- GRID -->
             <div class="grid">
-
-                <!-- LEFT -->
                 <div class="left">
-
                     <div class="box">
                         <label>Category</label>
                         <select name="category" required>
@@ -68,7 +59,6 @@ Post Job
 
                 </div>
 
-                <!-- RIGHT -->
                 <div class="right">
 
                     <div class="box">
@@ -98,7 +88,6 @@ Post Job
 
             </div>
 
-            <!-- BUDGET -->
             <div class="budget">
                 <div class="box">
                     <label>Min Budget</label>

@@ -220,11 +220,9 @@
     .stats-grid {
         grid-template-columns: repeat(2, 1fr);
     }
-
     .dashboard-grid {
         grid-template-columns: 1fr;
     }
-
     .quick-action {
         grid-template-columns: 1fr;
     }
@@ -234,16 +232,13 @@
     .dashboard-page {
         padding: 20px;
     }
-
     .welcome-section {
         flex-direction: column;
         align-items: flex-start;
     }
-
     .stats-grid {
         grid-template-columns: 1fr;
     }
-
     .welcome-left h1 {
         font-size: 2rem;
     }
