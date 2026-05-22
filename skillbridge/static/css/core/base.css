@@ -8,6 +8,7 @@ html,
 body {
     scroll-behavior: smooth;
     margin: 0;
+    width: 100%;
     min-height: 100%;
 }
 
@@ -28,7 +29,8 @@ body {
 .main-wrapper {
     display: flex;
     flex-direction: column;
-    padding: 30px 30px 30px;
+    padding: 0;
+    width: 100%;
 }
 
 
@@ -501,15 +503,18 @@ html {
 .navbar {
     z-index: 99999 !important;
 }
+
 .desktop-menu {
     display: flex;
     gap: 20px;
 }
+
 .mobile-menu-btn {
     display: none;
     font-size: 22px;
     cursor: pointer;
 }
+
 .mbar {
     position: fixed;
     top: 0;
@@ -523,9 +528,11 @@ html {
     z-index: 9999;
     text-align: center;
 }
+
 .mbar.active {
     transform: translateY(0);
 }
+
 .mbar-item {
     display: block;
     padding: 14px 18px;
@@ -538,13 +545,15 @@ html {
     text-transform: uppercase;
     border-radius: 10px;
     transition: 0.25s ease;
-    background: rgba(255, 255, 255, 0.03);
+    background: #0f172a;
     border: 1px solid rgba(255, 255, 255, 0.05);
 }
+
 .mbar-item:hover {
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(74, 3, 242, 0.08);
     transform: scale(1.03);
 }
+
 .mbar hr {
     border: none;
     height: 1px;
@@ -552,6 +561,7 @@ html {
     margin: 18px auto;
     width: 50%;
 }
+
 .mbar-overlay {
     position: fixed;
     top: 0;
@@ -562,6 +572,7 @@ html {
     background: rgba(0, 0, 0, 0.6);
     z-index: 9998;
 }
+
 .mbar-overlay.active {
     display: block;
 }
@@ -581,12 +592,35 @@ html {
         display: block;
     }
 }
+
 .auth-desktop {
     display: flex;
     gap: 10px;
 }
+
 @media (max-width: 768px) {
     .auth-desktop {
         display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar .nav-search {
+        display: none;
+    }
+
+    .user-info {
+        display: none;
+    }
+
+    .message-btn {
+        display: none;
+    }
+
+    .mobile-menu-btn {
+        display: block !important;
+        color: white;
+        font-size: 22px;
+        cursor: pointer;
     }
 }

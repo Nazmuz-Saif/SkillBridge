@@ -1,30 +1,14 @@
 .find-page {
     width: 100%;
-    padding: 20px;
+    padding: 30px 5%;
+    background: #0b1120;
 }
 
-.talent-list {
-    display: flex;
-    flex-direction: column;
-    gap: 25px;
-}
 .job-top {
     display: flex;
     justify-content: center;
-    align-items: center;
     text-align: center;
-}
-
-.job-tag {
-    display: flex;
-    padding: 8px 12px;
-    border-radius: 30px;
-    background: rgba(99, 102, 241, 0.12);
-    color: #818cf8;
-    font-size: 0.82rem;
-    font-weight: 700;
-    margin-bottom: 18px;
-    width: fit-content;
+    margin-bottom: 40px;
 }
 
 .job-top>div {
@@ -33,44 +17,60 @@
     align-items: center;
 }
 
-.job-top h1 {
-    font-size: 2.5rem;
-    font-weight: 800;
+.job-tag {
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: rgba(99, 102, 241, 0.12);
+    color: #818cf8;
+    font-size: 0.8rem;
+    font-weight: 700;
     margin-bottom: 14px;
+}
+
+.job-top h1 {
+    font-size: 2.6rem;
+    font-weight: 800;
 
     background: linear-gradient(to right, #818cf8, #f472b6);
-
-    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
 .job-top p {
     color: #94a3b8;
-    max-width: 650px;
-    line-height: 1.7;
 }
+
+.talent-list {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
 .talent-card {
     display: grid;
-    grid-template-columns: 280px 1fr;
+    grid-template-columns: 260px 1fr;
     gap: 25px;
 
-    background: rgba(15, 23, 42, 0.96);
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 24px;
+    background: rgba(15, 23, 42, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 26px;
     padding: 25px;
 
-    transition: 0.3s ease;
+    transition: all 0.35s ease;
+    position: relative;
+    overflow: hidden;
 }
 
 .talent-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-6px);
+    border-color: rgba(99, 102, 241, 0.4);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5);
 }
 
 .talent-left {
     text-align: center;
     padding: 20px;
-    border-right: 1px solid rgba(255,255,255,0.06);
+    border-right: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .talent-img {
@@ -89,62 +89,62 @@
 }
 
 .default-img {
-    background: linear-gradient(135deg,#6366f1,#9333ea);
+    background: linear-gradient(135deg, #6366f1, #9333ea);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 2.5rem;
+    font-size: 2.3rem;
     font-weight: 700;
     color: white;
 }
 
 .talent-left h3 {
-    color: white;
-    margin-bottom: 6px;
+    color: #fff;
+    font-size: 1.1rem;
+    margin-bottom: 5px;
 }
 
 .talent-left p {
     color: #94a3b8;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
 }
 
 .talent-right {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 18px;
+    gap: 16px;
 }
 
 .info-box {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 6px;
 }
 
 .info-box label {
-    color: white;
+    color: #e2e8f0;
     font-weight: 600;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
 }
 
 .box {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.08);
-    padding: 12px 14px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    padding: 10px 12px;
     border-radius: 12px;
     color: #cbd5e1;
-    min-height: 45px;
+    min-height: 42px;
     display: flex;
     align-items: center;
-    line-height: 1.5;
 }
 
 .box a {
     color: #818cf8;
-    text-decoration: none;
     font-weight: 600;
+    text-decoration: none;
 }
 
 .box a:hover {
@@ -162,7 +162,7 @@
 
     .talent-left {
         border-right: none;
-        border-bottom: 1px solid rgba(255,255,255,0.06);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     }
 
     .talent-right {
