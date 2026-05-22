@@ -11,15 +11,15 @@
     </title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
     <link rel="stylesheet" href="{% static 'css/core/base.css' %}" />
-    {% block extra_css %}
-
-    {% endblock %}
+    {% block extra_css %}{% endblock %}
   </head>
+
   <body>
     <nav class="navbar">
       <div class="nav-container">
         <div class="nav-left">
           <a href="/" class="brand-logo"><div class="logo-box">S</div>SKILLBRIDGE</a>
+
           {% if not user.is_authenticated %}
             <div class="nav-links desktop-menu">
               <a href="{% url 'home' %}" class="nav-item">Home</a>
@@ -27,6 +27,7 @@
               <a href="{% url 'guest_talents_list' %}" class="nav-item">Find Talent</a>
             </div>
           {% endif %}
+
           {% if user.is_authenticated %}
             <div class="nav-search">
               <form method="GET" action="{% url 'search' %}" class="search-form">
@@ -36,6 +37,7 @@
             </div>
           {% endif %}
         </div>
+
         <div class="nav-right">
           {% if user.is_authenticated %}
             <a href="{% url 'nochat' %}" class="message-btn"><i class="fas fa-message"></i></a>
@@ -49,12 +51,14 @@
               <a href="{% url 'signup' %}" class="btn-signup">Sign Up</a>
             </div>
           {% endif %}
+
           <div class="mobile-menu-btn">
             <i class="fas fa-bars"></i>
           </div>
         </div>
       </div>
     </nav>
+
     <div class="mbar">
       {% if not user.is_authenticated %}
         <a href="{% url 'home' %}" class="mbar-item">Home</a>
@@ -63,82 +67,120 @@
         <hr style="opacity:0.2;" />
         <a href="{% url 'login' %}" class="mbar-item">Login</a>
         <a href="{% url 'signup' %}" class="mbar-item">Sign Up</a>
+      {% else %}
+        {% if request.session.role == 'freelancer' %}
+          <a href="{% url 'freelencerdashboard' %}" class="mbar-item">Dashboard</a>
+          <a href="{% url 'freelancerprofile' %}" class="mbar-item">Profile</a>
+          <a href="{% url 'job_list' %}" class="mbar-item">Browse Jobs</a>
+          <a href="{% url 'my_applications' %}" class="mbar-item">Applications</a>
+          <a href="{% url 'saved_jobs' %}" class="mbar-item">Saved Jobs</a>
+        {% else %}
+          <a href="{% url 'clientdashboard' %}" class="mbar-item">Dashboard</a>
+          <a href="{% url 'clientprofile' %}" class="mbar-item">Profile</a>
+          <a href="{% url 'client_jobs' %}" class="mbar-item">Manage Jobs</a>
+          <a href="{% url 'post_job' %}" class="mbar-item">Post Job</a>
+          <a href="{% url 'findtalents' %}" class="mbar-item">Find Talent</a>
+        {% endif %}
+        <a href="{% url 'nochat' %}" class="mbar-item">Messages</a>
+        <a href="{% url 'frereview' %}" class="mbar-item">Reviews</a>
+        <a href="{% url 'logout' %}" class="mbar-item">Logout</a>
       {% endif %}
     </div>
 
     <div class="mbar-overlay"></div>
+
     {% if user.is_authenticated %}
       <div class="dashboard-layout">
         {% with current=request.path %}
           <aside class="sidebar">
             {% if request.session.role == 'freelancer' %}
               <div class="role-badge freelancer">Freelancer</div>
-              <a href="{% url 'freelencerdashboard' %}" class="sidebar-item {% if request.resolver_match.url_name == 'freelencerdashboard' %}active{% endif %}"><i class="fas fa-chart-line"></i>Dashboard</a>
-              <a href="{% url 'freelancerprofile' %}" class="sidebar-item {% if request.resolver_match.url_name == 'freelancerprofile' %}active{% endif %}"><i class="fas fa-user"></i>My Profile</a>
-              <a href="{% url 'job_list' %}" class="sidebar-item {% if request.resolver_match.url_name == 'job_list' %}active{% endif %}"><i class="fas fa-briefcase"></i>Browse Jobs</a>
-              <a href="{% url 'my_applications' %}" class="sidebar-item {% if request.resolver_match.url_name == 'my_applications' %}active{% endif %}"><i class="fas fa-file"></i>My Applications</a>
-              <a href="{% url 'saved_jobs' %}" class="sidebar-item {% if request.resolver_match.url_name == 'saved_jobs' %}active{% endif %}"><i class="fas fa-bookmark"></i>Saved Jobs</a>
-              <a href="{% url 'nochat' %}" class="sidebar-item {% if request.resolver_match.url_name == 'nochat' %}active{% endif %}"><i class="fas fa-message"></i>Messages</a>
-              <a href="{% url 'frereview' %}" class="sidebar-item {% if request.resolver_match.url_name == 'frereview' %}active{% endif %}"><i class="fas fa-star"></i>Reviews</a>
+              <a href="{% url 'freelencerdashboard' %}" class="sidebar-item {% if request.resolver_match.url_name == 'freelencerdashboard' %}active{% endif %}">
+                <i class="fas fa-chart-line"></i>Dashboard
+              </a>
+              <a href="{% url 'freelancerprofile' %}" class="sidebar-item {% if request.resolver_match.url_name == 'freelancerprofile' %}active{% endif %}">
+                <i class="fas fa-user"></i>My Profile
+              </a>
+              <a href="{% url 'job_list' %}" class="sidebar-item {% if request.resolver_match.url_name == 'job_list' %}active{% endif %}">
+                <i class="fas fa-briefcase"></i>Browse Jobs
+              </a>
+              <a href="{% url 'my_applications' %}" class="sidebar-item {% if request.resolver_match.url_name == 'my_applications' %}active{% endif %}">
+                <i class="fas fa-file"></i>My Applications
+              </a>
+              <a href="{% url 'saved_jobs' %}" class="sidebar-item {% if request.resolver_match.url_name == 'saved_jobs' %}active{% endif %}">
+                <i class="fas fa-bookmark"></i>Saved Jobs
+              </a>
+              <a href="{% url 'nochat' %}" class="sidebar-item {% if request.resolver_match.url_name == 'nochat' %}active{% endif %}">
+                <i class="fas fa-message"></i>Messages
+              </a>
+              <a href="{% url 'frereview' %}" class="sidebar-item {% if request.resolver_match.url_name == 'frereview' %}active{% endif %}">
+                <i class="fas fa-star"></i>Reviews
+              </a>
             {% else %}
               <div class="role-badge client">Client</div>
-              <a href="{% url 'clientdashboard' %}" class="sidebar-item {% if request.resolver_match.url_name == 'clientdashboard' %}active{% endif %}"><i class="fas fa-chart-line"></i>Dashboard</a>
-              <a href="{% url 'clientprofile' %}" class="sidebar-item {% if request.resolver_match.url_name == 'clientprofile' %}active{% endif %}"><i class="fas fa-user"></i>My Profile</a>
-              <a href="{% url 'client_jobs' %}" class="sidebar-item {% if request.resolver_match.url_name == 'client_jobs' %}active{% endif %}"><i class="fas fa-briefcase"></i>Manage Jobs</a>
-              <a href="{% url 'post_job' %}" class="sidebar-item {% if request.resolver_match.url_name == 'post_job' %}active{% endif %}"><i class="fas fa-plus"></i>Post a Job</a>
-              <a href="{% url 'findtalents' %}" class="sidebar-item {% if request.resolver_match.url_name == 'findtalents' %}active{% endif %}"><i class="fas fa-users"></i>Find Talent</a>
-              <a href="{% url 'nochat' %}" class="sidebar-item {% if request.resolver_match.url_name == 'nochat' %}active{% endif %}"><i class="fas fa-message"></i>Messages</a>
-              <a href="{% url 'frereview' %}" class="sidebar-item {% if request.resolver_match.url_name == 'frereview' %}active{% endif %}"><i class="fas fa-star"></i> Reviews</a>
+              <a href="{% url 'clientdashboard' %}" class="sidebar-item {% if request.resolver_match.url_name == 'clientdashboard' %}active{% endif %}">
+                <i class="fas fa-chart-line"></i>Dashboard
+              </a>
+              <a href="{% url 'clientprofile' %}" class="sidebar-item {% if request.resolver_match.url_name == 'clientprofile' %}active{% endif %}">
+                <i class="fas fa-user"></i>My Profile
+              </a>
+              <a href="{% url 'client_jobs' %}" class="sidebar-item {% if request.resolver_match.url_name == 'client_jobs' %}active{% endif %}">
+                <i class="fas fa-briefcase"></i>Manage Jobs
+              </a>
+              <a href="{% url 'post_job' %}" class="sidebar-item {% if request.resolver_match.url_name == 'post_job' %}active{% endif %}">
+                <i class="fas fa-plus"></i>Post a Job
+              </a>
+              <a href="{% url 'findtalents' %}" class="sidebar-item {% if request.resolver_match.url_name == 'findtalents' %}active{% endif %}">
+                <i class="fas fa-users"></i>Find Talent
+              </a>
+              <a href="{% url 'nochat' %}" class="sidebar-item {% if request.resolver_match.url_name == 'nochat' %}active{% endif %}">
+                <i class="fas fa-message"></i>Messages
+              </a>
+              <a href="{% url 'frereview' %}" class="sidebar-item {% if request.resolver_match.url_name == 'frereview' %}active{% endif %}">
+                <i class="fas fa-star"></i>Reviews
+              </a>
             {% endif %}
 
-            <a href="{% url 'logout' %}" class="sidebar-item logout-sidebar"><i class="fas fa-right-from-bracket"></i>Logout</a>
+            <a href="{% url 'logout' %}" class="sidebar-item logout-sidebar">
+              <i class="fas fa-right-from-bracket"></i>Logout
+            </a>
           </aside>
         {% endwith %}
-        <main class="dashboard-content">
-          {% block content %}
 
-          {% endblock %}
+        <main class="dashboard-content">
+          {% block content %}{% endblock %}
         </main>
       </div>
     {% else %}
       <main class="main-wrapper">
-        {% block guest_content %}
-
-        {% endblock %}
+        {% block guest_content %}{% endblock %}
       </main>
     {% endif %}
+
     <footer class="footer">
       <div class="footer-content">&copy; 2026 SkillBridge | Built By UAP_RedHawks.</div>
     </footer>
+
     <script>
-      const items = document.querySelectorAll('.sidebar-item:not(.logout-sidebar)')
-      
-      items.forEach((item) => {
-        item.addEventListener('click', function () {
-          items.forEach((i) => {
-            i.classList.remove('active')
+      document.addEventListener("DOMContentLoaded", function () {
+        const btn = document.querySelector(".mobile-menu-btn")
+        const sidebar = document.querySelector(".mbar")
+        const overlay = document.querySelector(".mbar-overlay")
+
+        if (btn && sidebar && overlay) {
+          btn.addEventListener("click", function () {
+            sidebar.classList.toggle("active")
+            overlay.classList.toggle("active")
           })
-      
-          this.classList.add('active')
-        })
-      })
-      
-      const btn = document.querySelector('.mobile-menu-btn')
-      const sidebar = document.querySelector('.mbar')
-      const overlay = document.querySelector('.mbar-overlay')
-      
-      btn.addEventListener('click', () => {
-        sidebar.classList.toggle('active')
-        overlay.classList.toggle('active')
-      })
-      
-      overlay.addEventListener('click', () => {
-        sidebar.classList.remove('active')
-        overlay.classList.remove('active')
+
+          overlay.addEventListener("click", function () {
+            sidebar.classList.remove("active")
+            overlay.classList.remove("active")
+          })
+        }
       })
     </script>
-    {% block extra_js %}
 
-    {% endblock %}
+    {% block extra_js %}{% endblock %}
   </body>
 </html>
