@@ -2,7 +2,7 @@
 
 > A Django-based freelance marketplace platform where clients can post jobs, freelancers can apply, and both can manage their profiles — built as a group project.
 
-🔗 **Live Demo:** *(https://skillbridge-1-7gc1.onrender.com/)*
+🔗 **Deployed on Render** *(currently suspended)*
 
 ---
 
